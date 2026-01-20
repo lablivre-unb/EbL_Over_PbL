@@ -1,0 +1,1810 @@
+{
+  "organization": "GovHub-br",
+  "extracted_at": "2026-01-21 18:49:01",
+  "members": [],
+  "repositories": [
+    {
+      "name": "data-application-gov-hub",
+      "languages": [
+        "Python",
+        "Jinja",
+        "PLpgSQL",
+        "Dockerfile",
+        "Makefile"
+      ],
+      "contributors": [
+        "RochaCarla",
+        "jvbfr",
+        "joycejdm",
+        "email::pedro.rossi@capibaribeti.com",
+        "LeoFacB",
+        "mat054",
+        "GabrielaTiago",
+        "Arthrok",
+        "davi-aguiar-vieira",
+        "marcusmartinss",
+        "VictorSzk",
+        "TiagoSBittencourt",
+        "Mateushqms",
+        "MatDias97",
+        "egewarth"
+      ],
+      "pull_requests": [
+        {
+          "number": 2,
+          "title": "Ajusta arquivo de ci para rodar no github.",
+          "author": "arthurrsousa",
+          "merged_by": null,
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 3,
+          "title": "Ajusta arquivo de ci para rodar no github.",
+          "author": "arthurrsousa",
+          "merged_by": null,
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 4,
+          "title": "docs: adição do guia de contribuição, template de PR e nova versão do README em pt-br",
+          "author": "yaskisoba",
+          "merged_by": "joycejdm",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 5,
+          "title": "Feat/dags tests ipea",
+          "author": "joycejdm",
+          "merged_by": "joycejdm",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 11,
+          "title": "Migração de pipeline para github",
+          "author": "marcusmartinss",
+          "merged_by": "Arthrok",
+          "reviewers": [
+            "Arthrok",
+            "egewarth"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 12,
+          "title": "feat(docker): adiciona driver do postgres no superset",
+          "author": "davi-aguiar-vieira",
+          "merged_by": "Arthrok",
+          "reviewers": [],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 13,
+          "title": "fix/makefile",
+          "author": "davi-aguiar-vieira",
+          "merged_by": "Arthrok",
+          "reviewers": [
+            "Arthrok"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 21,
+          "title": "bug: retira servidores fora do orgao",
+          "author": "davi-aguiar-vieira",
+          "merged_by": "Arthrok",
+          "reviewers": [],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 23,
+          "title": "feat: Criação das DAGs de ingestão da API de deputados/",
+          "author": "marcusmartinss",
+          "merged_by": null,
+          "reviewers": [],
+          "commenters": [
+            "sonarqubecloud",
+            "marcusmartinss"
+          ]
+        },
+        {
+          "number": 25,
+          "title": "fix/dag-nota-de-crédito",
+          "author": "davi-aguiar-vieira",
+          "merged_by": "egewarth",
+          "reviewers": [
+            "Arthrok",
+            "egewarth"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 27,
+          "title": "feat: altera a ingestão de ncs e pfs de teds para usar o id do plano de ação ao invés da UG emitente",
+          "author": "egewarth",
+          "merged_by": "egewarth",
+          "reviewers": [
+            "mat054",
+            "davi-aguiar-vieira"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 29,
+          "title": "fix/pf-tesouro-ingest",
+          "author": "davi-aguiar-vieira",
+          "merged_by": "egewarth",
+          "reviewers": [
+            "egewarth"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 31,
+          "title": "Quebra dos schemas para modularização",
+          "author": "mat054",
+          "merged_by": "egewarth",
+          "reviewers": [
+            "egewarth"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 35,
+          "title": "feat(airflow): ingestao de programas e plano de acao transferegov",
+          "author": "davi-aguiar-vieira",
+          "merged_by": "egewarth",
+          "reviewers": [
+            "egewarth"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 37,
+          "title": "feat(docs): adiciona template de mensagem de commit",
+          "author": "GabrielaTiago",
+          "merged_by": "mat054",
+          "reviewers": [
+            "mat054"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 38,
+          "title": "feat(schedule): paramentização da periodicidade das dags usando variáveis do Airflow",
+          "author": "TiagoSBittencourt",
+          "merged_by": "davi-aguiar-vieira",
+          "reviewers": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": [
+            "sonarqubecloud",
+            "TiagoSBittencourt"
+          ]
+        },
+        {
+          "number": 43,
+          "title": "Feat/cliente GitHub",
+          "author": "davi-aguiar-vieira",
+          "merged_by": "Arthrok",
+          "reviewers": [
+            "Arthrok"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 44,
+          "title": "refactor(ci): refatora ci corrigindo stages e jobs",
+          "author": "Arthrok",
+          "merged_by": null,
+          "reviewers": [],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 45,
+          "title": "WIP: feat(transferegov): Adiciona ingestor de empenho especial",
+          "author": "LeoFacB",
+          "merged_by": "davi-aguiar-vieira",
+          "reviewers": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 46,
+          "title": "Feat/ingestao executor especial transferegov",
+          "author": "Mateushqms",
+          "merged_by": "davi-aguiar-vieira",
+          "reviewers": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 48,
+          "title": "Feat ingest relatorio gestao e pncp",
+          "author": "mat054",
+          "merged_by": "davi-aguiar-vieira",
+          "reviewers": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 49,
+          "title": "Refactor/ci",
+          "author": "Arthrok",
+          "merged_by": "mat054",
+          "reviewers": [
+            "mat054"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 56,
+          "title": "feat(schedule): retorno default, evita dag break",
+          "author": "TiagoSBittencourt",
+          "merged_by": "davi-aguiar-vieira",
+          "reviewers": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 58,
+          "title": "feat(dts): passagem de metadados temporais pelas camandas de transformação",
+          "author": "TiagoSBittencourt",
+          "merged_by": null,
+          "reviewers": [],
+          "commenters": [
+            "sonarqubecloud",
+            "TiagoSBittencourt"
+          ]
+        },
+        {
+          "number": 59,
+          "title": "change(ci): retira condicao de lint apenas em mr",
+          "author": "Arthrok",
+          "merged_by": "mat054",
+          "reviewers": [
+            "mat054"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        },
+        {
+          "number": 64,
+          "title": "Create LICENSE",
+          "author": "egewarth",
+          "merged_by": "davi-aguiar-vieira",
+          "reviewers": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": [
+            "sonarqubecloud"
+          ]
+        }
+      ],
+      "issues": [
+        {
+          "number": 55,
+          "title": "feat: ingestão de Finalidade (TransfereGov)",
+          "state": "OPEN",
+          "created_at": "2025-12-08T18:42:36Z",
+          "closed_at": null,
+          "author": "davi-aguiar-vieira",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 54,
+          "title": "feat: ingestão de Histórico pagamento OB (TransfereGov)",
+          "state": "OPEN",
+          "created_at": "2025-12-08T18:35:05Z",
+          "closed_at": null,
+          "author": "davi-aguiar-vieira",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 53,
+          "title": "feat: ingestão de Ordem bancária (TransfereGov)",
+          "state": "OPEN",
+          "created_at": "2025-12-08T18:31:39Z",
+          "closed_at": null,
+          "author": "davi-aguiar-vieira",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 52,
+          "title": "feat: ingestão de Meta (TransfereGov)",
+          "state": "OPEN",
+          "created_at": "2025-12-08T18:28:03Z",
+          "closed_at": null,
+          "author": "davi-aguiar-vieira",
+          "assignees": [
+            "TiagoSBittencourt"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 51,
+          "title": "feat: ingestão de Relatório de gestão novo (TransfereGov)",
+          "state": "OPEN",
+          "created_at": "2025-12-08T18:21:40Z",
+          "closed_at": null,
+          "author": "davi-aguiar-vieira",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 50,
+          "title": "feat: ingestão de Documento Hábil (TransfereGov)",
+          "state": "OPEN",
+          "created_at": "2025-12-08T18:12:40Z",
+          "closed_at": null,
+          "author": "davi-aguiar-vieira",
+          "assignees": [
+            "TiagoSBittencourt"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 42,
+          "title": "feat: ingestão de Plano de trabalho especial (TransfereGov)",
+          "state": "OPEN",
+          "created_at": "2025-11-21T20:41:49Z",
+          "closed_at": null,
+          "author": "davi-aguiar-vieira",
+          "assignees": [
+            "marcusmartinss"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 41,
+          "title": "feat: ingestão de Executor especial (TransfereGov)",
+          "state": "CLOSED",
+          "created_at": "2025-11-21T20:40:57Z",
+          "closed_at": "2025-12-03T17:14:31Z",
+          "author": "davi-aguiar-vieira",
+          "assignees": [
+            "Mateushqms",
+            "Gxaite"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 40,
+          "title": "feat: ingestão de Relatório de gestão (TransfereGov)",
+          "state": "CLOSED",
+          "created_at": "2025-11-21T20:39:22Z",
+          "closed_at": "2025-12-03T17:13:31Z",
+          "author": "davi-aguiar-vieira",
+          "assignees": [
+            "mat054"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 39,
+          "title": "feat: ingestão de Empenho especial (TransfereGov)",
+          "state": "CLOSED",
+          "created_at": "2025-11-21T20:37:07Z",
+          "closed_at": "2025-12-03T01:25:35Z",
+          "author": "davi-aguiar-vieira",
+          "assignees": [
+            "LeoFacB",
+            "davi-aguiar-vieira"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 36,
+          "title": "feat: Implementar padronização de commits (Conventional Commits)",
+          "state": "CLOSED",
+          "created_at": "2025-11-19T15:41:13Z",
+          "closed_at": "2025-11-19T17:54:11Z",
+          "author": "GabrielaTiago",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 34,
+          "title": "feat: tornar a periodicidade das dags parametrizável (airflow variables)",
+          "state": "CLOSED",
+          "created_at": "2025-11-17T17:05:19Z",
+          "closed_at": "2025-11-24T15:06:34Z",
+          "author": "egewarth",
+          "assignees": [
+            "TiagoSBittencourt"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 33,
+          "title": "feat: tornar todas as regras específicas do IPEA dos DBTs parametrizáveis (variável de ambiente/airflow)",
+          "state": "OPEN",
+          "created_at": "2025-11-17T16:28:19Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 32,
+          "title": "feat: adicionar data de ingestão e data de tratamento em todas as tabelas e DBTs",
+          "state": "OPEN",
+          "created_at": "2025-11-17T16:23:32Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [
+            "TiagoSBittencourt"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 30,
+          "title": "feat: repassar a ingestão dos dados do transferegov/emendas_parlamentares para o time de GCES",
+          "state": "CLOSED",
+          "created_at": "2025-10-27T17:30:57Z",
+          "closed_at": "2025-11-20T14:24:09Z",
+          "author": "egewarth",
+          "assignees": [
+            "davi-aguiar-vieira",
+            "mat054"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 28,
+          "title": "fix: ingestão programações financeiras tesouro",
+          "state": "CLOSED",
+          "created_at": "2025-10-27T15:10:12Z",
+          "closed_at": "2025-10-27T16:24:41Z",
+          "author": "davi-aguiar-vieira",
+          "assignees": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 26,
+          "title": "feat: adicionar CNPJ e número do contrato em todas as tabelas de contrato",
+          "state": "OPEN",
+          "created_at": "2025-10-20T18:49:38Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [
+            "mat054"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 24,
+          "title": "fix: dag nota de crédito",
+          "state": "CLOSED",
+          "created_at": "2025-10-20T18:04:29Z",
+          "closed_at": "2025-10-27T13:54:11Z",
+          "author": "davi-aguiar-vieira",
+          "assignees": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 22,
+          "title": "feat: Criação de DAGs para ingestão de dados de deputados da API da Câmara",
+          "state": "CLOSED",
+          "created_at": "2025-10-17T14:40:25Z",
+          "closed_at": "2025-11-17T17:12:54Z",
+          "author": "marcusmartinss",
+          "assignees": [
+            "marcusmartinss"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 20,
+          "title": "feat: propor uma estrutura pro govhub core",
+          "state": "OPEN",
+          "created_at": "2025-10-10T15:13:50Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [
+            "davi-aguiar-vieira",
+            "Arthrok",
+            "mat054"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 19,
+          "title": "feat: Quebrar schema.yaml em partes menores",
+          "state": "CLOSED",
+          "created_at": "2025-10-10T15:12:36Z",
+          "closed_at": "2025-10-27T18:59:10Z",
+          "author": "egewarth",
+          "assignees": [
+            "davi-aguiar-vieira",
+            "mat054"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 18,
+          "title": "feat: organizar datasets no superset",
+          "state": "OPEN",
+          "created_at": "2025-10-09T18:05:35Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [
+            "davi-aguiar-vieira",
+            "mat054"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 17,
+          "title": "feat: adicionar aba \"Terceirizados\" no dashboard de contratos",
+          "state": "OPEN",
+          "created_at": "2025-10-09T18:00:17Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 16,
+          "title": "feat: ajustar tabelas, gráficos e filtros dos dashboards de contratos para incluir número do contrato e cnpj ao invés do ID",
+          "state": "OPEN",
+          "created_at": "2025-10-09T17:31:54Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 15,
+          "title": "bug: verificar formatação da exportação excel do superset",
+          "state": "OPEN",
+          "created_at": "2025-10-09T17:26:52Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [],
+          "commenters": [
+            "LeticiaAires"
+          ]
+        },
+        {
+          "number": 14,
+          "title": "bug: servidores fora do órgão sendo listados na tabela de força de trabalho",
+          "state": "CLOSED",
+          "created_at": "2025-10-06T14:51:33Z",
+          "closed_at": "2025-10-15T12:20:07Z",
+          "author": "egewarth",
+          "assignees": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": [
+            "egewarth"
+          ]
+        },
+        {
+          "number": 10,
+          "title": "feat: exportar dados para importação no CKAN",
+          "state": "CLOSED",
+          "created_at": "2025-09-08T13:40:02Z",
+          "closed_at": "2025-09-18T12:00:07Z",
+          "author": "egewarth",
+          "assignees": [
+            "egewarth"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 9,
+          "title": "feat: criar dag para enviar dados para o ckan",
+          "state": "OPEN",
+          "created_at": "2025-09-08T13:26:53Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 8,
+          "title": "chore: proteger os repositórios",
+          "state": "OPEN",
+          "created_at": "2025-09-06T16:40:26Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 7,
+          "title": "chore: migrar pipeline do gitlab para github",
+          "state": "CLOSED",
+          "created_at": "2025-09-06T16:34:35Z",
+          "closed_at": "2025-09-30T13:12:00Z",
+          "author": "egewarth",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 6,
+          "title": "docs: documentar readme do repositório da aplicação",
+          "state": "CLOSED",
+          "created_at": "2025-09-06T16:13:45Z",
+          "closed_at": "2025-12-08T17:29:23Z",
+          "author": "egewarth",
+          "assignees": [
+            "mat054"
+          ],
+          "commenters": []
+        }
+      ]
+    },
+    {
+      "name": "continuous-deployment",
+      "languages": [
+        "Python",
+        "Go Template",
+        "Shell",
+        "Dockerfile"
+      ],
+      "contributors": [
+        "RochaCarla",
+        "leomichalski",
+        "email::B03609269162@ipea.gov.br",
+        "email::pedro.rossi@capibaribeti.com",
+        "joycejdm",
+        "mat054",
+        "Dexmachi",
+        "GabrielaTiago",
+        "Arthrok",
+        "francisco1code",
+        "PedroRossi",
+        "egewarth"
+      ],
+      "pull_requests": [
+        {
+          "number": 1,
+          "title": "chore(repo): migrar referências do GitLab para o GitHub",
+          "author": "Arthrok",
+          "merged_by": "Arthrok",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 2,
+          "title": "Feat/superset embed",
+          "author": "Arthrok",
+          "merged_by": "Arthrok",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 3,
+          "title": "change(embed-superset): muda rota do guest token",
+          "author": "Arthrok",
+          "merged_by": "Arthrok",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 4,
+          "title": "fix(superset): ajusta uso de certificado",
+          "author": "Arthrok",
+          "merged_by": "Arthrok",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 5,
+          "title": "fix(superset): adiciona cert manager",
+          "author": "Arthrok",
+          "merged_by": "Arthrok",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 6,
+          "title": "change(superset-embed): muda rota do superset embed",
+          "author": "Arthrok",
+          "merged_by": "Arthrok",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 7,
+          "title": "change(superset): altera role e cors",
+          "author": "Arthrok",
+          "merged_by": "Arthrok",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 9,
+          "title": "feat(docs): adiciona template de mensagem de commit padronizada",
+          "author": "GabrielaTiago",
+          "merged_by": "mat054",
+          "reviewers": [
+            "mat054"
+          ],
+          "commenters": []
+        }
+      ],
+      "issues": [
+        {
+          "number": 8,
+          "title": "feat: Implementar padronização de commits (Conventional Commits)",
+          "state": "CLOSED",
+          "created_at": "2025-11-19T16:17:03Z",
+          "closed_at": "2025-11-19T17:55:43Z",
+          "author": "GabrielaTiago",
+          "assignees": [],
+          "commenters": []
+        }
+      ]
+    },
+    {
+      "name": "gov-hub",
+      "languages": [
+        "HTML",
+        "Python",
+        "JavaScript",
+        "Dockerfile"
+      ],
+      "contributors": [
+        "LeticiaAires",
+        "gusmoles",
+        "TiagoSBittencourt",
+        "email::maykon.soares@fornecedores.sicoob.com.br",
+        "RochaCarla",
+        "Vinicius-Ribeiro04",
+        "joycejdm",
+        "mat054",
+        "email::seu_email@exemplo.com",
+        "GabrielaTiago",
+        "Arthrok",
+        "davi-aguiar-vieira",
+        "VictorSzk",
+        "GovHubLab",
+        "Gxaite",
+        "egewarth",
+        "isaacgalmeida"
+      ],
+      "pull_requests": [
+        {
+          "number": 2,
+          "title": "build(deps-dev): bump esbuild from 0.24.2 to 0.25.0",
+          "author": "dependabot",
+          "merged_by": null,
+          "reviewers": [],
+          "commenters": [
+            "dependabot"
+          ]
+        },
+        {
+          "number": 3,
+          "title": "Feat/doc replica",
+          "author": "joycejdm",
+          "merged_by": "joycejdm",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 4,
+          "title": "feat(docs): cria template para as issues",
+          "author": "DiceRunner714",
+          "merged_by": null,
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 5,
+          "title": "Codigo conduta",
+          "author": "Amandaaaaabreu",
+          "merged_by": null,
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 6,
+          "title": "Reestruturação",
+          "author": "VictorSzk",
+          "merged_by": "egewarth",
+          "reviewers": [
+            "egewarth"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 7,
+          "title": "Adicionando mais páginas",
+          "author": "VictorSzk",
+          "merged_by": "egewarth",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 9,
+          "title": "Implementação do Front end",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 20,
+          "title": "docs: arquitetura",
+          "author": "davi-aguiar-vieira",
+          "merged_by": "egewarth",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 22,
+          "title": "adicionando documentacao de instalacao e teste",
+          "author": "mat054",
+          "merged_by": "davi-aguiar-vieira",
+          "reviewers": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 23,
+          "title": "adicionando login e senha das plataformas e melhorando documentação dbt",
+          "author": "mat054",
+          "merged_by": "davi-aguiar-vieira",
+          "reviewers": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 26,
+          "title": "alterando imagens e nome dos integrantes da equipe",
+          "author": "egewarth",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 27,
+          "title": "feat: alterando imagens dos icones pra usar svg e adicionando imagens…",
+          "author": "egewarth",
+          "merged_by": "egewarth",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 28,
+          "title": "adicionando fotos da capibaribe",
+          "author": "egewarth",
+          "merged_by": "egewarth",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 30,
+          "title": "Guia de acesso ao certificado SIAFI/SIAPE e ajuste no docs das APIs",
+          "author": "davi-aguiar-vieira",
+          "merged_by": "egewarth",
+          "reviewers": [
+            "egewarth"
+          ],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 32,
+          "title": "31 docs configuração ambiente",
+          "author": "mat054",
+          "merged_by": "egewarth",
+          "reviewers": [
+            "egewarth"
+          ],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 34,
+          "title": "33 docs dbt",
+          "author": "mat054",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 35,
+          "title": "Alterações Front end",
+          "author": "gusmoles",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 36,
+          "title": "alterando imagens das publicações",
+          "author": "egewarth",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 38,
+          "title": "Solicitação pull request Frontend",
+          "author": "gusmoles",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 39,
+          "title": "Adicionando google analytics",
+          "author": "egewarth",
+          "merged_by": "egewarth",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 40,
+          "title": "pull request Frontend",
+          "author": "gusmoles",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 41,
+          "title": "Frontend",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 44,
+          "title": "Frontend",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 45,
+          "title": "docs: adiciona doc sobre configuracao dos ids dos orgaos no airflow",
+          "author": "davi-aguiar-vieira",
+          "merged_by": "egewarth",
+          "reviewers": [
+            "egewarth"
+          ],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 46,
+          "title": "42 docs integração nova base",
+          "author": "mat054",
+          "merged_by": "egewarth",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 47,
+          "title": "feat/instalacao-superset",
+          "author": "davi-aguiar-vieira",
+          "merged_by": "Arthrok",
+          "reviewers": [
+            "Arthrok"
+          ],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 48,
+          "title": "fix/caminho-repositorio",
+          "author": "davi-aguiar-vieira",
+          "merged_by": "Arthrok",
+          "reviewers": [
+            "Arthrok"
+          ],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 49,
+          "title": "docs: link do TransfereGov",
+          "author": "isaacgalmeida",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 50,
+          "title": "PR tela de dashboards",
+          "author": "gusmoles",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 51,
+          "title": "Adiciona Changelog e Reestrutura Documentação",
+          "author": "LeticiaAires",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": [
+            "LeticiaAires",
+            "RochaCarla"
+          ]
+        },
+        {
+          "number": 52,
+          "title": "Create bug_report.yml",
+          "author": "LeticiaAires",
+          "merged_by": null,
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 54,
+          "title": "Adiciona template de commit",
+          "author": "GabrielaTiago",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": [
+            "GabrielaTiago",
+            "RochaCarla"
+          ]
+        },
+        {
+          "number": 59,
+          "title": "docs/video-visao-geral",
+          "author": "davi-aguiar-vieira",
+          "merged_by": "Arthrok",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 60,
+          "title": "Frontend",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "gusmoles",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 61,
+          "title": "Update redirecionamento Frontend",
+          "author": "gusmoles",
+          "merged_by": null,
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 67,
+          "title": "feat: adição de politicas de contribuição",
+          "author": "maykonjuso",
+          "merged_by": "egewarth",
+          "reviewers": [
+            "egewarth"
+          ],
+          "commenters": [
+            "LeticiaAires"
+          ]
+        },
+        {
+          "number": 68,
+          "title": "Automatiza a geração do CHANGELOG.md com GitHub Actions",
+          "author": "LeticiaAires",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 69,
+          "title": "Frontend - páginas de dashboards",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 72,
+          "title": "Update Frontend  com os novos dashboards",
+          "author": "gusmoles",
+          "merged_by": null,
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 73,
+          "title": "Frontend",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": null,
+          "reviewers": [],
+          "commenters": []
+        },
+        {
+          "number": 74,
+          "title": "Frontend",
+          "author": "gusmoles",
+          "merged_by": "gusmoles",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 76,
+          "title": "Frontend",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "Vinicius-Ribeiro04",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 82,
+          "title": "Fix redirecionamento",
+          "author": "gusmoles",
+          "merged_by": "Vinicius-Ribeiro04",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 85,
+          "title": "fix(conecao db):ajustando host de conexao do banco local no airflow",
+          "author": "mat054",
+          "merged_by": "davi-aguiar-vieira",
+          "reviewers": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 86,
+          "title": "docs(airflow_var): adiciona nova variável schedule na instalação",
+          "author": "TiagoSBittencourt",
+          "merged_by": "davi-aguiar-vieira",
+          "reviewers": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 87,
+          "title": "Frontend",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "gusmoles",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 88,
+          "title": "fix(hook): preserva caminhos absolutos ao copiar index.html para raiz",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "Vinicius-Ribeiro04",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 89,
+          "title": "fix(hooks): corrige caminhos de assets para funcionar remotamente",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "Vinicius-Ribeiro04",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 90,
+          "title": "Revert \"fix(hooks): corrige caminhos de assets para funcionar remotamente\"",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "Vinicius-Ribeiro04",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 91,
+          "title": "fix: corrige caminhos de assets para base_path /govhub/",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 92,
+          "title": "Frontend",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "RochaCarla",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 93,
+          "title": "Frontend",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "Vinicius-Ribeiro04",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 94,
+          "title": "feat(parceiros): adiciona MIR e MCID a section de principais parceiros, adiciona scale no hover e aumenta tamanho das logos",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "Vinicius-Ribeiro04",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        },
+        {
+          "number": 95,
+          "title": "refactor: ajusta tamanho da logo do MIR",
+          "author": "Vinicius-Ribeiro04",
+          "merged_by": "Vinicius-Ribeiro04",
+          "reviewers": [],
+          "commenters": [
+            "github-actions"
+          ]
+        }
+      ],
+      "issues": [
+        {
+          "number": 83,
+          "title": "[Feat]: ingestão de programas e plano acao transferegov",
+          "state": "CLOSED",
+          "created_at": "2025-11-18T18:52:09Z",
+          "closed_at": "2025-11-19T12:49:07Z",
+          "author": "davi-aguiar-vieira",
+          "assignees": [
+            "davi-aguiar-vieira",
+            "mat054"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 81,
+          "title": "doc: documentar necessidade de backup e previsão de storage pros próximos anos",
+          "state": "OPEN",
+          "created_at": "2025-11-17T17:03:20Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [
+            "Arthrok"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 80,
+          "title": "feat: adicionar documentação do DBT no githubpages do projeto",
+          "state": "OPEN",
+          "created_at": "2025-11-17T17:01:45Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [
+            "Arthrok"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 78,
+          "title": "Jornada do dados",
+          "state": "OPEN",
+          "created_at": "2025-11-15T02:48:37Z",
+          "closed_at": null,
+          "author": "RochaCarla",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 77,
+          "title": "Documentação Dicionário de Dados dos sistemas estruturantes",
+          "state": "OPEN",
+          "created_at": "2025-11-15T02:47:50Z",
+          "closed_at": null,
+          "author": "RochaCarla",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 75,
+          "title": "[Feat]: criar o arquivo json para os dashboards da tela de visão geral de pessoas",
+          "state": "CLOSED",
+          "created_at": "2025-11-11T17:34:09Z",
+          "closed_at": "2025-11-24T12:38:56Z",
+          "author": "gusmoles",
+          "assignees": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 70,
+          "title": "feat: fazer a ingestão da tabela de códigos de municípios",
+          "state": "OPEN",
+          "created_at": "2025-10-25T14:22:59Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [],
+          "commenters": [
+            "egewarth"
+          ]
+        },
+        {
+          "number": 66,
+          "title": "[Feat]: Automatizar geração do arquivo CHANGELOG.md a partir dos Pull Requests",
+          "state": "CLOSED",
+          "created_at": "2025-10-22T16:56:11Z",
+          "closed_at": "2025-10-27T13:06:28Z",
+          "author": "LeticiaAires",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 64,
+          "title": "feat: estudo sobre o fluxo orçamentário das emendas parlamentares e ações/programas do governo",
+          "state": "OPEN",
+          "created_at": "2025-10-20T18:46:46Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [
+            "egewarth"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 63,
+          "title": "feat: implementar dashboard de visão geral de pessoal",
+          "state": "CLOSED",
+          "created_at": "2025-10-20T18:34:48Z",
+          "closed_at": "2025-11-17T17:13:04Z",
+          "author": "egewarth",
+          "assignees": [
+            "gusmoles"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 62,
+          "title": "feat: implementar dashboard de visão geral de contratos",
+          "state": "CLOSED",
+          "created_at": "2025-10-20T18:33:06Z",
+          "closed_at": "2025-11-17T17:12:40Z",
+          "author": "egewarth",
+          "assignees": [
+            "Vinicius-Ribeiro04"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 58,
+          "title": "feat: estudo e documentação das bases principais para o projeto MIR",
+          "state": "OPEN",
+          "created_at": "2025-10-13T17:00:59Z",
+          "closed_at": null,
+          "author": "LuizaMaluf",
+          "assignees": [
+            "LuizaMaluf"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 57,
+          "title": "feat: adiciona tutorial de instalação em CONTRIBUTING.md",
+          "state": "CLOSED",
+          "created_at": "2025-10-08T19:50:17Z",
+          "closed_at": "2025-10-22T17:16:35Z",
+          "author": "maykonjuso",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 55,
+          "title": "[Feat]: Adiciona template padrão para Pull Requests",
+          "state": "OPEN",
+          "created_at": "2025-10-08T17:38:03Z",
+          "closed_at": null,
+          "author": "GabrielaTiago",
+          "assignees": [],
+          "commenters": [
+            "LeticiaAires"
+          ]
+        },
+        {
+          "number": 53,
+          "title": "[Feat]: Adicionar template para padronização de mensagens de commit",
+          "state": "OPEN",
+          "created_at": "2025-10-08T16:21:26Z",
+          "closed_at": null,
+          "author": "GabrielaTiago",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 43,
+          "title": "docs: IDs dos órgãos",
+          "state": "CLOSED",
+          "created_at": "2025-09-22T14:06:17Z",
+          "closed_at": "2025-09-22T18:57:53Z",
+          "author": "davi-aguiar-vieira",
+          "assignees": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 42,
+          "title": "Documentação de processo de integração de novos sistemas estruturantes",
+          "state": "CLOSED",
+          "created_at": "2025-09-21T18:49:01Z",
+          "closed_at": "2025-09-29T21:10:13Z",
+          "author": "mat054",
+          "assignees": [
+            "mat054"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 37,
+          "title": "feat: ajustes site",
+          "state": "CLOSED",
+          "created_at": "2025-09-17T14:56:19Z",
+          "closed_at": "2025-09-24T13:25:09Z",
+          "author": "egewarth",
+          "assignees": [
+            "gusmoles",
+            "Vinicius-Ribeiro04"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 33,
+          "title": "docs: documentação dbt",
+          "state": "CLOSED",
+          "created_at": "2025-09-16T20:17:21Z",
+          "closed_at": "2025-09-16T21:29:59Z",
+          "author": "mat054",
+          "assignees": [
+            "mat054"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 31,
+          "title": "docs: documentação Superset",
+          "state": "CLOSED",
+          "created_at": "2025-09-15T21:53:24Z",
+          "closed_at": "2025-09-15T23:08:01Z",
+          "author": "mat054",
+          "assignees": [
+            "mat054"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 29,
+          "title": "docs: certificados API",
+          "state": "CLOSED",
+          "created_at": "2025-09-15T20:08:39Z",
+          "closed_at": "2025-09-15T23:07:02Z",
+          "author": "davi-aguiar-vieira",
+          "assignees": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 25,
+          "title": "feat: especificar conteúdo faltante das páginas",
+          "state": "CLOSED",
+          "created_at": "2025-09-12T13:29:17Z",
+          "closed_at": "2025-11-17T17:14:16Z",
+          "author": "egewarth",
+          "assignees": [
+            "egewarth"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 24,
+          "title": "feat: fazer design das páginas faltantes",
+          "state": "OPEN",
+          "created_at": "2025-09-12T13:20:44Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 21,
+          "title": "Docs: instalação, configuração ambiente e teste",
+          "state": "CLOSED",
+          "created_at": "2025-09-10T00:34:28Z",
+          "closed_at": "2025-09-10T01:59:57Z",
+          "author": "mat054",
+          "assignees": [
+            "mat054"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 19,
+          "title": "docs: arquitetura",
+          "state": "CLOSED",
+          "created_at": "2025-09-09T14:47:23Z",
+          "closed_at": "2025-09-09T14:55:22Z",
+          "author": "davi-aguiar-vieira",
+          "assignees": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 18,
+          "title": "fix: realizar ajustes no site",
+          "state": "CLOSED",
+          "created_at": "2025-09-09T12:46:08Z",
+          "closed_at": "2025-09-24T13:25:09Z",
+          "author": "egewarth",
+          "assignees": [
+            "gusmoles",
+            "Vinicius-Ribeiro04"
+          ],
+          "commenters": [
+            "gusmoles",
+            "Vinicius-Ribeiro04"
+          ]
+        },
+        {
+          "number": 17,
+          "title": "chore: ajustar a organização de pastas do repositório do site",
+          "state": "OPEN",
+          "created_at": "2025-09-08T17:52:36Z",
+          "closed_at": null,
+          "author": "egewarth",
+          "assignees": [
+            "gusmoles",
+            "Arthrok",
+            "Vinicius-Ribeiro04"
+          ],
+          "commenters": [
+            "Arthrok"
+          ]
+        },
+        {
+          "number": 16,
+          "title": "feat: aplicar idv no módulo de blogs",
+          "state": "CLOSED",
+          "created_at": "2025-09-08T17:16:43Z",
+          "closed_at": "2025-12-08T17:29:38Z",
+          "author": "egewarth",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 15,
+          "title": "feat: aplicar grid system no site",
+          "state": "CLOSED",
+          "created_at": "2025-09-08T17:13:33Z",
+          "closed_at": "2025-09-24T13:25:06Z",
+          "author": "egewarth",
+          "assignees": [
+            "gusmoles",
+            "Vinicius-Ribeiro04"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 14,
+          "title": "docs: adicionar documentação do conventional commits no guia de contribuição de todos os repositórios",
+          "state": "CLOSED",
+          "created_at": "2025-09-06T16:28:07Z",
+          "closed_at": "2025-11-20T14:23:52Z",
+          "author": "egewarth",
+          "assignees": [
+            "davi-aguiar-vieira",
+            "mat054"
+          ],
+          "commenters": [
+            "GabrielaTiago",
+            "egewarth"
+          ]
+        },
+        {
+          "number": 13,
+          "title": "fix: corrigir cor de fundo da navbar da documentação no modo dark",
+          "state": "CLOSED",
+          "created_at": "2025-09-06T16:20:40Z",
+          "closed_at": "2025-09-06T21:56:10Z",
+          "author": "egewarth",
+          "assignees": [
+            "egewarth"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 12,
+          "title": "fix: corrigir caminho dos links de visualização/edição do código fonte da documentação (gerados automaticamente)",
+          "state": "CLOSED",
+          "created_at": "2025-09-06T16:19:05Z",
+          "closed_at": "2025-09-06T21:56:07Z",
+          "author": "egewarth",
+          "assignees": [
+            "egewarth"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 11,
+          "title": "docs: documentar readme do repositório (pages/docs)",
+          "state": "CLOSED",
+          "created_at": "2025-09-06T15:24:43Z",
+          "closed_at": "2025-12-08T17:29:31Z",
+          "author": "egewarth",
+          "assignees": [],
+          "commenters": []
+        },
+        {
+          "number": 10,
+          "title": "docs: mapear documentações faltantes",
+          "state": "CLOSED",
+          "created_at": "2025-09-06T15:18:45Z",
+          "closed_at": "2025-09-17T12:55:19Z",
+          "author": "egewarth",
+          "assignees": [
+            "davi-aguiar-vieira"
+          ],
+          "commenters": [
+            "egewarth"
+          ]
+        },
+        {
+          "number": 8,
+          "title": "Ajustar Front-end de acordo com protótipo do Figma",
+          "state": "CLOSED",
+          "created_at": "2025-09-02T19:07:49Z",
+          "closed_at": "2025-11-17T17:12:42Z",
+          "author": "Vinicius-Ribeiro04",
+          "assignees": [
+            "gusmoles",
+            "Vinicius-Ribeiro04"
+          ],
+          "commenters": []
+        },
+        {
+          "number": 1,
+          "title": "Fazer o dataflow da aplicação com explicação",
+          "state": "CLOSED",
+          "created_at": "2025-03-07T14:27:09Z",
+          "closed_at": "2025-09-17T13:04:03Z",
+          "author": "RochaCarla",
+          "assignees": [],
+          "commenters": [
+            "egewarth"
+          ]
+        }
+      ]
+    },
+    {
+      "name": ".github",
+      "languages": [],
+      "contributors": [
+        "egewarth",
+        "davi-aguiar-vieira"
+      ],
+      "pull_requests": [],
+      "issues": []
+    }
+  ]
+}

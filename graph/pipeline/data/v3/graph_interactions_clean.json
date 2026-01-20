@@ -1,0 +1,6712 @@
+{
+  "nodes": [
+    {
+      "id": "davi-aguiar-vieira",
+      "group": "user",
+      "val": 1.5999999999999999,
+      "img": "https://github.com/davi-aguiar-vieira.png",
+      "sources": [
+        "GovHuB-br"
+      ]
+    },
+    {
+      "id": "Gxaite",
+      "group": "user",
+      "val": 1.7999999999999998,
+      "img": "https://github.com/Gxaite.png",
+      "sources": [
+        "lablivre-unb",
+        "GovHuB-br",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "Arthrok",
+      "group": "user",
+      "val": 4.000000000000001,
+      "img": "https://github.com/Arthrok.png",
+      "sources": [
+        "lablivre-unb",
+        "GovHuB-br",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "RochaCarla",
+      "group": "user",
+      "val": 8.000000000000004,
+      "img": "https://github.com/RochaCarla.png",
+      "sources": [
+        "lablivre-unb",
+        "GovHuB-br"
+      ]
+    },
+    {
+      "id": "joycejdm",
+      "group": "user",
+      "val": 2.4,
+      "img": "https://github.com/joycejdm.png",
+      "sources": [
+        "lablivre-unb",
+        "GovHuB-br"
+      ]
+    },
+    {
+      "id": "TiagoSBittencourt",
+      "group": "user",
+      "val": 1.4,
+      "img": "https://github.com/TiagoSBittencourt.png",
+      "sources": [
+        "lablivre-unb",
+        "GovHuB-br",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "marcusmartinss",
+      "group": "user",
+      "val": 1.5999999999999999,
+      "img": "https://github.com/marcusmartinss.png",
+      "sources": [
+        "GovHuB-br",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "egewarth",
+      "group": "user",
+      "val": 3.2000000000000006,
+      "img": "https://github.com/egewarth.png",
+      "sources": [
+        "lablivre-unb",
+        "GovHuB-br",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "mat054",
+      "group": "user",
+      "val": 2.1999999999999997,
+      "img": "https://github.com/mat054.png",
+      "sources": [
+        "GovHuB-br",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "leomichalski",
+      "group": "user",
+      "val": 3.0000000000000004,
+      "img": "https://github.com/leomichalski.png",
+      "sources": [
+        "lablivre-unb",
+        "GovHuB-br",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "LuizaMaluf",
+      "group": "user",
+      "val": 1.2,
+      "img": "https://github.com/LuizaMaluf.png",
+      "sources": [
+        "GovHuB-br"
+      ]
+    },
+    {
+      "id": "Vinicius-Ribeiro04",
+      "group": "user",
+      "val": 1.4,
+      "img": "https://github.com/Vinicius-Ribeiro04.png",
+      "sources": [
+        "lablivre-unb",
+        "GovHuB-br"
+      ]
+    },
+    {
+      "id": "gusmoles",
+      "group": "user",
+      "val": 1.4,
+      "img": "https://github.com/gusmoles.png",
+      "sources": [
+        "lablivre-unb",
+        "GovHuB-br"
+      ]
+    },
+    {
+      "id": "brunapinos",
+      "group": "user",
+      "val": 3.800000000000001,
+      "img": "https://github.com/brunapinos.png",
+      "sources": [
+        "lablivre-unb",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "BrunaNayara",
+      "group": "user",
+      "val": 2.8000000000000003,
+      "img": "https://github.com/BrunaNayara.png",
+      "sources": [
+        "lablivre-unb"
+      ]
+    },
+    {
+      "id": "ednunes",
+      "group": "user",
+      "val": 4.000000000000001,
+      "img": "https://github.com/ednunes.png",
+      "sources": [
+        "lablivre-unb"
+      ]
+    },
+    {
+      "id": "LeoSilvaGomes",
+      "group": "user",
+      "val": 3.600000000000001,
+      "img": "https://github.com/LeoSilvaGomes.png",
+      "sources": [
+        "lablivre-unb",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "bot-do-jao",
+      "group": "user",
+      "val": 2.8000000000000003,
+      "img": "https://github.com/bot-do-jao.png",
+      "sources": [
+        "lablivre-unb",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "renatocoral",
+      "group": "user",
+      "val": 5.000000000000002,
+      "img": "https://github.com/renatocoral.png",
+      "sources": [
+        "lablivre-unb",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "gaubiela",
+      "group": "user",
+      "val": 1.7999999999999998,
+      "img": "https://github.com/gaubiela.png",
+      "sources": [
+        "lablivre-unb",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "MaiconMares",
+      "group": "user",
+      "val": 1.4,
+      "img": "https://github.com/MaiconMares.png",
+      "sources": [
+        "lablivre-unb"
+      ]
+    },
+    {
+      "id": "VictorJorgeFGA",
+      "group": "user",
+      "val": 3.2000000000000006,
+      "img": "https://github.com/VictorJorgeFGA.png",
+      "sources": [
+        "lablivre-unb",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "VitorB2002",
+      "group": "user",
+      "val": 2.8000000000000003,
+      "img": "https://github.com/VitorB2002.png",
+      "sources": [
+        "lablivre-unb",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "guilhermedfs",
+      "group": "user",
+      "val": 1.5999999999999999,
+      "img": "https://github.com/guilhermedfs.png",
+      "sources": [
+        "lablivre-unb"
+      ]
+    },
+    {
+      "id": "alvesisaque",
+      "group": "user",
+      "val": 3.2000000000000006,
+      "img": "https://github.com/alvesisaque.png",
+      "sources": [
+        "lablivre-unb",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "suzaneduarte",
+      "group": "user",
+      "val": 1.2,
+      "img": "https://github.com/suzaneduarte.png",
+      "sources": [
+        "lablivre-unb"
+      ]
+    },
+    {
+      "id": "giovanniacg",
+      "group": "user",
+      "val": 4.400000000000001,
+      "img": "https://github.com/giovanniacg.png",
+      "sources": [
+        "lablivre-unb",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "WillxBernardo",
+      "group": "user",
+      "val": 2.4,
+      "img": "https://github.com/WillxBernardo.png",
+      "sources": [
+        "lablivre-unb",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "ericbky",
+      "group": "user",
+      "val": 1.5999999999999999,
+      "img": "https://github.com/ericbky.png",
+      "sources": [
+        "lablivre-unb"
+      ]
+    },
+    {
+      "id": "roddas",
+      "group": "user",
+      "val": 3.2000000000000006,
+      "img": "https://github.com/roddas.png",
+      "sources": [
+        "lablivre-unb",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "CarolinaBarb",
+      "group": "user",
+      "val": 1.7999999999999998,
+      "img": "https://github.com/CarolinaBarb.png",
+      "sources": [
+        "lablivre-unb",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "Juan-Ricarte",
+      "group": "user",
+      "val": 2.4,
+      "img": "https://github.com/Juan-Ricarte.png",
+      "sources": [
+        "lablivre-unb",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "flaviovl",
+      "group": "user",
+      "val": 2.1999999999999997,
+      "img": "https://github.com/flaviovl.png",
+      "sources": [
+        "lablivre-unb"
+      ]
+    },
+    {
+      "id": "caiooliv",
+      "group": "user",
+      "val": 1.2,
+      "img": "https://github.com/caiooliv.png",
+      "sources": [
+        "lablivre-unb"
+      ]
+    },
+    {
+      "id": "paulohtfs",
+      "group": "user",
+      "val": 1.7999999999999998,
+      "img": "https://github.com/paulohtfs.png",
+      "sources": [
+        "lablivre-unb",
+        "gitlab"
+      ]
+    },
+    {
+      "id": "davideaguiarvieira",
+      "group": "user",
+      "val": 1.7999999999999998,
+      "img": "https://github.com/davideaguiarvieira.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "ssuzane9",
+      "group": "user",
+      "val": 1.9999999999999998,
+      "img": "https://github.com/ssuzane9.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "zlimaz",
+      "group": "user",
+      "val": 1.9999999999999998,
+      "img": "https://github.com/zlimaz.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "daniela0412",
+      "group": "user",
+      "val": 1.4,
+      "img": "https://github.com/daniela0412.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "eduardaq2805",
+      "group": "user",
+      "val": 1.5999999999999999,
+      "img": "https://github.com/eduardaq2805.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "guilhermedfs14",
+      "group": "user",
+      "val": 1.9999999999999998,
+      "img": "https://github.com/guilhermedfs14.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "junhfer",
+      "group": "user",
+      "val": 1.2,
+      "img": "https://github.com/junhfer.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "Edu_25",
+      "group": "user",
+      "val": 2.8000000000000003,
+      "img": "https://github.com/Edu_25.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "anaipva",
+      "group": "user",
+      "val": 1.9999999999999998,
+      "img": "https://github.com/anaipva.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "leonardogm",
+      "group": "user",
+      "val": 1.5999999999999999,
+      "img": "https://github.com/leonardogm.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "hugorochaffs",
+      "group": "user",
+      "val": 1.5999999999999999,
+      "img": "https://github.com/hugorochaffs.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "oo7gabriel",
+      "group": "user",
+      "val": 1.9999999999999998,
+      "img": "https://github.com/oo7gabriel.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "flavio.vl",
+      "group": "user",
+      "val": 2.1999999999999997,
+      "img": "https://github.com/flavio.vl.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "Gustavo_MR",
+      "group": "user",
+      "val": 1.4,
+      "img": "https://github.com/Gustavo_MR.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "luccameds",
+      "group": "user",
+      "val": 1.4,
+      "img": "https://github.com/luccameds.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "joyce.jdm",
+      "group": "user",
+      "val": 1.7999999999999998,
+      "img": "https://github.com/joyce.jdm.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "eric.bky",
+      "group": "user",
+      "val": 1.4,
+      "img": "https://github.com/eric.bky.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "algorithmorphic",
+      "group": "user",
+      "val": 1.2,
+      "img": "https://github.com/algorithmorphic.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "maiconmares",
+      "group": "user",
+      "val": 1.4,
+      "img": "https://github.com/maiconmares.png",
+      "sources": [
+        "gitlab"
+      ]
+    },
+    {
+      "id": "rocha.carla",
+      "group": "user",
+      "val": 1.5999999999999999,
+      "img": "https://github.com/rocha.carla.png",
+      "sources": [
+        "gitlab"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "source": "Arthrok",
+      "target": "Gxaite",
+      "value": 1.5,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "Data mapping",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "RochaCarla",
+      "value": 2.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "lablivresite",
+        "continuous-deployment",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "TiagoSBittencourt",
+      "value": 1.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "davi-aguiar-vieira",
+      "value": 25.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "gov-hub"
+      ],
+      "interactions": [
+        {
+          "actor": "Arthrok",
+          "target": "davi-aguiar-vieira",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davi-aguiar-vieira",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davi-aguiar-vieira",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davi-aguiar-vieira",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davi-aguiar-vieira",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davi-aguiar-vieira",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davi-aguiar-vieira",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davi-aguiar-vieira",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davi-aguiar-vieira",
+          "type": "REVIEWED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davi-aguiar-vieira",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davi-aguiar-vieira",
+          "type": "REVIEWED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davi-aguiar-vieira",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        }
+      ]
+    },
+    {
+      "source": "Arthrok",
+      "target": "egewarth",
+      "value": 3.5,
+      "shared_repos": [
+        "app-lappis-ipea",
+        "rag-bp",
+        "continuous-deployment",
+        "Data mapping",
+        "Airflow Dags",
+        "gov-hub",
+        "data-application-gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "joycejdm",
+      "value": 1.5,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "continuous-deployment",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "marcusmartinss",
+      "value": 7.5,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "continuous-deployment-dataprev",
+        "continuous-deployment"
+      ],
+      "interactions": [
+        {
+          "actor": "Arthrok",
+          "target": "marcusmartinss",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "marcusmartinss",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "marcusmartinss",
+          "target": "Arthrok",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        }
+      ]
+    },
+    {
+      "source": "Arthrok",
+      "target": "mat054",
+      "value": 12.5,
+      "shared_repos": [
+        "app-lappis-ipea",
+        "Data mapping",
+        "continuous-deployment",
+        "gov-hub",
+        "data-application-gov-hub"
+      ],
+      "interactions": [
+        {
+          "actor": "mat054",
+          "target": "Arthrok",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "mat054",
+          "target": "Arthrok",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "mat054",
+          "target": "Arthrok",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "mat054",
+          "target": "Arthrok",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        }
+      ]
+    },
+    {
+      "source": "Gxaite",
+      "target": "RochaCarla",
+      "value": 1.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Gxaite",
+      "target": "TiagoSBittencourt",
+      "value": 1.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Gxaite",
+      "target": "davi-aguiar-vieira",
+      "value": 1.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Gxaite",
+      "target": "egewarth",
+      "value": 3.5,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "Data mapping",
+        "gov-hub"
+      ],
+      "interactions": [
+        {
+          "actor": "egewarth",
+          "target": "Gxaite",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        }
+      ]
+    },
+    {
+      "source": "Gxaite",
+      "target": "joycejdm",
+      "value": 1.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Gxaite",
+      "target": "marcusmartinss",
+      "value": 0.5,
+      "shared_repos": [
+        "data-application-gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Gxaite",
+      "target": "mat054",
+      "value": 1.5,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "Data mapping",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "RochaCarla",
+      "target": "TiagoSBittencourt",
+      "value": 1.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "RochaCarla",
+      "target": "davi-aguiar-vieira",
+      "value": 1.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "RochaCarla",
+      "target": "egewarth",
+      "value": 6.5,
+      "shared_repos": [
+        "gsoc.lappis.unb",
+        "lappis.rocks",
+        "continuous-deployment",
+        "gov-hub",
+        "data-application-gov-hub"
+      ],
+      "interactions": [
+        {
+          "actor": "RochaCarla",
+          "target": "egewarth",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "RochaCarla",
+          "target": "egewarth",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        }
+      ]
+    },
+    {
+      "source": "RochaCarla",
+      "target": "joycejdm",
+      "value": 2.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "ecossistemasl",
+        "continuous-deployment",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "RochaCarla",
+      "target": "marcusmartinss",
+      "value": 0.5,
+      "shared_repos": [
+        "data-application-gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "RochaCarla",
+      "target": "mat054",
+      "value": 3.5,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "continuous-deployment",
+        "gov-hub"
+      ],
+      "interactions": [
+        {
+          "actor": "RochaCarla",
+          "target": "mat054",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        }
+      ]
+    },
+    {
+      "source": "TiagoSBittencourt",
+      "target": "davi-aguiar-vieira",
+      "value": 13.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "gov-hub"
+      ],
+      "interactions": [
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "TiagoSBittencourt",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "TiagoSBittencourt",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "TiagoSBittencourt",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "TiagoSBittencourt",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "TiagoSBittencourt",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "TiagoSBittencourt",
+          "type": "REVIEWED_PR",
+          "repo": "gov-hub"
+        }
+      ]
+    },
+    {
+      "source": "TiagoSBittencourt",
+      "target": "egewarth",
+      "value": 1.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "TiagoSBittencourt",
+      "target": "joycejdm",
+      "value": 1.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "TiagoSBittencourt",
+      "target": "marcusmartinss",
+      "value": 0.5,
+      "shared_repos": [
+        "data-application-gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "TiagoSBittencourt",
+      "target": "mat054",
+      "value": 1.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "davi-aguiar-vieira",
+      "target": "egewarth",
+      "value": 29.5,
+      "shared_repos": [
+        "data-application-gov-hub",
+        ".github",
+        "gov-hub"
+      ],
+      "interactions": [
+        {
+          "actor": "egewarth",
+          "target": "davi-aguiar-vieira",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davi-aguiar-vieira",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "egewarth",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davi-aguiar-vieira",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davi-aguiar-vieira",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davi-aguiar-vieira",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davi-aguiar-vieira",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "egewarth",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "egewarth",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davi-aguiar-vieira",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davi-aguiar-vieira",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davi-aguiar-vieira",
+          "type": "REVIEWED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davi-aguiar-vieira",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davi-aguiar-vieira",
+          "type": "REVIEWED_PR",
+          "repo": "gov-hub"
+        }
+      ]
+    },
+    {
+      "source": "davi-aguiar-vieira",
+      "target": "joycejdm",
+      "value": 1.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "davi-aguiar-vieira",
+      "target": "marcusmartinss",
+      "value": 0.5,
+      "shared_repos": [
+        "data-application-gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "davi-aguiar-vieira",
+      "target": "mat054",
+      "value": 17.0,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "gov-hub"
+      ],
+      "interactions": [
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "mat054",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "mat054",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "mat054",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "mat054",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "davi-aguiar-vieira",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "gov-hub"
+        }
+      ]
+    },
+    {
+      "source": "egewarth",
+      "target": "joycejdm",
+      "value": 1.5,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "continuous-deployment",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "egewarth",
+      "target": "marcusmartinss",
+      "value": 2.5,
+      "shared_repos": [
+        "data-application-gov-hub"
+      ],
+      "interactions": [
+        {
+          "actor": "egewarth",
+          "target": "marcusmartinss",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        }
+      ]
+    },
+    {
+      "source": "egewarth",
+      "target": "mat054",
+      "value": 18.5,
+      "shared_repos": [
+        "app-lappis-ipea",
+        "Data mapping",
+        "continuous-deployment",
+        "gov-hub",
+        "data-application-gov-hub"
+      ],
+      "interactions": [
+        {
+          "actor": "mat054",
+          "target": "egewarth",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "mat054",
+          "type": "MERGED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "data-application-gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "mat054",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "mat054",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "egewarth",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "egewarth",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        }
+      ]
+    },
+    {
+      "source": "joycejdm",
+      "target": "marcusmartinss",
+      "value": 0.5,
+      "shared_repos": [
+        "data-application-gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "joycejdm",
+      "target": "mat054",
+      "value": 1.5,
+      "shared_repos": [
+        "data-application-gov-hub",
+        "continuous-deployment",
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "marcusmartinss",
+      "target": "mat054",
+      "value": 0.5,
+      "shared_repos": [
+        "data-application-gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "leomichalski",
+      "value": 4.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "continuous-deployment-dataprev",
+        "continuous-deployment"
+      ],
+      "interactions": [
+        {
+          "actor": "leomichalski",
+          "target": "Arthrok",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment-dataprev"
+        }
+      ]
+    },
+    {
+      "source": "RochaCarla",
+      "target": "leomichalski",
+      "value": 0.5,
+      "shared_repos": [
+        "continuous-deployment"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "egewarth",
+      "target": "leomichalski",
+      "value": 1.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "continuous-deployment"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "joycejdm",
+      "target": "leomichalski",
+      "value": 1.0,
+      "shared_repos": [
+        "continuous-deployment",
+        "airflow-dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "leomichalski",
+      "target": "mat054",
+      "value": 0.5,
+      "shared_repos": [
+        "continuous-deployment"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "LuizaMaluf",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "Vinicius-Ribeiro04",
+      "value": 1.0,
+      "shared_repos": [
+        "gov-hub",
+        "lablivresite"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "gusmoles",
+      "value": 1.0,
+      "shared_repos": [
+        "gov-hub",
+        "lablivresite"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Gxaite",
+      "target": "LuizaMaluf",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Gxaite",
+      "target": "Vinicius-Ribeiro04",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Gxaite",
+      "target": "gusmoles",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LuizaMaluf",
+      "target": "RochaCarla",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LuizaMaluf",
+      "target": "TiagoSBittencourt",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LuizaMaluf",
+      "target": "Vinicius-Ribeiro04",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LuizaMaluf",
+      "target": "davi-aguiar-vieira",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LuizaMaluf",
+      "target": "egewarth",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LuizaMaluf",
+      "target": "gusmoles",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LuizaMaluf",
+      "target": "joycejdm",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LuizaMaluf",
+      "target": "mat054",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "RochaCarla",
+      "target": "Vinicius-Ribeiro04",
+      "value": 13.0,
+      "shared_repos": [
+        "gov-hub",
+        "lablivresite"
+      ],
+      "interactions": [
+        {
+          "actor": "RochaCarla",
+          "target": "Vinicius-Ribeiro04",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "RochaCarla",
+          "target": "Vinicius-Ribeiro04",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "RochaCarla",
+          "target": "Vinicius-Ribeiro04",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "RochaCarla",
+          "target": "Vinicius-Ribeiro04",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "RochaCarla",
+          "target": "Vinicius-Ribeiro04",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "RochaCarla",
+          "target": "Vinicius-Ribeiro04",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        }
+      ]
+    },
+    {
+      "source": "RochaCarla",
+      "target": "gusmoles",
+      "value": 9.0,
+      "shared_repos": [
+        "gov-hub",
+        "lablivresite"
+      ],
+      "interactions": [
+        {
+          "actor": "RochaCarla",
+          "target": "gusmoles",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "RochaCarla",
+          "target": "gusmoles",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "RochaCarla",
+          "target": "gusmoles",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "RochaCarla",
+          "target": "gusmoles",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        }
+      ]
+    },
+    {
+      "source": "TiagoSBittencourt",
+      "target": "Vinicius-Ribeiro04",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "TiagoSBittencourt",
+      "target": "gusmoles",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Vinicius-Ribeiro04",
+      "target": "davi-aguiar-vieira",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Vinicius-Ribeiro04",
+      "target": "egewarth",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Vinicius-Ribeiro04",
+      "target": "gusmoles",
+      "value": 7.0,
+      "shared_repos": [
+        "gov-hub",
+        "lablivresite"
+      ],
+      "interactions": [
+        {
+          "actor": "gusmoles",
+          "target": "Vinicius-Ribeiro04",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "Vinicius-Ribeiro04",
+          "target": "gusmoles",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        },
+        {
+          "actor": "gusmoles",
+          "target": "Vinicius-Ribeiro04",
+          "type": "MERGED_PR",
+          "repo": "gov-hub"
+        }
+      ]
+    },
+    {
+      "source": "Vinicius-Ribeiro04",
+      "target": "joycejdm",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Vinicius-Ribeiro04",
+      "target": "mat054",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "davi-aguiar-vieira",
+      "target": "gusmoles",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "egewarth",
+      "target": "gusmoles",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "gusmoles",
+      "target": "joycejdm",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "gusmoles",
+      "target": "mat054",
+      "value": 0.5,
+      "shared_repos": [
+        "gov-hub"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "BrunaNayara",
+      "target": "RochaCarla",
+      "value": 6.5,
+      "shared_repos": [
+        "salic-ml",
+        "rasa-nlu-trainer",
+        "BotFlow",
+        "BotFlowAPI",
+        "tais",
+        "MiniLappisConf",
+        "rasa-ptbr-boilerplate",
+        "EcossistemasSWLivre",
+        "BigSibling"
+      ],
+      "interactions": [
+        {
+          "actor": "RochaCarla",
+          "target": "BrunaNayara",
+          "type": "MERGED_PR",
+          "repo": "tais"
+        }
+      ]
+    },
+    {
+      "source": "BrunaNayara",
+      "target": "brunapinos",
+      "value": 2.5,
+      "shared_repos": [
+        "BotFlow",
+        "BotFlowAPI",
+        "tais",
+        "rasa-ptbr-boilerplate",
+        "EcossistemasSWLivre"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "RochaCarla",
+      "target": "brunapinos",
+      "value": 12.0,
+      "shared_repos": [
+        "lappis.rocks",
+        "BotFlow",
+        "BotFlowAPI",
+        "tais",
+        "rasa-ptbr-boilerplate",
+        "EcossistemasSWLivre",
+        "alanaBot",
+        "salic-api"
+      ],
+      "interactions": [
+        {
+          "actor": "brunapinos",
+          "target": "RochaCarla",
+          "type": "MERGED_PR",
+          "repo": "tais"
+        },
+        {
+          "actor": "brunapinos",
+          "target": "RochaCarla",
+          "type": "REVIEWED_PR",
+          "repo": "tais"
+        },
+        {
+          "actor": "RochaCarla",
+          "target": "brunapinos",
+          "type": "MERGED_PR",
+          "repo": "tais"
+        },
+        {
+          "actor": "RochaCarla",
+          "target": "brunapinos",
+          "type": "REVIEWED_PR",
+          "repo": "tais"
+        }
+      ]
+    },
+    {
+      "source": "BrunaNayara",
+      "target": "ednunes",
+      "value": 2.5,
+      "shared_repos": [
+        "salic-ml",
+        "BotFlow",
+        "BotFlowAPI",
+        "tais",
+        "EcossistemasSWLivre"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "RochaCarla",
+      "target": "ednunes",
+      "value": 3.5,
+      "shared_repos": [
+        "salic-ml",
+        "BotFlow",
+        "BotFlowAPI",
+        "tais",
+        "EcossistemasSWLivre",
+        "salic-ml-frontend",
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "brunapinos",
+      "target": "ednunes",
+      "value": 2.0,
+      "shared_repos": [
+        "BotFlow",
+        "BotFlowAPI",
+        "EcossistemasSWLivre",
+        "tais"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "BrunaNayara",
+      "target": "LeoSilvaGomes",
+      "value": 1.0,
+      "shared_repos": [
+        "tais",
+        "MiniLappisConf"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "RochaCarla",
+      "value": 5.5,
+      "shared_repos": [
+        "gsoc.lappis.unb",
+        "lappis.rocks",
+        "tais",
+        "MiniLappisConf",
+        "Bottis",
+        "hygia",
+        "ecossistemasl"
+      ],
+      "interactions": [
+        {
+          "actor": "RochaCarla",
+          "target": "LeoSilvaGomes",
+          "type": "MERGED_PR",
+          "repo": "lappis.rocks"
+        }
+      ]
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "brunapinos",
+      "value": 1.5,
+      "shared_repos": [
+        "documentacao2",
+        "tais",
+        "lappis.rocks"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "ednunes",
+      "value": 1.0,
+      "shared_repos": [
+        "tais",
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "egewarth",
+      "value": 1.5,
+      "shared_repos": [
+        "gsoc.lappis.unb",
+        "Airflow Dags",
+        "lappis.rocks"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "bot-do-jao",
+      "value": 1.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "lappis.rocks"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "renatocoral",
+      "value": 1.5,
+      "shared_repos": [
+        "sige-front",
+        "docs",
+        "lappis.rocks"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "RochaCarla",
+      "target": "bot-do-jao",
+      "value": 0.5,
+      "shared_repos": [
+        "lappis.rocks"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "RochaCarla",
+      "target": "renatocoral",
+      "value": 7.0,
+      "shared_repos": [
+        "EcossistemasSWLivre",
+        "lappis.rocks"
+      ],
+      "interactions": [
+        {
+          "actor": "RochaCarla",
+          "target": "renatocoral",
+          "type": "MERGED_PR",
+          "repo": "EcossistemasSWLivre"
+        },
+        {
+          "actor": "RochaCarla",
+          "target": "renatocoral",
+          "type": "MERGED_PR",
+          "repo": "EcossistemasSWLivre"
+        },
+        {
+          "actor": "RochaCarla",
+          "target": "renatocoral",
+          "type": "MERGED_PR",
+          "repo": "EcossistemasSWLivre"
+        }
+      ]
+    },
+    {
+      "source": "bot-do-jao",
+      "target": "brunapinos",
+      "value": 0.5,
+      "shared_repos": [
+        "lappis.rocks"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "bot-do-jao",
+      "target": "egewarth",
+      "value": 1.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "lappis.rocks"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "bot-do-jao",
+      "target": "renatocoral",
+      "value": 0.5,
+      "shared_repos": [
+        "lappis.rocks"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "brunapinos",
+      "target": "egewarth",
+      "value": 0.5,
+      "shared_repos": [
+        "lappis.rocks"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "brunapinos",
+      "target": "renatocoral",
+      "value": 1.0,
+      "shared_repos": [
+        "EcossistemasSWLivre",
+        "lappis.rocks"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "egewarth",
+      "target": "renatocoral",
+      "value": 0.5,
+      "shared_repos": [
+        "lappis.rocks"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "maiconmares",
+      "target": "VictorJorgeFGA",
+      "value": 1.0,
+      "shared_repos": [
+        "decidim-module-homes",
+        "decidim-govbr"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "maiconmares",
+      "target": "VitorB2002",
+      "value": 1.0,
+      "shared_repos": [
+        "decidim-module-homes",
+        "decidim-govbr"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "maiconmares",
+      "target": "ednunes",
+      "value": 1.0,
+      "shared_repos": [
+        "decidim-module-homes",
+        "decidim-govbr"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "maiconmares",
+      "target": "gaubiela",
+      "value": 0.5,
+      "shared_repos": [
+        "decidim-govbr"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "maiconmares",
+      "target": "guilhermedfs",
+      "value": 0.5,
+      "shared_repos": [
+        "decidim-govbr"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VictorJorgeFGA",
+      "target": "VitorB2002",
+      "value": 12.5,
+      "shared_repos": [
+        "decidim-module-homes",
+        "decidim-govbr",
+        "brasilparticipativo",
+        "decidim-module-enhanced_process_groups_and_scopes"
+      ],
+      "interactions": [
+        {
+          "actor": "VictorJorgeFGA",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "VictorJorgeFGA",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "VictorJorgeFGA",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "VictorJorgeFGA",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "VitorB2002",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        }
+      ]
+    },
+    {
+      "source": "VictorJorgeFGA",
+      "target": "ednunes",
+      "value": 2.0,
+      "shared_repos": [
+        "decidim-module-homes",
+        "decidim-govbr",
+        "decidim-extra_user_fields",
+        "decidim-ej"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VictorJorgeFGA",
+      "target": "gaubiela",
+      "value": 1.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "decidim-govbr"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VictorJorgeFGA",
+      "target": "guilhermedfs",
+      "value": 0.5,
+      "shared_repos": [
+        "decidim-govbr"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VitorB2002",
+      "target": "ednunes",
+      "value": 1.5,
+      "shared_repos": [
+        "decidim-module-homes",
+        "decidim-govbr",
+        "customized-code"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VitorB2002",
+      "target": "gaubiela",
+      "value": 1.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "decidim-govbr"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VitorB2002",
+      "target": "guilhermedfs",
+      "value": 1.0,
+      "shared_repos": [
+        "decidim-govbr",
+        "customized-code"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "ednunes",
+      "target": "gaubiela",
+      "value": 0.5,
+      "shared_repos": [
+        "decidim-govbr"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "ednunes",
+      "target": "guilhermedfs",
+      "value": 1.0,
+      "shared_repos": [
+        "decidim-govbr",
+        "customized-code"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "gaubiela",
+      "target": "guilhermedfs",
+      "value": 0.5,
+      "shared_repos": [
+        "decidim-govbr"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "alvesisaque",
+      "target": "joycejdm",
+      "value": 1.0,
+      "shared_repos": [
+        "EbL_Over_PbL",
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VictorJorgeFGA",
+      "target": "suzaneduarte",
+      "value": 0.5,
+      "shared_repos": [
+        "decidim-ej"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "ednunes",
+      "target": "suzaneduarte",
+      "value": 0.5,
+      "shared_repos": [
+        "decidim-ej"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "maiconmares",
+      "target": "giovanniacg",
+      "value": 0.5,
+      "shared_repos": [
+        "decidim-module-homes"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VictorJorgeFGA",
+      "target": "giovanniacg",
+      "value": 1.0,
+      "shared_repos": [
+        "decidim-module-homes",
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VitorB2002",
+      "target": "giovanniacg",
+      "value": 2.0,
+      "shared_repos": [
+        "decidim-module-homes",
+        "customized-code",
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "ednunes",
+      "target": "giovanniacg",
+      "value": 2.0,
+      "shared_repos": [
+        "decidim-module-homes",
+        "customized-code",
+        "template-component",
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "WillxBernardo",
+      "target": "giovanniacg",
+      "value": 3.0,
+      "shared_repos": [
+        "data-simulate-db",
+        "Data Simulate DB"
+      ],
+      "interactions": [
+        {
+          "actor": "giovanniacg",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Data Simulate DB"
+        }
+      ]
+    },
+    {
+      "source": "bot-do-jao",
+      "target": "ericbky",
+      "value": 1.0,
+      "shared_repos": [
+        "airflow-docker",
+        "airflow-dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "bot-do-jao",
+      "target": "joycejdm",
+      "value": 0.5,
+      "shared_repos": [
+        "airflow-dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "bot-do-jao",
+      "target": "leomichalski",
+      "value": 27.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "continuous-deployment",
+        "continuous-deployment-dataprev",
+        "airflow-dags",
+        "Airflow Docker",
+        "docs"
+      ],
+      "interactions": [
+        {
+          "actor": "leomichalski",
+          "target": "bot-do-jao",
+          "type": "REVIEWED_PR",
+          "repo": "docs"
+        },
+        {
+          "actor": "leomichalski",
+          "target": "bot-do-jao",
+          "type": "REVIEWED_PR",
+          "repo": "docs"
+        },
+        {
+          "actor": "leomichalski",
+          "target": "bot-do-jao",
+          "type": "REVIEWED_PR",
+          "repo": "docs"
+        },
+        {
+          "actor": "leomichalski",
+          "target": "bot-do-jao",
+          "type": "REVIEWED_PR",
+          "repo": "docs"
+        },
+        {
+          "actor": "leomichalski",
+          "target": "bot-do-jao",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        },
+        {
+          "actor": "leomichalski",
+          "target": "bot-do-jao",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        },
+        {
+          "actor": "leomichalski",
+          "target": "bot-do-jao",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        },
+        {
+          "actor": "leomichalski",
+          "target": "bot-do-jao",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        },
+        {
+          "actor": "leomichalski",
+          "target": "bot-do-jao",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        },
+        {
+          "actor": "leomichalski",
+          "target": "bot-do-jao",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        },
+        {
+          "actor": "leomichalski",
+          "target": "bot-do-jao",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        },
+        {
+          "actor": "bot-do-jao",
+          "target": "leomichalski",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        }
+      ]
+    },
+    {
+      "source": "bot-do-jao",
+      "target": "roddas",
+      "value": 2.5,
+      "shared_repos": [
+        "Airflow Dags",
+        "continuous-deployment-dataprev",
+        "airflow-dags",
+        "airflow-docker",
+        "Airflow Docker"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "ericbky",
+      "target": "joycejdm",
+      "value": 0.5,
+      "shared_repos": [
+        "airflow-dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "ericbky",
+      "target": "leomichalski",
+      "value": 0.5,
+      "shared_repos": [
+        "airflow-dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "ericbky",
+      "target": "roddas",
+      "value": 1.0,
+      "shared_repos": [
+        "airflow-docker",
+        "airflow-dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "joycejdm",
+      "target": "roddas",
+      "value": 0.5,
+      "shared_repos": [
+        "airflow-dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "leomichalski",
+      "target": "roddas",
+      "value": 2.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "Airflow Docker",
+        "continuous-deployment-dataprev",
+        "airflow-dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "alvesisaque",
+      "target": "bot-do-jao",
+      "value": 1.5,
+      "shared_repos": [
+        "Airflow Dags",
+        "airflow-docker",
+        "Airflow Docker"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "alvesisaque",
+      "target": "ericbky",
+      "value": 0.5,
+      "shared_repos": [
+        "airflow-docker"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "alvesisaque",
+      "target": "roddas",
+      "value": 1.5,
+      "shared_repos": [
+        "Airflow Dags",
+        "airflow-docker",
+        "Airflow Docker"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "LeoSilvaGomes",
+      "value": 0.5,
+      "shared_repos": [
+        "documentacao2"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "brunapinos",
+      "value": 1.5,
+      "shared_repos": [
+        "brasilparticipativo",
+        "documentacao2",
+        "documenta\u00e7\u00e3o"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "guilhermedfs",
+      "value": 0.5,
+      "shared_repos": [
+        "documentacao2"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "joycejdm",
+      "value": 0.5,
+      "shared_repos": [
+        "documentacao2"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "guilhermedfs",
+      "value": 0.5,
+      "shared_repos": [
+        "documentacao2"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "joycejdm",
+      "value": 1.0,
+      "shared_repos": [
+        "documentacao2",
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "brunapinos",
+      "target": "guilhermedfs",
+      "value": 0.5,
+      "shared_repos": [
+        "documentacao2"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "brunapinos",
+      "target": "joycejdm",
+      "value": 0.5,
+      "shared_repos": [
+        "documentacao2"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "guilhermedfs",
+      "target": "joycejdm",
+      "value": 0.5,
+      "shared_repos": [
+        "documentacao2"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "LeoSilvaGomes",
+      "value": 1.5,
+      "shared_repos": [
+        "customized-code",
+        "ecossistema",
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "RochaCarla",
+      "value": 0.5,
+      "shared_repos": [
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "alvesisaque",
+      "value": 1.0,
+      "shared_repos": [
+        "ecossistema",
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "ednunes",
+      "value": 1.0,
+      "shared_repos": [
+        "customized-code",
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "giovanniacg",
+      "value": 2.5,
+      "shared_repos": [
+        "brasilparticipativo",
+        "customized-code",
+        "ecossistema",
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "joycejdm",
+      "value": 0.5,
+      "shared_repos": [
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "alvesisaque",
+      "value": 2.0,
+      "shared_repos": [
+        "hygia",
+        "ecossistema",
+        "Airflow Dags",
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "giovanniacg",
+      "value": 15.5,
+      "shared_repos": [
+        "customized-code",
+        "ecossistema",
+        "ecossistemasl"
+      ],
+      "interactions": [
+        {
+          "actor": "LeoSilvaGomes",
+          "target": "giovanniacg",
+          "type": "REVIEWED_PR",
+          "repo": "customized-code"
+        },
+        {
+          "actor": "LeoSilvaGomes",
+          "target": "giovanniacg",
+          "type": "REVIEWED_PR",
+          "repo": "ecossistema"
+        },
+        {
+          "actor": "LeoSilvaGomes",
+          "target": "giovanniacg",
+          "type": "REVIEWED_PR",
+          "repo": "ecossistema"
+        },
+        {
+          "actor": "LeoSilvaGomes",
+          "target": "giovanniacg",
+          "type": "REVIEWED_PR",
+          "repo": "ecossistema"
+        },
+        {
+          "actor": "LeoSilvaGomes",
+          "target": "giovanniacg",
+          "type": "REVIEWED_PR",
+          "repo": "ecossistema"
+        },
+        {
+          "actor": "LeoSilvaGomes",
+          "target": "giovanniacg",
+          "type": "REVIEWED_PR",
+          "repo": "ecossistema"
+        },
+        {
+          "actor": "LeoSilvaGomes",
+          "target": "giovanniacg",
+          "type": "REVIEWED_PR",
+          "repo": "ecossistema"
+        }
+      ]
+    },
+    {
+      "source": "RochaCarla",
+      "target": "alvesisaque",
+      "value": 1.0,
+      "shared_repos": [
+        "hygia",
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "RochaCarla",
+      "target": "giovanniacg",
+      "value": 0.5,
+      "shared_repos": [
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "alvesisaque",
+      "target": "ednunes",
+      "value": 0.5,
+      "shared_repos": [
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "alvesisaque",
+      "target": "giovanniacg",
+      "value": 1.0,
+      "shared_repos": [
+        "ecossistema",
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "ednunes",
+      "target": "joycejdm",
+      "value": 0.5,
+      "shared_repos": [
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "giovanniacg",
+      "target": "joycejdm",
+      "value": 0.5,
+      "shared_repos": [
+        "ecossistemasl"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "VitorB2002",
+      "value": 1.5,
+      "shared_repos": [
+        "brasilparticipativo",
+        "customized-code"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "guilhermedfs",
+      "value": 0.5,
+      "shared_repos": [
+        "customized-code"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "giovanniacg",
+      "target": "guilhermedfs",
+      "value": 0.5,
+      "shared_repos": [
+        "customized-code"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "flaviovl",
+      "target": "renatocoral",
+      "value": 2.0,
+      "shared_repos": [
+        "sige-slave",
+        "mec-energia-api",
+        "sige-master",
+        "mec-energia-web"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "caiooliv",
+      "value": 0.5,
+      "shared_repos": [
+        "sige-front"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "caiooliv",
+      "target": "renatocoral",
+      "value": 0.5,
+      "shared_repos": [
+        "sige-front"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "BrunaNayara",
+      "target": "renatocoral",
+      "value": 0.5,
+      "shared_repos": [
+        "EcossistemasSWLivre"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "ednunes",
+      "target": "renatocoral",
+      "value": 0.5,
+      "shared_repos": [
+        "EcossistemasSWLivre"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "davideaguiarvieira",
+      "target": "mat054",
+      "value": 7.5,
+      "shared_repos": [
+        "app-lappis-ipea",
+        "Data mapping",
+        "rag-thinkads"
+      ],
+      "interactions": [
+        {
+          "actor": "mat054",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "rag-thinkads"
+        },
+        {
+          "actor": "davideaguiarvieira",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "rag-thinkads"
+        },
+        {
+          "actor": "mat054",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        }
+      ]
+    },
+    {
+      "source": "Arthrok",
+      "target": "WillxBernardo",
+      "value": 7.5,
+      "shared_repos": [
+        "Airflow Dags",
+        "Brasil Participativo Mobile",
+        "rag-bp"
+      ],
+      "interactions": [
+        {
+          "actor": "WillxBernardo",
+          "target": "Arthrok",
+          "type": "REVIEWED_PR",
+          "repo": "rag-bp"
+        },
+        {
+          "actor": "WillxBernardo",
+          "target": "Arthrok",
+          "type": "REVIEWED_PR",
+          "repo": "rag-bp"
+        },
+        {
+          "actor": "WillxBernardo",
+          "target": "Arthrok",
+          "type": "REVIEWED_PR",
+          "repo": "rag-bp"
+        }
+      ]
+    },
+    {
+      "source": "Arthrok",
+      "target": "ssuzane9",
+      "value": 3.5,
+      "shared_repos": [
+        "Airflow Dags",
+        "Brasil Participativo Mobile",
+        "rag-bp"
+      ],
+      "interactions": [
+        {
+          "actor": "ssuzane9",
+          "target": "Arthrok",
+          "type": "REVIEWED_PR",
+          "repo": "Brasil Participativo Mobile"
+        }
+      ]
+    },
+    {
+      "source": "WillxBernardo",
+      "target": "egewarth",
+      "value": 27.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "rag-bp"
+      ],
+      "interactions": [
+        {
+          "actor": "egewarth",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "WillxBernardo",
+          "target": "egewarth",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        }
+      ]
+    },
+    {
+      "source": "WillxBernardo",
+      "target": "ssuzane9",
+      "value": 5.5,
+      "shared_repos": [
+        "Airflow Dags",
+        "Brasil Participativo Mobile",
+        "rag-bp"
+      ],
+      "interactions": [
+        {
+          "actor": "ssuzane9",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Brasil Participativo Mobile"
+        },
+        {
+          "actor": "WillxBernardo",
+          "target": "ssuzane9",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        }
+      ]
+    },
+    {
+      "source": "egewarth",
+      "target": "ssuzane9",
+      "value": 1.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "rag-bp"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "bot-do-jao",
+      "value": 14.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "continuous-deployment-dataprev",
+        "clusterlab",
+        "continuous-deployment"
+      ],
+      "interactions": [
+        {
+          "actor": "Arthrok",
+          "target": "bot-do-jao",
+          "type": "REVIEWED_PR",
+          "repo": "clusterlab"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "bot-do-jao",
+          "type": "REVIEWED_PR",
+          "repo": "clusterlab"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "bot-do-jao",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        },
+        {
+          "actor": "bot-do-jao",
+          "target": "Arthrok",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        },
+        {
+          "actor": "bot-do-jao",
+          "target": "Arthrok",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        },
+        {
+          "actor": "bot-do-jao",
+          "target": "Arthrok",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        }
+      ]
+    },
+    {
+      "source": "Arthrok",
+      "target": "roddas",
+      "value": 1.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "continuous-deployment-dataprev"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "bot-do-jao",
+      "target": "marcusmartinss",
+      "value": 1.0,
+      "shared_repos": [
+        "continuous-deployment-dataprev",
+        "continuous-deployment"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "leomichalski",
+      "target": "marcusmartinss",
+      "value": 9.0,
+      "shared_repos": [
+        "continuous-deployment-dataprev",
+        "continuous-deployment"
+      ],
+      "interactions": [
+        {
+          "actor": "leomichalski",
+          "target": "marcusmartinss",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment-dataprev"
+        },
+        {
+          "actor": "leomichalski",
+          "target": "marcusmartinss",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        },
+        {
+          "actor": "leomichalski",
+          "target": "marcusmartinss",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        },
+        {
+          "actor": "leomichalski",
+          "target": "marcusmartinss",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        }
+      ]
+    },
+    {
+      "source": "marcusmartinss",
+      "target": "roddas",
+      "value": 0.5,
+      "shared_repos": [
+        "continuous-deployment-dataprev"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "daniela0412",
+      "target": "eduardaq2805",
+      "value": 1.0,
+      "shared_repos": [
+        "participa",
+        "BP E2E Test"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "daniela0412",
+      "target": "gaubiela",
+      "value": 1.0,
+      "shared_repos": [
+        "participa",
+        "BP E2E Test"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "daniela0412",
+      "target": "paulohtfs",
+      "value": 7.0,
+      "shared_repos": [
+        "participa",
+        "BP E2E Test"
+      ],
+      "interactions": [
+        {
+          "actor": "paulohtfs",
+          "target": "daniela0412",
+          "type": "REVIEWED_PR",
+          "repo": "participa"
+        },
+        {
+          "actor": "paulohtfs",
+          "target": "daniela0412",
+          "type": "REVIEWED_PR",
+          "repo": "BP E2E Test"
+        },
+        {
+          "actor": "paulohtfs",
+          "target": "daniela0412",
+          "type": "REVIEWED_PR",
+          "repo": "BP E2E Test"
+        }
+      ]
+    },
+    {
+      "source": "daniela0412",
+      "target": "roddas",
+      "value": 0.5,
+      "shared_repos": [
+        "participa"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "daniela0412",
+      "target": "zlimaz",
+      "value": 0.5,
+      "shared_repos": [
+        "participa"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "eduardaq2805",
+      "target": "gaubiela",
+      "value": 1.5,
+      "shared_repos": [
+        "brasilparticipativo",
+        "participa",
+        "BP E2E Test"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "eduardaq2805",
+      "target": "paulohtfs",
+      "value": 7.0,
+      "shared_repos": [
+        "participa",
+        "BP E2E Test"
+      ],
+      "interactions": [
+        {
+          "actor": "paulohtfs",
+          "target": "eduardaq2805",
+          "type": "REVIEWED_PR",
+          "repo": "participa"
+        },
+        {
+          "actor": "paulohtfs",
+          "target": "eduardaq2805",
+          "type": "REVIEWED_PR",
+          "repo": "BP E2E Test"
+        },
+        {
+          "actor": "paulohtfs",
+          "target": "eduardaq2805",
+          "type": "REVIEWED_PR",
+          "repo": "BP E2E Test"
+        }
+      ]
+    },
+    {
+      "source": "eduardaq2805",
+      "target": "roddas",
+      "value": 0.5,
+      "shared_repos": [
+        "participa"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "eduardaq2805",
+      "target": "zlimaz",
+      "value": 1.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "participa"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "gaubiela",
+      "target": "paulohtfs",
+      "value": 11.0,
+      "shared_repos": [
+        "participa",
+        "BP E2E Test"
+      ],
+      "interactions": [
+        {
+          "actor": "paulohtfs",
+          "target": "gaubiela",
+          "type": "REVIEWED_PR",
+          "repo": "participa"
+        },
+        {
+          "actor": "paulohtfs",
+          "target": "gaubiela",
+          "type": "REVIEWED_PR",
+          "repo": "BP E2E Test"
+        },
+        {
+          "actor": "paulohtfs",
+          "target": "gaubiela",
+          "type": "REVIEWED_PR",
+          "repo": "BP E2E Test"
+        },
+        {
+          "actor": "paulohtfs",
+          "target": "gaubiela",
+          "type": "REVIEWED_PR",
+          "repo": "BP E2E Test"
+        },
+        {
+          "actor": "paulohtfs",
+          "target": "gaubiela",
+          "type": "REVIEWED_PR",
+          "repo": "BP E2E Test"
+        }
+      ]
+    },
+    {
+      "source": "gaubiela",
+      "target": "roddas",
+      "value": 0.5,
+      "shared_repos": [
+        "participa"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "gaubiela",
+      "target": "zlimaz",
+      "value": 1.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "participa"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "paulohtfs",
+      "target": "roddas",
+      "value": 0.5,
+      "shared_repos": [
+        "participa"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "paulohtfs",
+      "target": "zlimaz",
+      "value": 2.5,
+      "shared_repos": [
+        "participa"
+      ],
+      "interactions": [
+        {
+          "actor": "paulohtfs",
+          "target": "zlimaz",
+          "type": "REVIEWED_PR",
+          "repo": "participa"
+        }
+      ]
+    },
+    {
+      "source": "roddas",
+      "target": "zlimaz",
+      "value": 8.0,
+      "shared_repos": [
+        "participa",
+        "decidim-module-enhanced_process_groups_and_scopes",
+        "decidim-extra_user_fields",
+        "decidim-ej"
+      ],
+      "interactions": [
+        {
+          "actor": "roddas",
+          "target": "zlimaz",
+          "type": "REVIEWED_PR",
+          "repo": "decidim-module-enhanced_process_groups_and_scopes"
+        },
+        {
+          "actor": "roddas",
+          "target": "zlimaz",
+          "type": "REVIEWED_PR",
+          "repo": "decidim-ej"
+        },
+        {
+          "actor": "roddas",
+          "target": "zlimaz",
+          "type": "REVIEWED_PR",
+          "repo": "decidim-extra_user_fields"
+        }
+      ]
+    },
+    {
+      "source": "Arthrok",
+      "target": "CarolinaBarb",
+      "value": 0.5,
+      "shared_repos": [
+        "Brasil Participativo Mobile"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "VitorB2002",
+      "value": 0.5,
+      "shared_repos": [
+        "Brasil Participativo Mobile"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "VitorB2002",
+      "value": 3.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "Brasil Participativo Mobile"
+      ],
+      "interactions": [
+        {
+          "actor": "VitorB2002",
+          "target": "CarolinaBarb",
+          "type": "REVIEWED_PR",
+          "repo": "Brasil Participativo Mobile"
+        }
+      ]
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "WillxBernardo",
+      "value": 0.5,
+      "shared_repos": [
+        "Brasil Participativo Mobile"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "ssuzane9",
+      "value": 1.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "Brasil Participativo Mobile"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VitorB2002",
+      "target": "WillxBernardo",
+      "value": 12.5,
+      "shared_repos": [
+        "Brasil Participativo Mobile"
+      ],
+      "interactions": [
+        {
+          "actor": "VitorB2002",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Brasil Participativo Mobile"
+        },
+        {
+          "actor": "VitorB2002",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Brasil Participativo Mobile"
+        },
+        {
+          "actor": "VitorB2002",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Brasil Participativo Mobile"
+        },
+        {
+          "actor": "WillxBernardo",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "Brasil Participativo Mobile"
+        },
+        {
+          "actor": "VitorB2002",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Brasil Participativo Mobile"
+        },
+        {
+          "actor": "VitorB2002",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Brasil Participativo Mobile"
+        }
+      ]
+    },
+    {
+      "source": "VitorB2002",
+      "target": "ssuzane9",
+      "value": 5.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "Brasil Participativo Mobile"
+      ],
+      "interactions": [
+        {
+          "actor": "VitorB2002",
+          "target": "ssuzane9",
+          "type": "REVIEWED_PR",
+          "repo": "Brasil Participativo Mobile"
+        },
+        {
+          "actor": "VitorB2002",
+          "target": "ssuzane9",
+          "type": "REVIEWED_PR",
+          "repo": "Brasil Participativo Mobile"
+        }
+      ]
+    },
+    {
+      "source": "guilhermedfs14",
+      "target": "junhfer",
+      "value": 0.5,
+      "shared_repos": [
+        "Topic Modeling"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "anaipva",
+      "value": 1.0,
+      "shared_repos": [
+        "Mepa Web",
+        "MEPA Energia Web"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "flavio.vl",
+      "value": 3.0,
+      "shared_repos": [
+        "Mepa Web",
+        "MEPA Energia Web"
+      ],
+      "interactions": [
+        {
+          "actor": "Edu_25",
+          "target": "flavio.vl",
+          "type": "REVIEWED_PR",
+          "repo": "Mepa Web"
+        }
+      ]
+    },
+    {
+      "source": "Edu_25",
+      "target": "hugorochaffs",
+      "value": 1.0,
+      "shared_repos": [
+        "Mepa Web",
+        "MEPA Energia Web"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "leonardogm",
+      "value": 1.0,
+      "shared_repos": [
+        "Mepa Web",
+        "MEPA Energia Web"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "oo7gabriel",
+      "value": 1.0,
+      "shared_repos": [
+        "Mepa Web",
+        "MEPA Energia Web"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "anaipva",
+      "target": "flavio.vl",
+      "value": 3.5,
+      "shared_repos": [
+        "Mepa Web",
+        "MEPA API",
+        "MEPA Energia Web"
+      ],
+      "interactions": [
+        {
+          "actor": "anaipva",
+          "target": "flavio.vl",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA API"
+        }
+      ]
+    },
+    {
+      "source": "anaipva",
+      "target": "hugorochaffs",
+      "value": 3.0,
+      "shared_repos": [
+        "Mepa Web",
+        "MEPA Energia Web"
+      ],
+      "interactions": [
+        {
+          "actor": "anaipva",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        }
+      ]
+    },
+    {
+      "source": "anaipva",
+      "target": "leonardogm",
+      "value": 11.5,
+      "shared_repos": [
+        "Mepa Web",
+        "MEPA API",
+        "MEPA Energia Web"
+      ],
+      "interactions": [
+        {
+          "actor": "anaipva",
+          "target": "leonardogm",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "anaipva",
+          "target": "leonardogm",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "leonardogm",
+          "target": "anaipva",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "leonardogm",
+          "target": "anaipva",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "leonardogm",
+          "target": "anaipva",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        }
+      ]
+    },
+    {
+      "source": "anaipva",
+      "target": "oo7gabriel",
+      "value": 7.5,
+      "shared_repos": [
+        "Mepa Web",
+        "MEPA API",
+        "MEPA Energia Web"
+      ],
+      "interactions": [
+        {
+          "actor": "oo7gabriel",
+          "target": "anaipva",
+          "type": "REVIEWED_PR",
+          "repo": "Mepa Web"
+        },
+        {
+          "actor": "anaipva",
+          "target": "oo7gabriel",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "anaipva",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        }
+      ]
+    },
+    {
+      "source": "flavio.vl",
+      "target": "hugorochaffs",
+      "value": 27.5,
+      "shared_repos": [
+        "Mepa Web",
+        "MEPA Energia API",
+        "MEPA Energia Web"
+      ],
+      "interactions": [
+        {
+          "actor": "flavio.vl",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "flavio.vl",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "flavio.vl",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "flavio.vl",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "flavio.vl",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "flavio.vl",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "flavio.vl",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "flavio.vl",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "hugorochaffs",
+          "target": "flavio.vl",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "flavio.vl",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "flavio.vl",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "flavio.vl",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "flavio.vl",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        }
+      ]
+    },
+    {
+      "source": "flavio.vl",
+      "target": "leonardogm",
+      "value": 3.5,
+      "shared_repos": [
+        "Mepa Web",
+        "MEPA API",
+        "MEPA Energia Web"
+      ],
+      "interactions": [
+        {
+          "actor": "leonardogm",
+          "target": "flavio.vl",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA API"
+        }
+      ]
+    },
+    {
+      "source": "flavio.vl",
+      "target": "oo7gabriel",
+      "value": 10.5,
+      "shared_repos": [
+        "MEPA Landing Page",
+        "MEPA API",
+        "MEPA Energia Web",
+        "MEPA Energia API",
+        "Mepa Web"
+      ],
+      "interactions": [
+        {
+          "actor": "oo7gabriel",
+          "target": "flavio.vl",
+          "type": "REVIEWED_PR",
+          "repo": "Mepa Web"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "flavio.vl",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA API"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "flavio.vl",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA API"
+        },
+        {
+          "actor": "flavio.vl",
+          "target": "oo7gabriel",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        }
+      ]
+    },
+    {
+      "source": "hugorochaffs",
+      "target": "leonardogm",
+      "value": 5.0,
+      "shared_repos": [
+        "Mepa Web",
+        "MEPA Energia Web"
+      ],
+      "interactions": [
+        {
+          "actor": "hugorochaffs",
+          "target": "leonardogm",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "hugorochaffs",
+          "target": "leonardogm",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        }
+      ]
+    },
+    {
+      "source": "hugorochaffs",
+      "target": "oo7gabriel",
+      "value": 29.5,
+      "shared_repos": [
+        "Mepa Web",
+        "MEPA Energia API",
+        "MEPA Energia Web"
+      ],
+      "interactions": [
+        {
+          "actor": "oo7gabriel",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "hugorochaffs",
+          "target": "oo7gabriel",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "hugorochaffs",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        }
+      ]
+    },
+    {
+      "source": "leonardogm",
+      "target": "oo7gabriel",
+      "value": 9.5,
+      "shared_repos": [
+        "Mepa Web",
+        "MEPA API",
+        "MEPA Energia Web"
+      ],
+      "interactions": [
+        {
+          "actor": "leonardogm",
+          "target": "oo7gabriel",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "leonardogm",
+          "target": "oo7gabriel",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "oo7gabriel",
+          "target": "leonardogm",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "leonardogm",
+          "target": "oo7gabriel",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        }
+      ]
+    },
+    {
+      "source": "Gustavo_MR",
+      "target": "flavio.vl",
+      "value": 1.0,
+      "shared_repos": [
+        "MEPA Landing Page",
+        "Documenta\u00e7\u00e3o"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Gustavo_MR",
+      "target": "guilhermedfs14",
+      "value": 3.0,
+      "shared_repos": [
+        "MEPA Landing Page",
+        "Documenta\u00e7\u00e3o"
+      ],
+      "interactions": [
+        {
+          "actor": "guilhermedfs14",
+          "target": "Gustavo_MR",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Landing Page"
+        }
+      ]
+    },
+    {
+      "source": "Gustavo_MR",
+      "target": "oo7gabriel",
+      "value": 0.5,
+      "shared_repos": [
+        "MEPA Landing Page"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "flavio.vl",
+      "target": "guilhermedfs14",
+      "value": 1.0,
+      "shared_repos": [
+        "MEPA Landing Page",
+        "Documenta\u00e7\u00e3o"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "guilhermedfs14",
+      "target": "oo7gabriel",
+      "value": 0.5,
+      "shared_repos": [
+        "MEPA Landing Page"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "davideaguiarvieira",
+      "value": 33.0,
+      "shared_repos": [
+        "app-lappis-ipea",
+        "Data mapping"
+      ],
+      "interactions": [
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "davideaguiarvieira",
+          "target": "Arthrok",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "Arthrok",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        }
+      ]
+    },
+    {
+      "source": "Arthrok",
+      "target": "joyce.jdm",
+      "value": 1.5,
+      "shared_repos": [
+        "Airflow Dags",
+        "app-lappis-ipea",
+        "Data mapping"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "davideaguiarvieira",
+      "target": "egewarth",
+      "value": 13.0,
+      "shared_repos": [
+        "app-lappis-ipea",
+        "Data mapping"
+      ],
+      "interactions": [
+        {
+          "actor": "egewarth",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        },
+        {
+          "actor": "egewarth",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "app-lappis-ipea"
+        }
+      ]
+    },
+    {
+      "source": "davideaguiarvieira",
+      "target": "joyce.jdm",
+      "value": 21.0,
+      "shared_repos": [
+        "app-lappis-ipea",
+        "Data mapping"
+      ],
+      "interactions": [
+        {
+          "actor": "joyce.jdm",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        },
+        {
+          "actor": "joyce.jdm",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        },
+        {
+          "actor": "joyce.jdm",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        },
+        {
+          "actor": "joyce.jdm",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        },
+        {
+          "actor": "joyce.jdm",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        },
+        {
+          "actor": "davideaguiarvieira",
+          "target": "joyce.jdm",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        },
+        {
+          "actor": "joyce.jdm",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        },
+        {
+          "actor": "joyce.jdm",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        },
+        {
+          "actor": "joyce.jdm",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        },
+        {
+          "actor": "joyce.jdm",
+          "target": "davideaguiarvieira",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        }
+      ]
+    },
+    {
+      "source": "egewarth",
+      "target": "joyce.jdm",
+      "value": 5.5,
+      "shared_repos": [
+        "Airflow Dags",
+        "app-lappis-ipea",
+        "Data mapping"
+      ],
+      "interactions": [
+        {
+          "actor": "joyce.jdm",
+          "target": "egewarth",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        },
+        {
+          "actor": "joyce.jdm",
+          "target": "egewarth",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        }
+      ]
+    },
+    {
+      "source": "joyce.jdm",
+      "target": "mat054",
+      "value": 11.0,
+      "shared_repos": [
+        "app-lappis-ipea",
+        "Data mapping"
+      ],
+      "interactions": [
+        {
+          "actor": "joyce.jdm",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        },
+        {
+          "actor": "joyce.jdm",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        },
+        {
+          "actor": "joyce.jdm",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        },
+        {
+          "actor": "joyce.jdm",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        },
+        {
+          "actor": "joyce.jdm",
+          "target": "mat054",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        }
+      ]
+    },
+    {
+      "source": "Edu_25",
+      "target": "VictorJorgeFGA",
+      "value": 68.5,
+      "shared_repos": [
+        "brasilparticipativo",
+        "decidim-module-enhanced_process_groups_and_scopes",
+        "decidim-extra_user_fields",
+        "decidim-module-homes",
+        "decidim-ej"
+      ],
+      "interactions": [
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VictorJorgeFGA",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        }
+      ]
+    },
+    {
+      "source": "Edu_25",
+      "target": "VitorB2002",
+      "value": 96.0,
+      "shared_repos": [
+        "decidim-module-homes",
+        "customized-code",
+        "decidim-module-enhanced_process_groups_and_scopes",
+        "brasilparticipativo"
+      ],
+      "interactions": [
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "decidim-module-enhanced_process_groups_and_scopes"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "decidim-module-homes"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "decidim-module-homes"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        }
+      ]
+    },
+    {
+      "source": "Edu_25",
+      "target": "roddas",
+      "value": 2.0,
+      "shared_repos": [
+        "customized-code",
+        "decidim-module-enhanced_process_groups_and_scopes",
+        "decidim-extra_user_fields",
+        "decidim-ej"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "zlimaz",
+      "value": 4.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "decidim-module-enhanced_process_groups_and_scopes",
+        "decidim-extra_user_fields",
+        "decidim-ej"
+      ],
+      "interactions": [
+        {
+          "actor": "Edu_25",
+          "target": "zlimaz",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        }
+      ]
+    },
+    {
+      "source": "VictorJorgeFGA",
+      "target": "roddas",
+      "value": 1.5,
+      "shared_repos": [
+        "decidim-module-enhanced_process_groups_and_scopes",
+        "decidim-extra_user_fields",
+        "decidim-ej"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VictorJorgeFGA",
+      "target": "zlimaz",
+      "value": 2.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "decidim-module-enhanced_process_groups_and_scopes",
+        "decidim-extra_user_fields",
+        "decidim-ej"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VitorB2002",
+      "target": "roddas",
+      "value": 1.0,
+      "shared_repos": [
+        "customized-code",
+        "decidim-module-enhanced_process_groups_and_scopes"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VitorB2002",
+      "target": "zlimaz",
+      "value": 1.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "decidim-module-enhanced_process_groups_and_scopes"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "anaipva",
+      "value": 1.0,
+      "shared_repos": [
+        "botpress-chatbot",
+        "empurrandojuntos"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "leomichalski",
+      "value": 1.0,
+      "shared_repos": [
+        "botpress-chatbot",
+        "empurrandojuntos"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "anaipva",
+      "target": "leomichalski",
+      "value": 5.0,
+      "shared_repos": [
+        "botpress-chatbot",
+        "empurrandojuntos"
+      ],
+      "interactions": [
+        {
+          "actor": "leomichalski",
+          "target": "anaipva",
+          "type": "REVIEWED_PR",
+          "repo": "botpress-chatbot"
+        },
+        {
+          "actor": "leomichalski",
+          "target": "anaipva",
+          "type": "REVIEWED_PR",
+          "repo": "empurrandojuntos"
+        }
+      ]
+    },
+    {
+      "source": "Arthrok",
+      "target": "eric.bky",
+      "value": 1.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "Hawk Ops Dev"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "giovanniacg",
+      "value": 2.5,
+      "shared_repos": [
+        "Hawk Ops Dev"
+      ],
+      "interactions": [
+        {
+          "actor": "giovanniacg",
+          "target": "Arthrok",
+          "type": "REVIEWED_PR",
+          "repo": "Hawk Ops Dev"
+        }
+      ]
+    },
+    {
+      "source": "eric.bky",
+      "target": "giovanniacg",
+      "value": 0.5,
+      "shared_repos": [
+        "Hawk Ops Dev"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "ssuzane9",
+      "value": 9.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "decidim-ej"
+      ],
+      "interactions": [
+        {
+          "actor": "Edu_25",
+          "target": "ssuzane9",
+          "type": "REVIEWED_PR",
+          "repo": "decidim-ej"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "ssuzane9",
+          "type": "REVIEWED_PR",
+          "repo": "decidim-ej"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "ssuzane9",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "ssuzane9",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        }
+      ]
+    },
+    {
+      "source": "VictorJorgeFGA",
+      "target": "ssuzane9",
+      "value": 1.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "decidim-ej"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "roddas",
+      "target": "ssuzane9",
+      "value": 1.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "decidim-ej"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "ssuzane9",
+      "target": "zlimaz",
+      "value": 1.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "decidim-ej"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "alvesisaque",
+      "value": 1.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "Data mapping"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Gxaite",
+      "target": "alvesisaque",
+      "value": 0.5,
+      "shared_repos": [
+        "Data mapping"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Gxaite",
+      "target": "davideaguiarvieira",
+      "value": 0.5,
+      "shared_repos": [
+        "Data mapping"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Gxaite",
+      "target": "joyce.jdm",
+      "value": 0.5,
+      "shared_repos": [
+        "Data mapping"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "alvesisaque",
+      "target": "davideaguiarvieira",
+      "value": 0.5,
+      "shared_repos": [
+        "Data mapping"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "alvesisaque",
+      "target": "egewarth",
+      "value": 1.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "Data mapping"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "alvesisaque",
+      "target": "joyce.jdm",
+      "value": 3.0,
+      "shared_repos": [
+        "Airflow Dags",
+        "Data mapping"
+      ],
+      "interactions": [
+        {
+          "actor": "alvesisaque",
+          "target": "joyce.jdm",
+          "type": "REVIEWED_PR",
+          "repo": "Data mapping"
+        }
+      ]
+    },
+    {
+      "source": "alvesisaque",
+      "target": "mat054",
+      "value": 0.5,
+      "shared_repos": [
+        "Data mapping"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "algorithmorphic",
+      "value": 0.5,
+      "shared_repos": [
+        "continuous-deployment"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "algorithmorphic",
+      "target": "bot-do-jao",
+      "value": 0.5,
+      "shared_repos": [
+        "continuous-deployment"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "algorithmorphic",
+      "target": "leomichalski",
+      "value": 2.5,
+      "shared_repos": [
+        "continuous-deployment"
+      ],
+      "interactions": [
+        {
+          "actor": "leomichalski",
+          "target": "algorithmorphic",
+          "type": "REVIEWED_PR",
+          "repo": "continuous-deployment"
+        }
+      ]
+    },
+    {
+      "source": "algorithmorphic",
+      "target": "marcusmartinss",
+      "value": 0.5,
+      "shared_repos": [
+        "continuous-deployment"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "maiconmares",
+      "value": 49.0,
+      "shared_repos": [
+        "decidim-module-homes",
+        "brasilparticipativo"
+      ],
+      "interactions": [
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        }
+      ]
+    },
+    {
+      "source": "VictorJorgeFGA",
+      "target": "maiconmares",
+      "value": 5.0,
+      "shared_repos": [
+        "decidim-module-homes",
+        "brasilparticipativo"
+      ],
+      "interactions": [
+        {
+          "actor": "VictorJorgeFGA",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "VictorJorgeFGA",
+          "target": "maiconmares",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        }
+      ]
+    },
+    {
+      "source": "VitorB2002",
+      "target": "maiconmares",
+      "value": 17.0,
+      "shared_repos": [
+        "decidim-module-homes",
+        "brasilparticipativo"
+      ],
+      "interactions": [
+        {
+          "actor": "maiconmares",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "decidim-module-homes"
+        },
+        {
+          "actor": "maiconmares",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "maiconmares",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "maiconmares",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "maiconmares",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "maiconmares",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "maiconmares",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "maiconmares",
+          "target": "VitorB2002",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        }
+      ]
+    },
+    {
+      "source": "WillxBernardo",
+      "target": "alvesisaque",
+      "value": 1.0,
+      "shared_repos": [
+        "Airflow Docker",
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "WillxBernardo",
+      "target": "bot-do-jao",
+      "value": 1.0,
+      "shared_repos": [
+        "Airflow Docker",
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "WillxBernardo",
+      "target": "leomichalski",
+      "value": 1.0,
+      "shared_repos": [
+        "Airflow Docker",
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "WillxBernardo",
+      "target": "roddas",
+      "value": 1.0,
+      "shared_repos": [
+        "Airflow Docker",
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "alvesisaque",
+      "target": "leomichalski",
+      "value": 1.0,
+      "shared_repos": [
+        "Airflow Docker",
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "joyce.jdm",
+      "value": 0.5,
+      "shared_repos": [
+        "documenta\u00e7\u00e3o"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "brunapinos",
+      "target": "joyce.jdm",
+      "value": 0.5,
+      "shared_repos": [
+        "documenta\u00e7\u00e3o"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Arthrok",
+      "target": "LeoSilvaGomes",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "WillxBernardo",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "eric.bky",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "joyce.jdm",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "leomichalski",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "roddas",
+      "value": 1.0,
+      "shared_repos": [
+        "customized-code",
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "ssuzane9",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "WillxBernardo",
+      "target": "eric.bky",
+      "value": 12.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": [
+        {
+          "actor": "eric.bky",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "eric.bky",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "eric.bky",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "WillxBernardo",
+          "target": "eric.bky",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "eric.bky",
+          "target": "WillxBernardo",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "WillxBernardo",
+          "target": "eric.bky",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        }
+      ]
+    },
+    {
+      "source": "WillxBernardo",
+      "target": "joyce.jdm",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "alvesisaque",
+      "target": "eric.bky",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "alvesisaque",
+      "target": "ssuzane9",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "bot-do-jao",
+      "target": "eric.bky",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "bot-do-jao",
+      "target": "joyce.jdm",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "bot-do-jao",
+      "target": "ssuzane9",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "egewarth",
+      "target": "eric.bky",
+      "value": 12.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": [
+        {
+          "actor": "egewarth",
+          "target": "eric.bky",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "eric.bky",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "eric.bky",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "eric.bky",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "eric.bky",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        },
+        {
+          "actor": "egewarth",
+          "target": "eric.bky",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        }
+      ]
+    },
+    {
+      "source": "egewarth",
+      "target": "roddas",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "eric.bky",
+      "target": "joyce.jdm",
+      "value": 2.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": [
+        {
+          "actor": "joyce.jdm",
+          "target": "eric.bky",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        }
+      ]
+    },
+    {
+      "source": "eric.bky",
+      "target": "leomichalski",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "eric.bky",
+      "target": "roddas",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "eric.bky",
+      "target": "ssuzane9",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "joyce.jdm",
+      "target": "leomichalski",
+      "value": 2.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": [
+        {
+          "actor": "joyce.jdm",
+          "target": "leomichalski",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        }
+      ]
+    },
+    {
+      "source": "joyce.jdm",
+      "target": "roddas",
+      "value": 2.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": [
+        {
+          "actor": "joyce.jdm",
+          "target": "roddas",
+          "type": "REVIEWED_PR",
+          "repo": "Airflow Dags"
+        }
+      ]
+    },
+    {
+      "source": "joyce.jdm",
+      "target": "ssuzane9",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "leomichalski",
+      "target": "ssuzane9",
+      "value": 0.5,
+      "shared_repos": [
+        "Airflow Dags"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "Juan-Ricarte",
+      "value": 1.5,
+      "shared_repos": [
+        "brasilparticipativo",
+        "customized-code",
+        "ecossistema"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "LeoSilvaGomes",
+      "value": 1.0,
+      "shared_repos": [
+        "customized-code",
+        "ecossistema"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "giovanniacg",
+      "value": 3.5,
+      "shared_repos": [
+        "brasilparticipativo",
+        "customized-code",
+        "ecossistema"
+      ],
+      "interactions": [
+        {
+          "actor": "Edu_25",
+          "target": "giovanniacg",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        }
+      ]
+    },
+    {
+      "source": "Edu_25",
+      "target": "guilhermedfs14",
+      "value": 1.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "customized-code"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "guilhermedfs14",
+      "value": 1.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "customized-code"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "roddas",
+      "value": 0.5,
+      "shared_repos": [
+        "customized-code"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "VitorB2002",
+      "value": 0.5,
+      "shared_repos": [
+        "customized-code"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "guilhermedfs14",
+      "value": 0.5,
+      "shared_repos": [
+        "customized-code"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VitorB2002",
+      "target": "guilhermedfs14",
+      "value": 1.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "customized-code"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "giovanniacg",
+      "target": "guilhermedfs14",
+      "value": 3.0,
+      "shared_repos": [
+        "brasilparticipativo",
+        "customized-code"
+      ],
+      "interactions": [
+        {
+          "actor": "giovanniacg",
+          "target": "guilhermedfs14",
+          "type": "REVIEWED_PR",
+          "repo": "customized-code"
+        }
+      ]
+    },
+    {
+      "source": "giovanniacg",
+      "target": "roddas",
+      "value": 0.5,
+      "shared_repos": [
+        "customized-code"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "guilhermedfs14",
+      "target": "roddas",
+      "value": 0.5,
+      "shared_repos": [
+        "customized-code"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "Edu_25",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "Juan-Ricarte",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "VictorJorgeFGA",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "eduardaq2805",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "gaubiela",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "giovanniacg",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "guilhermedfs14",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "luccameds",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "maiconmares",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "CarolinaBarb",
+      "target": "zlimaz",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "brunapinos",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "eduardaq2805",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "gaubiela",
+      "value": 2.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": [
+        {
+          "actor": "Edu_25",
+          "target": "gaubiela",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        }
+      ]
+    },
+    {
+      "source": "Edu_25",
+      "target": "luccameds",
+      "value": 12.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": [
+        {
+          "actor": "Edu_25",
+          "target": "luccameds",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "luccameds",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "luccameds",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "luccameds",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "luccameds",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "Edu_25",
+          "target": "luccameds",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        }
+      ]
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "VictorJorgeFGA",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "brunapinos",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "eduardaq2805",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "gaubiela",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "luccameds",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "maiconmares",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "ssuzane9",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "zlimaz",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VictorJorgeFGA",
+      "target": "brunapinos",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VictorJorgeFGA",
+      "target": "eduardaq2805",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VictorJorgeFGA",
+      "target": "guilhermedfs14",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VictorJorgeFGA",
+      "target": "luccameds",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VitorB2002",
+      "target": "brunapinos",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VitorB2002",
+      "target": "eduardaq2805",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "VitorB2002",
+      "target": "luccameds",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "brunapinos",
+      "target": "eduardaq2805",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "brunapinos",
+      "target": "gaubiela",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "brunapinos",
+      "target": "giovanniacg",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "brunapinos",
+      "target": "guilhermedfs14",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "brunapinos",
+      "target": "luccameds",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "brunapinos",
+      "target": "maiconmares",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "brunapinos",
+      "target": "ssuzane9",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "brunapinos",
+      "target": "zlimaz",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "eduardaq2805",
+      "target": "giovanniacg",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "eduardaq2805",
+      "target": "guilhermedfs14",
+      "value": 2.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": [
+        {
+          "actor": "guilhermedfs14",
+          "target": "eduardaq2805",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        }
+      ]
+    },
+    {
+      "source": "eduardaq2805",
+      "target": "luccameds",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "eduardaq2805",
+      "target": "maiconmares",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "eduardaq2805",
+      "target": "ssuzane9",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "gaubiela",
+      "target": "giovanniacg",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "gaubiela",
+      "target": "guilhermedfs14",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "gaubiela",
+      "target": "luccameds",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "gaubiela",
+      "target": "maiconmares",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "gaubiela",
+      "target": "ssuzane9",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "giovanniacg",
+      "target": "luccameds",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "giovanniacg",
+      "target": "maiconmares",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "giovanniacg",
+      "target": "ssuzane9",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "giovanniacg",
+      "target": "zlimaz",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "guilhermedfs14",
+      "target": "luccameds",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "guilhermedfs14",
+      "target": "maiconmares",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "guilhermedfs14",
+      "target": "ssuzane9",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "guilhermedfs14",
+      "target": "zlimaz",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "luccameds",
+      "target": "maiconmares",
+      "value": 10.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": [
+        {
+          "actor": "maiconmares",
+          "target": "luccameds",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "maiconmares",
+          "target": "luccameds",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "maiconmares",
+          "target": "luccameds",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "maiconmares",
+          "target": "luccameds",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        },
+        {
+          "actor": "maiconmares",
+          "target": "luccameds",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        }
+      ]
+    },
+    {
+      "source": "luccameds",
+      "target": "ssuzane9",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "luccameds",
+      "target": "zlimaz",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "maiconmares",
+      "target": "ssuzane9",
+      "value": 2.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": [
+        {
+          "actor": "maiconmares",
+          "target": "ssuzane9",
+          "type": "REVIEWED_PR",
+          "repo": "brasilparticipativo"
+        }
+      ]
+    },
+    {
+      "source": "maiconmares",
+      "target": "zlimaz",
+      "value": 0.5,
+      "shared_repos": [
+        "brasilparticipativo"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "alvesisaque",
+      "value": 0.5,
+      "shared_repos": [
+        "ecossistema"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "rocha.carla",
+      "value": 0.5,
+      "shared_repos": [
+        "ecossistema"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Juan-Ricarte",
+      "target": "rocha.carla",
+      "value": 0.5,
+      "shared_repos": [
+        "ecossistema"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "LeoSilvaGomes",
+      "target": "rocha.carla",
+      "value": 0.5,
+      "shared_repos": [
+        "ecossistema"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "alvesisaque",
+      "target": "rocha.carla",
+      "value": 0.5,
+      "shared_repos": [
+        "ecossistema"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "giovanniacg",
+      "target": "rocha.carla",
+      "value": 0.5,
+      "shared_repos": [
+        "ecossistema"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Gustavo_MR",
+      "target": "renatocoral",
+      "value": 0.5,
+      "shared_repos": [
+        "Documenta\u00e7\u00e3o"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Gustavo_MR",
+      "target": "rocha.carla",
+      "value": 0.5,
+      "shared_repos": [
+        "Documenta\u00e7\u00e3o"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "flavio.vl",
+      "target": "renatocoral",
+      "value": 11.5,
+      "shared_repos": [
+        "MEPA Energia API",
+        "Documenta\u00e7\u00e3o",
+        "MEPA Energia Web"
+      ],
+      "interactions": [
+        {
+          "actor": "renatocoral",
+          "target": "flavio.vl",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "renatocoral",
+          "target": "flavio.vl",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "renatocoral",
+          "target": "flavio.vl",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia API"
+        },
+        {
+          "actor": "renatocoral",
+          "target": "flavio.vl",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        },
+        {
+          "actor": "renatocoral",
+          "target": "flavio.vl",
+          "type": "REVIEWED_PR",
+          "repo": "MEPA Energia Web"
+        }
+      ]
+    },
+    {
+      "source": "flavio.vl",
+      "target": "rocha.carla",
+      "value": 0.5,
+      "shared_repos": [
+        "Documenta\u00e7\u00e3o"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "guilhermedfs14",
+      "target": "renatocoral",
+      "value": 0.5,
+      "shared_repos": [
+        "Documenta\u00e7\u00e3o"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "guilhermedfs14",
+      "target": "rocha.carla",
+      "value": 0.5,
+      "shared_repos": [
+        "Documenta\u00e7\u00e3o"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "renatocoral",
+      "target": "rocha.carla",
+      "value": 0.5,
+      "shared_repos": [
+        "Documenta\u00e7\u00e3o"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "hugorochaffs",
+      "target": "renatocoral",
+      "value": 1.0,
+      "shared_repos": [
+        "MEPA Energia API",
+        "MEPA Energia Web"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "oo7gabriel",
+      "target": "renatocoral",
+      "value": 1.0,
+      "shared_repos": [
+        "MEPA Energia API",
+        "MEPA Energia Web"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "Edu_25",
+      "target": "renatocoral",
+      "value": 0.5,
+      "shared_repos": [
+        "MEPA Energia Web"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "anaipva",
+      "target": "renatocoral",
+      "value": 0.5,
+      "shared_repos": [
+        "MEPA Energia Web"
+      ],
+      "interactions": []
+    },
+    {
+      "source": "leonardogm",
+      "target": "renatocoral",
+      "value": 0.5,
+      "shared_repos": [
+        "MEPA Energia Web"
+      ],
+      "interactions": []
+    }
+  ]
+}
