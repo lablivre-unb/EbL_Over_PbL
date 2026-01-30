@@ -9,7 +9,7 @@ from urllib3.util.retry import Retry
 load_dotenv()
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 GITLAB_TOKEN = os.getenv("GITLAB_TOKEN")
-OUTPUT_FILE = "prs.csv" 
+OUTPUT_FILE = "metrics/data/bronze/prs.csv" 
 
 TARGETS = [
     {"type": "github", "org": "GovHub-br"},
