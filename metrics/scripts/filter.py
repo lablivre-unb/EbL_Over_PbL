@@ -66,7 +66,7 @@ MDSREQ_FGA_UNB_PROJECTS = [
 OTHER_ORGS = [
     {"platform": "GitHub", "org": "GovHub-br"},
     {"platform": "GitHub", "org": "lablivre-unb"},
-    {"platform": "GitLab", "org": "lappis-unb"},
+    {"platform": "GitLab", "org": "lappis-unb/decidimbr"},
     {"platform": "GitHub", "org": "decidim"},
     {"platform": "GitHub", "org": "microsoft"},
 ]

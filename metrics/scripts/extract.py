@@ -11,23 +11,71 @@ GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 GITLAB_TOKEN = os.getenv("GITLAB_TOKEN")
 OUTPUT_FILE = "metrics/data/bronze/prs.csv"
 
+# Palavras-chave para identificar bots
+BOT_KEYWORDS = [
+    "bot",
+    "dependabot",
+    "renovate",
+    "github-actions",
+    "codecov",
+    "greenkeeper",
+    "snyk",
+    "pyup",
+    "automated",
+    "ci-",
+    "action",
+    "github-advanced-security",
+    "copilot-pull-request",
+]
+
+
+def is_bot_user(username):
+    """Identifica se o usuário é um bot baseado em palavras-chave comuns"""
+    if not username:
+        return True
+    username_lower = str(username).lower()
+    return any(keyword in username_lower for keyword in BOT_KEYWORDS)
+
+
 TARGETS = [
     # {"type": "github", "org": "GovHub-br"},
     # {"type": "github", "org": "lablivre-unb"},
-    {"type": "gitlab", "group_path": "lappis-unb", "repos": ["brasilparticipativo"]},
-    {"type": "github", "org": "unb-mds"},
-    {"type": "github", "org": "mdsreq-fga-unb"},
+    {
+        "type": "gitlab",
+        "group_path": "lappis-unb/decidimbr",
+        "repos": ["decidim-govbr"],
+    },
+    {
+        "type": "github",
+        "org": "unb-mds",
+        "repos": [
+            "2025-2-Mural-UnB",
+            "Sonorus-2025.1",
+            "2024-2-AcheiUnB",
+            "2024-1-forUnB",
+        ],
+    },
+    {
+        "type": "github",
+        "org": "mdsreq-fga-unb",
+        "repos": [
+            "REQ-2025.2-T02-RxHospitalar",
+            "2025.1-T01-VidracariaModelo",
+            "2024.2-T03-CafeDoSitio",
+            "2024.1-ObjeX",
+        ],
+    },
     {
         "type": "github",
         "org": "decidim",
         "repos": ["decidim"],
-        "since": "2023-01-01T00:00:00Z",
+        "since": "2024-01-01T00:00:00Z",
     },
     {
         "type": "github",
         "org": "microsoft",
         "repos": ["vscode"],
-        "since": "2023-01-01T00:00:00Z",
+        "since": "2024-01-01T00:00:00Z",
     },
 ]
 
@@ -65,21 +113,36 @@ def save_chunk(new_data):
 
     df = pd.DataFrame(new_data)
 
-    cols_date = ["created_at", "merged_at", "first_review_at"]
+    # Converter colunas de data
+    cols_date = [
+        "created_at",
+        "merged_at",
+        "first_review_at",
+        "first_human_response_at",
+    ]
     for col in cols_date:
         if col in df.columns:
             df[col] = pd.to_datetime(df[col], utc=True, errors="coerce")
 
+    # Lead time (tempo total do PR)
     if "merged_at" in df.columns and "created_at" in df.columns:
         df["lead_time_hours"] = (
             df["merged_at"] - df["created_at"]
         ).dt.total_seconds() / 3600
 
+    # Tempo até primeira review
     if "first_review_at" in df.columns and "created_at" in df.columns:
         df["time_to_first_review_hours"] = (
             df["first_review_at"] - df["created_at"]
         ).dt.total_seconds() / 3600
 
+    # Tempo até primeira resposta humana (não-bot)
+    if "first_human_response_at" in df.columns and "created_at" in df.columns:
+        df["time_to_first_human_response_hours"] = (
+            df["first_human_response_at"] - df["created_at"]
+        ).dt.total_seconds() / 3600
+
+    # Densidade de discussão
     if "churn" in df.columns:
         df["discussion_density"] = df.apply(
             lambda x: x["comments"] / x["churn"] if x.get("churn", 0) > 0 else 0, axis=1
@@ -90,15 +153,66 @@ def save_chunk(new_data):
     print(f"      [Salvo] {len(new_data)} registros adicionados ao disco.")
 
 
-def run_query(url, json_body, headers, context=""):
-    try:
-        response = session.post(url, json=json_body, headers=headers, timeout=120)
-        response.raise_for_status()
-        return response
-    except requests.exceptions.RequestException as e:
-        print(f"    ! Erro de rede ({context}): {e}")
-        time.sleep(5)
-        return None
+def _wait_for_rate_limit_reset(response):
+    """Detecta rate limit e espera até o reset + margem de 10s."""
+    reset_ts = response.headers.get("x-ratelimit-reset") or response.headers.get(
+        "ratelimit-reset"
+    )
+    retry_after = response.headers.get("retry-after")
+
+    wait_seconds = None
+
+    if retry_after:
+        # retry-after pode vir em segundos diretamente
+        try:
+            wait_seconds = int(retry_after)
+        except ValueError:
+            pass
+
+    if wait_seconds is None and reset_ts:
+        try:
+            wait_seconds = max(int(reset_ts) - int(time.time()), 0)
+        except ValueError:
+            pass
+
+    if wait_seconds is None:
+        wait_seconds = 60  # fallback conservador
+
+    wait_seconds += 10  # margem de segurança
+    print(f"    Rate limit atingido. Aguardando {wait_seconds}s até reset...")
+    time.sleep(wait_seconds)
+
+
+def run_query(url, json_body, headers, context="", max_retries=3):
+    for attempt in range(max_retries + 1):
+        try:
+            response = session.post(url, json=json_body, headers=headers, timeout=120)
+
+            # Rate limit via status HTTP (403 ou 429)
+            if response.status_code in (403, 429):
+                print(f"    ! Rate limit HTTP {response.status_code} ({context})")
+                _wait_for_rate_limit_reset(response)
+                continue
+
+            response.raise_for_status()
+
+            # Rate limit via body GraphQL (API retorna 200 mas com erro)
+            json_data = response.json()
+            if "errors" in json_data:
+                error_msg = json_data["errors"][0].get("message", "")
+                if "rate limit" in error_msg.lower():
+                    print(f"    ! Rate limit GraphQL: {error_msg}")
+                    _wait_for_rate_limit_reset(response)
+                    continue
+
+            return response
+
+        except requests.exceptions.RequestException as e:
+            print(f"    ! Erro de rede ({context}), tentativa {attempt + 1}: {e}")
+            time.sleep(5)
+
+    print(f"    Falha após {max_retries + 1} tentativas ({context})")
+    return None
 
 
 def analyze_files(file_list):
@@ -195,6 +309,7 @@ def process_github(target, processed_set):
         repo_data_chunk = []
         cursor = None
         has_next_pr = True
+        pr_count = 0
 
         while has_next_pr:
             query = """
@@ -204,14 +319,36 @@ def process_github(target, processed_set):
                   pageInfo { endCursor hasNextPage }
                   nodes {
                     number createdAt mergedAt additions deletions changedFiles
-                    body 
+                    title body 
                     author { login }
-                    commits { totalCount }
-                    reviews(first: 20) {
+                    labels(first: 20) {
+                      totalCount
+                      nodes { name }
+                    }
+                    commits(first: 100) { 
+                      totalCount
+                      nodes {
+                        commit {
+                          message
+                          author { user { login } }
+                        }
+                      }
+                    }
+                    reviews(first: 50) {
                       nodes { author { login } createdAt }
                     }
-                    comments { totalCount }
-                    reviewThreads { totalCount }
+                    comments(first: 50) {
+                      totalCount
+                      nodes { author { login } createdAt }
+                    }
+                    reviewThreads(first: 50) { 
+                      totalCount
+                      nodes {
+                        comments(first: 20) {
+                          nodes { author { login } createdAt }
+                        }
+                      }
+                    }
                     files(first: 50) {
                       nodes { path }
                     }
@@ -258,6 +395,17 @@ def process_github(target, processed_set):
                     # Se chegamos em PRs mais antigas que a data limite, parar paginação
                     has_next_pr = False
                     break
+
+                pr_count += 1
+                print(
+                    f"    -> Processando PR #{pr.get('number')} [{pr_count} PRs processados]"
+                )
+
+                pr_author = (
+                    pr["author"]["login"] if pr.get("author") else "deleted_user"
+                )
+
+                # Processar reviews
                 reviews_data = pr.get("reviews") or {}
                 review_nodes = reviews_data.get("nodes", []) or []
                 reviewers = set()
@@ -269,21 +417,95 @@ def process_github(target, processed_set):
                         if r.get("author"):
                             reviewers.add(r["author"]["login"])
 
+                # Processar comentários (issues comments)
+                comments_data = pr.get("comments") or {}
+                comment_nodes = comments_data.get("nodes", []) or []
+                comments_count = comments_data.get("totalCount", 0) or 0
+                commenters = set()
+                for c in comment_nodes:
+                    if c.get("author"):
+                        commenters.add(c["author"]["login"])
+
+                # Processar review threads (inline comments)
+                review_threads_data = pr.get("reviewThreads") or {}
+                review_threads_count = review_threads_data.get("totalCount", 0) or 0
+                thread_nodes = review_threads_data.get("nodes", []) or []
+                for thread in thread_nodes:
+                    thread_comments = thread.get("comments", {}).get("nodes", []) or []
+                    for tc in thread_comments:
+                        if tc.get("author"):
+                            commenters.add(tc["author"]["login"])
+
+                # Coletar todas as respostas (reviews + comments) para calcular tempo até primeira resposta humana
+                all_responses = []
+                for r in review_nodes:
+                    if r.get("author") and r["author"]["login"] != pr_author:
+                        all_responses.append(
+                            {"user": r["author"]["login"], "created_at": r["createdAt"]}
+                        )
+                for c in comment_nodes:
+                    if c.get("author") and c["author"]["login"] != pr_author:
+                        all_responses.append(
+                            {"user": c["author"]["login"], "created_at": c["createdAt"]}
+                        )
+                for thread in thread_nodes:
+                    thread_comments = thread.get("comments", {}).get("nodes", []) or []
+                    for tc in thread_comments:
+                        if tc.get("author") and tc["author"]["login"] != pr_author:
+                            all_responses.append(
+                                {
+                                    "user": tc["author"]["login"],
+                                    "created_at": tc["createdAt"],
+                                }
+                            )
+
+                # Ordenar e encontrar primeira resposta humana (não-bot)
+                all_responses.sort(key=lambda x: x["created_at"])
+                first_human_response_at = None
+                for resp in all_responses:
+                    if not is_bot_user(resp["user"]):
+                        first_human_response_at = resp["created_at"]
+                        break
+
+                # Processar commits (autores e mensagens)
+                commits_data = pr.get("commits") or {}
+                commits_count = commits_data.get("totalCount", 0) or 0
+                commit_nodes = commits_data.get("nodes", []) or []
+                commit_authors = set()
+                commit_message_lengths = []
+                for cn in commit_nodes:
+                    commit = cn.get("commit", {})
+                    # Autor do commit
+                    commit_author_data = commit.get("author", {}) or {}
+                    commit_user = commit_author_data.get("user", {})
+                    if commit_user and commit_user.get("login"):
+                        commit_authors.add(commit_user["login"])
+                    # Mensagem do commit
+                    msg = commit.get("message", "") or ""
+                    if msg:
+                        commit_message_lengths.append(len(msg))
+
+                avg_commit_msg_len = (
+                    sum(commit_message_lengths) / len(commit_message_lengths)
+                    if commit_message_lengths
+                    else 0
+                )
+
+                # Processar files
                 files_data = pr.get("files") or {}
                 file_nodes = files_data.get("nodes", []) or []
                 file_paths_list = [f["path"] for f in file_nodes if f.get("path")]
                 doc_count, extensions_str, paths_str = analyze_files(file_paths_list)
 
+                # Comprimentos de texto
                 body_len = len(pr["body"]) if pr.get("body") else 0
+                title_len = len(pr["title"]) if pr.get("title") else 0
 
-                commits_data = pr.get("commits") or {}
-                commits_count = commits_data.get("totalCount", 0) or 0
-
-                comments_data = pr.get("comments") or {}
-                comments_count = comments_data.get("totalCount", 0) or 0
-
-                review_threads_data = pr.get("reviewThreads") or {}
-                review_threads_count = review_threads_data.get("totalCount", 0) or 0
+                # Labels
+                labels_data = pr.get("labels") or {}
+                labels_count = labels_data.get("totalCount", 0) or 0
+                label_nodes = labels_data.get("nodes", []) or []
+                label_names = [l["name"] for l in label_nodes if l.get("name")]
 
                 repo_data_chunk.append(
                     {
@@ -291,14 +513,16 @@ def process_github(target, processed_set):
                         "org": org_name,
                         "repo": repo,
                         "id": pr.get("number"),
-                        "author": pr["author"]["login"]
-                        if pr.get("author")
-                        else "deleted_user",
+                        "author": pr_author,
                         "created_at": pr.get("createdAt"),
                         "merged_at": pr.get("mergedAt"),
                         "first_review_at": first_review_at,
+                        "first_human_response_at": first_human_response_at,
                         "reviewers": ",".join(reviewers),
+                        "commenters": ",".join(commenters),
+                        "commit_authors": ",".join(commit_authors),
                         "commits": commits_count,
+                        "avg_commit_message_length": round(avg_commit_msg_len, 2),
                         "reviews_count": len(review_nodes),
                         "comments": comments_count + review_threads_count,
                         "files_changed": pr.get("changedFiles", 0) or 0,
@@ -312,7 +536,10 @@ def process_github(target, processed_set):
                         and (doc_count / len(file_paths_list) > 0.5),
                         "file_extensions": extensions_str,
                         "file_paths": paths_str,
+                        "title_length": title_len,
                         "description_length": body_len,
+                        "labels_count": labels_count,
+                        "labels": ",".join(label_names),
                     }
                 )
 
@@ -326,12 +553,12 @@ def process_github(target, processed_set):
 
 def process_gitlab(target, processed_set):
     group = target["group_path"]
-    specific_projects = target.get("projects")  # Projetos específicos (opcional)
+    specific_repos = target.get("repos")  # Lista de repos específicos (opcional)
     since_date = target.get("since")  # Filtro temporal (opcional)
 
     filter_info = ""
-    if specific_projects:
-        filter_info += f" [projetos: {', '.join(specific_projects)}]"
+    if specific_repos:
+        filter_info += f" [repos: {', '.join(specific_repos)}]"
     if since_date:
         filter_info += f" [desde: {since_date[:10]}]"
 
@@ -341,13 +568,12 @@ def process_gitlab(target, processed_set):
 
     projects = []
 
-    if specific_projects:
-        # Usar projetos específicos
-        print(f"  -> Usando projetos específicos: {specific_projects}")
-        for proj_name in specific_projects:
-            projects.append({"fullPath": f"{group}/{proj_name}", "name": proj_name})
+    # Se repos específicos foram informados, usar diretamente
+    if specific_repos:
+        projects = specific_repos
+        print(f"  -> Usando repositórios específicos: {projects}")
     else:
-        # Listar todos os projetos do grupo
+        # Caso contrário, listar todos os projetos do grupo
         cursor = None
         has_next = True
         print("  -> Listando projetos do grupo...")
@@ -373,19 +599,22 @@ def process_gitlab(target, processed_set):
             if not data.get("data", {}).get("group"):
                 break
             projs = data["data"]["group"]["projects"]
-            projects.extend(projs["nodes"])
+            for node in projs["nodes"]:
+                projects.append(node["name"])
             cursor = projs["pageInfo"]["endCursor"]
             has_next = projs["pageInfo"]["hasNextPage"]
 
-    for i, proj in enumerate(projects):
-        identifier = f"GitLab/{proj['name']}"
+    for i, repo in enumerate(projects):
+        identifier = f"GitLab/{repo}"
         if identifier in processed_set:
             continue
 
-        print(f"  [{i + 1}/{len(projects)}] Baixando: {proj['name']}")
+        print(f"  [{i + 1}/{len(projects)}] Baixando: {repo}")
         repo_data_chunk = []
         cursor = None
         has_next_mr = True
+        mr_count = 0
+        project_full_path = f"{group}/{repo}"
 
         while has_next_mr:
             query = """
@@ -397,6 +626,15 @@ def process_gitlab(target, processed_set):
                     iid createdAt mergedAt commitCount description title
                     author { username }
                     diffStatsSummary { additions deletions fileCount }
+                    labels {
+                      nodes { title }
+                    }
+                    commits {
+                      nodes {
+                        author { username }
+                        message
+                      }
+                    }
                     discussions(first: 50) {
                       nodes {
                         notes(first: 20) {
@@ -414,17 +652,20 @@ def process_gitlab(target, processed_set):
                 url,
                 {
                     "query": query,
-                    "variables": {"path": proj["fullPath"], "cursor": cursor},
+                    "variables": {"path": project_full_path, "cursor": cursor},
                 },
                 headers,
             )
             if not resp:
+                print(f"    Erro na requisição para {project_full_path}")
                 break
 
             json_res = resp.json()
             if "errors" in json_res:
+                print(f"    Erro GraphQL: {json_res['errors'][0]['message']}")
                 break
             if not json_res.get("data", {}).get("project"):
+                print(f"    Projeto não encontrado: {project_full_path}")
                 break
 
             mrs = json_res["data"]["project"]["mergeRequests"]
@@ -435,27 +676,68 @@ def process_gitlab(target, processed_set):
                     # Se chegamos em MRs mais antigas que a data limite, parar paginação
                     has_next_mr = False
                     break
+
+                mr_count += 1
+                print(
+                    f"    -> Processando MR !{mr.get('iid')} [{mr_count} MRs processados]"
+                )
+
                 author_username = mr["author"]["username"] if mr["author"] else None
+
+                # Processar reviewers (quem aprovou)
                 reviewers = set()
                 if mr["approvedBy"] and mr["approvedBy"]["nodes"]:
                     for app in mr["approvedBy"]["nodes"]:
                         reviewers.add(app["username"])
 
+                # Processar discussions/notes (quem comentou)
                 external_notes = []
+                commenters = set()
                 for disc in mr["discussions"]["nodes"] if mr["discussions"] else []:
                     for note in disc["notes"]["nodes"] if disc["notes"] else []:
-                        if (
-                            note.get("author")
-                            and note["author"]["username"] != author_username
-                        ):
-                            external_notes.append(note)
-                            reviewers.add(note["author"]["username"])
+                        if note.get("author"):
+                            note_author = note["author"]["username"]
+                            if note_author != author_username:
+                                external_notes.append(note)
+                                commenters.add(note_author)
+                                reviewers.add(
+                                    note_author
+                                )  # Quem comenta também é reviewer
 
+                # Encontrar primeira resposta humana (não-bot, não-autor)
                 first_review_at = None
+                first_human_response_at = None
                 if external_notes:
                     external_notes.sort(key=lambda x: x["createdAt"])
                     first_review_at = external_notes[0]["createdAt"]
+                    # Encontrar primeira resposta humana
+                    for note in external_notes:
+                        if not is_bot_user(note["author"]["username"]):
+                            first_human_response_at = note["createdAt"]
+                            break
 
+                # Processar commits (autores e mensagens)
+                commits_data = mr.get("commits") or {}
+                commit_nodes = commits_data.get("nodes", []) or []
+                commit_authors = set()
+                commit_message_lengths = []
+                for cn in commit_nodes:
+                    # Autor do commit
+                    commit_author_data = cn.get("author", {}) or {}
+                    if commit_author_data.get("username"):
+                        commit_authors.add(commit_author_data["username"])
+                    # Mensagem do commit
+                    msg = cn.get("message", "") or ""
+                    if msg:
+                        commit_message_lengths.append(len(msg))
+
+                avg_commit_msg_len = (
+                    sum(commit_message_lengths) / len(commit_message_lengths)
+                    if commit_message_lengths
+                    else 0
+                )
+
+                # Diff stats
                 add = (
                     mr["diffStatsSummary"]["additions"]
                     if mr.get("diffStatsSummary")
@@ -472,21 +754,36 @@ def process_gitlab(target, processed_set):
                     else 0
                 )
 
+                # Heurística para doc PR
                 title_desc = (mr["title"] + " " + (mr["description"] or "")).lower()
                 is_doc_heuristic = "doc" in title_desc or "readme" in title_desc
+
+                # Comprimentos de texto
+                title_len = len(mr["title"]) if mr.get("title") else 0
+                description_len = len(mr["description"]) if mr.get("description") else 0
+
+                # Labels
+                labels_data = mr.get("labels") or {}
+                label_nodes = labels_data.get("nodes", []) or []
+                labels_count = len(label_nodes)
+                label_names = [l["title"] for l in label_nodes if l.get("title")]
 
                 repo_data_chunk.append(
                     {
                         "platform": "GitLab",
                         "org": group,
-                        "repo": proj["name"],
+                        "repo": repo,
                         "id": mr["iid"],
                         "author": author_username or "deleted_user",
                         "created_at": mr["createdAt"],
                         "merged_at": mr["mergedAt"],
                         "first_review_at": first_review_at,
+                        "first_human_response_at": first_human_response_at,
                         "reviewers": ",".join(reviewers),
+                        "commenters": ",".join(commenters),
+                        "commit_authors": ",".join(commit_authors),
                         "commits": mr["commitCount"],
+                        "avg_commit_message_length": round(avg_commit_msg_len, 2),
                         "reviews_count": len(mr["approvedBy"]["nodes"])
                         if mr["approvedBy"]
                         else 0,
@@ -499,9 +796,10 @@ def process_gitlab(target, processed_set):
                         "is_doc_pr": is_doc_heuristic,
                         "file_extensions": "",
                         "file_paths": "",
-                        "description_length": len(mr["description"])
-                        if mr["description"]
-                        else 0,
+                        "title_length": title_len,
+                        "description_length": description_len,
+                        "labels_count": labels_count,
+                        "labels": ",".join(label_names),
                     }
                 )
 
