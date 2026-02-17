@@ -638,7 +638,7 @@ def process_gitlab(target, processed_set):
                     discussions(first: 50) {
                       nodes {
                         notes(first: 20) {
-                          nodes { author { username } createdAt }
+                          nodes { author { username } createdAt system }
                         }
                       }
                     }
@@ -691,10 +691,14 @@ def process_gitlab(target, processed_set):
                         reviewers.add(app["username"])
 
                 # Processar discussions/notes (quem comentou)
+                # Filtrar notas de sistema (como "added label", "assigned to", etc.)
                 external_notes = []
                 commenters = set()
                 for disc in mr["discussions"]["nodes"] if mr["discussions"] else []:
                     for note in disc["notes"]["nodes"] if disc["notes"] else []:
+                        # Ignorar notas de sistema (system: true)
+                        if note.get("system", False):
+                            continue
                         if note.get("author"):
                             note_author = note["author"]["username"]
                             if note_author != author_username:
