@@ -1,45 +1,76 @@
-import requests
-import pandas as pd
-import time
+"""
+Extrator de métricas de PRs/MRs de GitHub e GitLab.
+
+Otimizado para escala (~400K PRs) com:
+- GitHub: Query unificada (lista + detalhes em 1 request por página de 25 PRs)
+- GitLab: Extração em 2 fases (lista leve + detalhes por MR)
+- Limites reduzidos de paginação interna para queries mais leves
+- Sem paginação extra de arquivos (amostra + totalCount)
+- Tratamento de erros por PR (skip em caso de falha)
+- Hash de arquivos para eficiência de storage
+- Rate limit handling robusto
+"""
+
+import hashlib
+import json
 import os
+import time
+from dataclasses import dataclass, field, asdict
+from typing import Optional, Set, List, Dict, Any
+from datetime import datetime
+
+import pandas as pd
+import requests
 from dotenv import load_dotenv
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
+# =============================================================================
+# CONFIGURAÇÃO
+# =============================================================================
+
 load_dotenv()
+
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 GITLAB_TOKEN = os.getenv("GITLAB_TOKEN")
 OUTPUT_FILE = "metrics/data/bronze/prs.csv"
+ERROR_LOG_FILE = "metrics/data/bronze/extraction_errors.log"
+
+# Limites para paginação interna (evita queries muito pesadas)
+# MUDANÇA P1: Limites reduzidos para queries mais leves e rápidas
+MAX_COMMITS_PER_QUERY = 10   # era 50 — maioria dos PRs tem <10 commits
+MAX_REVIEWS_PER_QUERY = 15   # era 30 — suficiente para capturar reviewers
+MAX_COMMENTS_PER_QUERY = 15  # era 30 — suficiente para first_response e commenters
+MAX_FILES_PER_QUERY = 20     # era 100 — amostra de arquivos para extensões/docs
+
+# Batch size para salvar PRs
+SAVE_BATCH_SIZE = 50
 
 # Palavras-chave para identificar bots
-BOT_KEYWORDS = [
-    "bot",
-    "dependabot",
-    "renovate",
-    "github-actions",
-    "codecov",
-    "greenkeeper",
-    "snyk",
-    "pyup",
-    "automated",
-    "ci-",
-    "action",
-    "github-advanced-security",
-    "copilot-pull-request",
-]
+BOT_KEYWORDS = frozenset(
+    [
+        "bot",
+        "dependabot",
+        "renovate",
+        "github-actions",
+        "codecov",
+        "greenkeeper",
+        "snyk",
+        "pyup",
+        "automated",
+        "ci-",
+        "action",
+        "github-advanced-security",
+        "copilot-pull-request",
+        "[bot]",
+    ]
+)
 
+# Extensões de documentação
+DOC_EXTENSIONS = frozenset([".md", ".txt", ".rst", ".pdf", ".docx", ".adoc"])
 
-def is_bot_user(username):
-    """Identifica se o usuário é um bot baseado em palavras-chave comuns"""
-    if not username:
-        return True
-    username_lower = str(username).lower()
-    return any(keyword in username_lower for keyword in BOT_KEYWORDS)
-
-
+# Targets para extração
 TARGETS = [
-    # {"type": "github", "org": "GovHub-br"},
-    # {"type": "github", "org": "lablivre-unb"},
     {
         "type": "gitlab",
         "group_path": "lappis-unb/decidimbr",
@@ -67,6 +98,28 @@ TARGETS = [
     },
     {
         "type": "github",
+        "org": "fga-eps-mds",
+        "repos": [
+            "2025.2-Valhalla",
+            "2025.2-Valhalla-Docs",
+            "2025.1-VaiPelaSombra-docs",
+            "2025.1-VaiPelaSombra-FrontEnd",
+            "2025.1-VaiPelaSombra-BackEnd,",
+            "2025.1-VaiPelaSombra-API",
+            "2024-2-GEROcuidado-Docs",
+            "2024-2-GEROcuidado-APIForum",
+            "2024-2-GEROcuidado-Front",
+            "2024-2-GEROcuidado-APIUsuario",
+            "2024-2-GEROcuidado-APISaude",
+            "2024-1-GEROcuidado-Front",
+            "2024-1-GEROcuidado-Doc",
+            "2024-1-GEROcuidado-APISaude",
+            "2024-1-GEROcuidado-APIUsuario",
+            "2024-1-GEROcuidado-APIForum",
+        ],
+    },
+    {
+        "type": "github",
         "org": "decidim",
         "repos": ["decidim"],
         "since": "2024-01-01T00:00:00Z",
@@ -77,755 +130,1103 @@ TARGETS = [
         "repos": ["vscode"],
         "since": "2024-01-01T00:00:00Z",
     },
+    {
+        "type": "github",
+        "org": "flutter",
+        "repos": ["flutter"],
+        "since": "2024-01-01T00:00:00Z",
+    },
+    {
+        "type": "github",
+        "org": "facebook",
+        "repos": ["react"],
+        "since": "2024-01-01T00:00:00Z",
+    },
+    {
+        "type": "github",
+        "org": "kubernetes",
+        "repos": ["kubernetes"],
+        "since": "2024-01-01T00:00:00Z",
+    },
+    {
+        "type": "github",
+        "org": "tensorflow",
+        "repos": ["tensorflow"],
+        "since": "2024-01-01T00:00:00Z",
+    },
 ]
 
 
-def get_session():
-    session = requests.Session()
-    retry = Retry(
-        total=10,
-        backoff_factor=1,
-        status_forcelist=[429, 500, 502, 503, 504],
-        allowed_methods=["POST", "GET"],
-    )
-    adapter = HTTPAdapter(max_retries=retry)
-    session.mount("https://", adapter)
-    return session
+# =============================================================================
+# DATA CLASSES
+# =============================================================================
 
 
-session = get_session()
+@dataclass
+class PRMetrics:
+    """Métricas extraídas de um PR/MR."""
+
+    platform: str
+    org: str
+    repo: str
+    id: int
+    author: str
+    created_at: str
+    merged_at: str
+    first_review_at: Optional[str] = None
+    first_human_response_at: Optional[str] = None
+    reviewers: str = ""
+    commenters: str = ""
+    commit_authors: str = ""
+    commits: int = 0
+    avg_commit_message_length: float = 0.0
+    reviews_count: int = 0
+    comments: int = 0
+    files_changed: int = 0
+    additions: int = 0
+    deletions: int = 0
+    churn: int = 0
+    doc_files_count: int = 0
+    is_doc_pr: bool = False
+    file_extensions: str = ""
+    file_hashes: str = ""  # Hashes dos arquivos ao invés de paths
+    title_length: int = 0
+    description_length: int = 0
+    labels_count: int = 0
+    labels: str = ""
 
 
-def get_processed_repos():
-    if not os.path.exists(OUTPUT_FILE):
-        return set()
-    try:
-        df = pd.read_csv(OUTPUT_FILE, usecols=["platform", "repo"])
-        processed = set(df["platform"] + "/" + df["repo"])
-        return processed
-    except Exception:
-        return set()
+# =============================================================================
+# UTILIDADES
+# =============================================================================
 
 
-def save_chunk(new_data):
-    if not new_data:
-        return
-
-    df = pd.DataFrame(new_data)
-
-    # Converter colunas de data
-    cols_date = [
-        "created_at",
-        "merged_at",
-        "first_review_at",
-        "first_human_response_at",
-    ]
-    for col in cols_date:
-        if col in df.columns:
-            df[col] = pd.to_datetime(df[col], utc=True, errors="coerce")
-
-    # Lead time (tempo total do PR)
-    if "merged_at" in df.columns and "created_at" in df.columns:
-        df["lead_time_hours"] = (
-            df["merged_at"] - df["created_at"]
-        ).dt.total_seconds() / 3600
-
-    # Tempo até primeira review
-    if "first_review_at" in df.columns and "created_at" in df.columns:
-        df["time_to_first_review_hours"] = (
-            df["first_review_at"] - df["created_at"]
-        ).dt.total_seconds() / 3600
-
-    # Tempo até primeira resposta humana (não-bot)
-    if "first_human_response_at" in df.columns and "created_at" in df.columns:
-        df["time_to_first_human_response_hours"] = (
-            df["first_human_response_at"] - df["created_at"]
-        ).dt.total_seconds() / 3600
-
-    # Densidade de discussão
-    if "churn" in df.columns:
-        df["discussion_density"] = df.apply(
-            lambda x: x["comments"] / x["churn"] if x.get("churn", 0) > 0 else 0, axis=1
-        )
-
-    header = not os.path.exists(OUTPUT_FILE)
-    df.to_csv(OUTPUT_FILE, mode="a", index=False, header=header)
-    print(f"      [Salvo] {len(new_data)} registros adicionados ao disco.")
+def is_bot_user(username: Optional[str]) -> bool:
+    """Identifica se o usuário é um bot baseado em palavras-chave."""
+    if not username:
+        return True
+    username_lower = username.lower()
+    return any(kw in username_lower for kw in BOT_KEYWORDS)
 
 
-def _wait_for_rate_limit_reset(response):
-    """Detecta rate limit e espera até o reset + margem de 10s."""
-    reset_ts = response.headers.get("x-ratelimit-reset") or response.headers.get(
-        "ratelimit-reset"
-    )
-    retry_after = response.headers.get("retry-after")
-
-    wait_seconds = None
-
-    if retry_after:
-        # retry-after pode vir em segundos diretamente
-        try:
-            wait_seconds = int(retry_after)
-        except ValueError:
-            pass
-
-    if wait_seconds is None and reset_ts:
-        try:
-            wait_seconds = max(int(reset_ts) - int(time.time()), 0)
-        except ValueError:
-            pass
-
-    if wait_seconds is None:
-        wait_seconds = 60  # fallback conservador
-
-    wait_seconds += 10  # margem de segurança
-    print(f"    Rate limit atingido. Aguardando {wait_seconds}s até reset...")
-    time.sleep(wait_seconds)
+def hash_file_path(path: str, repo_prefix: str = "") -> str:
+    """
+    Gera hash curto (8 chars) do path do arquivo.
+    Inclui prefixo do repo para evitar colisões entre repos.
+    """
+    full_path = f"{repo_prefix}:{path}" if repo_prefix else path
+    return hashlib.sha256(full_path.encode()).hexdigest()[:8]
 
 
-def run_query(url, json_body, headers, context="", max_retries=3):
-    for attempt in range(max_retries + 1):
-        try:
-            response = session.post(url, json=json_body, headers=headers, timeout=120)
-
-            # Rate limit via status HTTP (403 ou 429)
-            if response.status_code in (403, 429):
-                print(f"    ! Rate limit HTTP {response.status_code} ({context})")
-                _wait_for_rate_limit_reset(response)
-                continue
-
-            response.raise_for_status()
-
-            # Rate limit via body GraphQL (API retorna 200 mas com erro)
-            json_data = response.json()
-            if "errors" in json_data:
-                error_msg = json_data["errors"][0].get("message", "")
-                if "rate limit" in error_msg.lower():
-                    print(f"    ! Rate limit GraphQL: {error_msg}")
-                    _wait_for_rate_limit_reset(response)
-                    continue
-
-            return response
-
-        except requests.exceptions.RequestException as e:
-            print(f"    ! Erro de rede ({context}), tentativa {attempt + 1}: {e}")
-            time.sleep(5)
-
-    print(f"    Falha após {max_retries + 1} tentativas ({context})")
-    return None
-
-
-def analyze_files(file_list):
-    if not file_list:
+def analyze_files(file_paths: List[str], repo_prefix: str = "") -> tuple:
+    """
+    Analisa lista de arquivos e retorna:
+    - doc_count: quantidade de arquivos de documentação
+    - extensions: extensões únicas (string separada por vírgula)
+    - file_hashes: hashes dos arquivos (string separada por vírgula)
+    """
+    if not file_paths:
         return 0, "", ""
 
-    doc_extensions = [".md", ".txt", ".rst", ".pdf", ".docx"]
     doc_count = 0
     extensions = set()
+    hashes = []
 
-    for path in file_list:
+    for path in file_paths:
         ext = os.path.splitext(path)[1].lower()
         if ext:
             extensions.add(ext)
 
+        # Contar arquivos de documentação
         if (
-            ext in doc_extensions
+            ext in DOC_EXTENSIONS
             or "docs/" in path.lower()
             or "documentation/" in path.lower()
         ):
             doc_count += 1
 
-    paths_str = ";".join(file_list[:20])
-    if len(file_list) > 20:
-        paths_str += ";..."
+        # Gerar hash do arquivo
+        hashes.append(hash_file_path(path, repo_prefix))
 
-    extensions_str = ",".join(list(extensions))
-
-    return doc_count, extensions_str, paths_str
+    return doc_count, ",".join(extensions), ",".join(hashes)
 
 
-def process_github(target, processed_set):
-    org_name = target["org"]
-    specific_repos = target.get("repos")  # Lista de repos específicos (opcional)
-    since_date = target.get("since")  # Filtro temporal (opcional)
+def log_error(context: str, error: str):
+    """Registra erro em arquivo de log."""
+    timestamp = datetime.now().isoformat()
+    with open(ERROR_LOG_FILE, "a") as f:
+        f.write(f"[{timestamp}] {context}: {error}\n")
 
-    filter_info = ""
-    if specific_repos:
-        filter_info += f" [repos: {', '.join(specific_repos)}]"
-    if since_date:
-        filter_info += f" [desde: {since_date[:10]}]"
 
-    print(f"\n--- [GitHub] Iniciando: {org_name}{filter_info} ---")
-    url = "https://api.github.com/graphql"
-    headers = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
+# =============================================================================
+# HTTP CLIENT
+# =============================================================================
 
-    repo_names = []
 
-    # Se repos específicos foram informados, usar diretamente
-    if specific_repos:
-        repo_names = specific_repos
-        print(f"  -> Usando repositórios específicos: {repo_names}")
-    else:
-        # Caso contrário, listar todos os repos da organização
-        cursor = None
-        has_next = True
+class GraphQLClient:
+    """Cliente HTTP otimizado para GraphQL com retry e rate limit handling."""
 
-        print("  -> Listando repositórios da organização...")
-        while has_next:
-            query = """
-            query($org: String!, $cursor: String) {
-              organization(login: $org) {
-                repositories(first: 100, after: $cursor) {
-                  pageInfo { endCursor hasNextPage }
-                  nodes { name }
+    def __init__(self, base_url: str, token: str, platform: str = ""):
+        self.base_url = base_url
+        self.platform = platform
+        self.headers = {"Authorization": f"Bearer {token}"}
+        self.session = self._create_session()
+        self._request_count = 0
+
+    def _create_session(self) -> requests.Session:
+        session = requests.Session()
+        retry = Retry(
+            total=5,
+            backoff_factor=2,
+            status_forcelist=[500, 502, 503, 504],
+            allowed_methods=["POST"],
+        )
+        adapter = HTTPAdapter(max_retries=retry)
+        session.mount("https://", adapter)
+        return session
+
+    def _wait_for_rate_limit(self, response: requests.Response):
+        """Espera até o reset do rate limit."""
+        reset_ts = response.headers.get("x-ratelimit-reset") or response.headers.get(
+            "ratelimit-reset"
+        )
+        retry_after = response.headers.get("retry-after")
+
+        wait_seconds = 60  # fallback
+
+        if retry_after:
+            try:
+                wait_seconds = int(retry_after)
+            except ValueError:
+                pass
+        elif reset_ts:
+            try:
+                wait_seconds = max(int(reset_ts) - int(time.time()), 0)
+            except ValueError:
+                pass
+
+        wait_seconds = min(wait_seconds + 10, 3600)  # cap em 1 hora
+        print(f"    ⏳ Rate limit. Aguardando {wait_seconds}s...")
+        time.sleep(wait_seconds)
+
+    def execute(
+        self,
+        query: str,
+        variables: Dict[str, Any],
+        context: str = "",
+        max_retries: int = 3,
+    ) -> Optional[Dict]:
+        """
+        Executa query GraphQL com retry e tratamento de erros.
+        Retorna None em caso de falha permanente.
+        """
+        self._request_count += 1
+
+        for attempt in range(max_retries + 1):
+            try:
+                response = self.session.post(
+                    self.base_url,
+                    json={"query": query, "variables": variables},
+                    headers=self.headers,
+                    timeout=60,
+                )
+
+                # Rate limit HTTP
+                if response.status_code in (403, 429):
+                    print(f"    ⚠️ Rate limit HTTP {response.status_code} ({context})")
+                    self._wait_for_rate_limit(response)
+                    continue
+
+                response.raise_for_status()
+                data = response.json()
+
+                # Rate limit no body GraphQL
+                if "errors" in data:
+                    error_msg = data["errors"][0].get("message", "")
+                    if "rate limit" in error_msg.lower():
+                        print(f"    ⚠️ Rate limit GraphQL ({context})")
+                        self._wait_for_rate_limit(response)
+                        continue
+
+                    # Outros erros GraphQL - logar e retornar None
+                    if attempt == max_retries:
+                        log_error(context, f"GraphQL error: {error_msg}")
+                        return None
+                    time.sleep(2**attempt)
+                    continue
+
+                return data
+
+            except requests.exceptions.Timeout:
+                print(f"    ⚠️ Timeout ({context}), tentativa {attempt + 1}")
+                if attempt == max_retries:
+                    log_error(context, "Timeout após retries")
+                    return None
+                time.sleep(5)
+
+            except requests.exceptions.RequestException as e:
+                print(f"    ⚠️ Erro de rede ({context}): {e}")
+                if attempt == max_retries:
+                    log_error(context, str(e))
+                    return None
+                time.sleep(5)
+
+        return None
+
+
+# =============================================================================
+# GITHUB EXTRACTOR
+# =============================================================================
+
+
+class GitHubExtractor:
+    """Extrator de PRs do GitHub com query unificada."""
+
+    # MUDANÇA P1: Query unificada — lista PRs com TODOS os detalhes de uma vez.
+    # Antes: 2 queries por PR (lista + detalhes). Agora: 1 query por página de 25 PRs.
+    # Redução de ~98% nas requisições (de 2N para N/25).
+    QUERY_LIST_PRS = """
+    query($org: String!, $repo: String!, $cursor: String) {
+      repository(owner: $org, name: $repo) {
+        pullRequests(first: 25, after: $cursor, states: MERGED, 
+                     orderBy: {field: CREATED_AT, direction: DESC}) {
+          pageInfo { endCursor hasNextPage }
+          nodes {
+            number
+            createdAt
+            mergedAt
+            additions
+            deletions
+            changedFiles
+            title
+            body
+            author { login }
+            labels(first: 10) { nodes { name } }
+            commits(first: $maxCommits) {
+              totalCount
+              nodes {
+                commit {
+                  message
+                  author { user { login } }
                 }
               }
             }
-            """
-            resp = run_query(
-                url,
-                {"query": query, "variables": {"org": org_name, "cursor": cursor}},
-                headers,
-            )
-            if not resp:
-                break
-            data = resp.json()
-            if "errors" in data:
-                print(f"    Erro ao listar repos: {data['errors'][0]['message']}")
-                break
-
-            repos = data["data"]["organization"]["repositories"]
-            for node in repos["nodes"]:
-                repo_names.append(node["name"])
-            cursor = repos["pageInfo"]["endCursor"]
-            has_next = repos["pageInfo"]["hasNextPage"]
-
-    for i, repo in enumerate(repo_names):
-        identifier = f"GitHub/{repo}"
-        if identifier in processed_set:
-            continue
-
-        print(f"  [{i + 1}/{len(repo_names)}] Baixando: {repo}")
-        repo_data_chunk = []
-        cursor = None
-        has_next_pr = True
-        pr_count = 0
-
-        while has_next_pr:
-            query = """
-            query($org: String!, $repo: String!, $cursor: String) {
-              repository(owner: $org, name: $repo) {
-                pullRequests(first: 10, after: $cursor, states: MERGED, orderBy: {field: CREATED_AT, direction: DESC}) {
-                  pageInfo { endCursor hasNextPage }
-                  nodes {
-                    number createdAt mergedAt additions deletions changedFiles
-                    title body 
-                    author { login }
-                    labels(first: 20) {
-                      totalCount
-                      nodes { name }
-                    }
-                    commits(first: 100) { 
-                      totalCount
-                      nodes {
-                        commit {
-                          message
-                          author { user { login } }
-                        }
-                      }
-                    }
-                    reviews(first: 50) {
-                      nodes { author { login } createdAt }
-                    }
-                    comments(first: 50) {
-                      totalCount
-                      nodes { author { login } createdAt }
-                    }
-                    reviewThreads(first: 50) { 
-                      totalCount
-                      nodes {
-                        comments(first: 20) {
-                          nodes { author { login } createdAt }
-                        }
-                      }
-                    }
-                    files(first: 50) {
-                      nodes { path }
-                    }
-                  }
+            reviews(first: $maxReviews) {
+              nodes { author { login } createdAt }
+            }
+            comments(first: $maxComments) {
+              totalCount
+              nodes { author { login } createdAt }
+            }
+            reviewThreads(first: $maxComments) {
+              totalCount
+              nodes {
+                comments(first: 5) {
+                  nodes { author { login } createdAt }
                 }
               }
             }
-            """
-            resp = run_query(
-                url,
-                {
-                    "query": query,
-                    "variables": {"org": org_name, "repo": repo, "cursor": cursor},
-                },
-                headers,
+            files(first: $maxFiles) {
+              totalCount
+              nodes { path }
+            }
+          }
+        }
+      }
+    }
+    """
+    # MUDANÇA P1: Removidas QUERY_PR_DETAILS e QUERY_PR_FILES.
+    # Detalhes agora vêm embutidos na query unificada.
+    # Paginação extra de arquivos eliminada — usa amostra de N arquivos + totalCount.
+
+    QUERY_LIST_REPOS = """
+    query($org: String!, $cursor: String) {
+      organization(login: $org) {
+        repositories(first: 100, after: $cursor) {
+          pageInfo { endCursor hasNextPage }
+          nodes { name }
+        }
+      }
+    }
+    """
+
+    def __init__(self, client: GraphQLClient):
+        self.client = client
+
+    def list_repos(self, org: str) -> List[str]:
+        """Lista todos os repositórios de uma organização."""
+        repos = []
+        cursor = None
+
+        while True:
+            data = self.client.execute(
+                self.QUERY_LIST_REPOS,
+                {"org": org, "cursor": cursor},
+                f"GitHub/{org}/list_repos",
             )
-            if not resp:
+            if not data or "errors" in data:
                 break
 
-            json_res = resp.json()
-            if "errors" in json_res:
-                print(
-                    f"    ! Erro GraphQL no repo {repo}: {json_res['errors'][0]['message']}"
-                )
+            org_data = data.get("data", {}).get("organization", {})
+            if not org_data:
                 break
 
-            data_node = json_res.get("data")
-            if not data_node:
-                print(f"    ! Resposta sem dados para {repo}. Pulando.")
+            repo_data = org_data.get("repositories", {})
+            for node in repo_data.get("nodes", []):
+                repos.append(node["name"])
+
+            if not repo_data.get("pageInfo", {}).get("hasNextPage"):
                 break
+            cursor = repo_data["pageInfo"]["endCursor"]
 
-            repo_node = data_node.get("repository")
-            if not repo_node:
-                print(
-                    f"    ! Repositório {repo} retornou vazio (provavelmente sem branch/commits). Pulando."
-                )
-                break
+        return repos
 
-            pr_data = repo_node["pullRequests"]
+    # MUDANÇA P1: Removidos _fetch_pr_details() e _fetch_all_files().
+    # Não há mais busca individual por PR — tudo vem na query unificada.
 
-            for pr in pr_data["nodes"]:
-                # Aplicar filtro temporal se especificado
-                if since_date and pr["createdAt"] < since_date:
-                    # Se chegamos em PRs mais antigas que a data limite, parar paginação
-                    has_next_pr = False
+    def _process_pr(self, org: str, repo: str, pr: Dict) -> Optional[PRMetrics]:
+        """Processa um PR a partir dos dados já disponíveis na query unificada."""
+        pr_number = pr.get("number")
+
+        try:
+            # Autor
+            author = (
+                pr["author"]["login"]
+                if pr.get("author")
+                else "deleted_user"
+            )
+
+            # Reviews
+            reviews_data = (pr.get("reviews") or {}).get("nodes", []) or []
+            reviewers = set()
+            first_review_at = None
+            if reviews_data:
+                reviews_data.sort(key=lambda x: x.get("createdAt", ""))
+                first_review_at = reviews_data[0].get("createdAt")
+                for r in reviews_data:
+                    if r.get("author"):
+                        reviewers.add(r["author"]["login"])
+
+            # Comments (issue comments)
+            comments_data = pr.get("comments") or {}
+            comment_nodes = comments_data.get("nodes", []) or []
+            comments_count = comments_data.get("totalCount", 0) or 0
+            commenters = set()
+            for c in comment_nodes:
+                if c.get("author"):
+                    commenters.add(c["author"]["login"])
+
+            # Review threads
+            threads_data = pr.get("reviewThreads") or {}
+            threads_count = threads_data.get("totalCount", 0) or 0
+            thread_nodes = threads_data.get("nodes", []) or []
+            for thread in thread_nodes:
+                for tc in (thread.get("comments") or {}).get("nodes", []) or []:
+                    if tc.get("author"):
+                        commenters.add(tc["author"]["login"])
+
+            # Primeira resposta humana (excluindo bots e o autor do PR)
+            all_responses = []
+            for r in reviews_data:
+                if r.get("author") and r["author"]["login"] != author:
+                    all_responses.append(
+                        {"user": r["author"]["login"], "ts": r["createdAt"]}
+                    )
+            for c in comment_nodes:
+                if c.get("author") and c["author"]["login"] != author:
+                    all_responses.append(
+                        {"user": c["author"]["login"], "ts": c["createdAt"]}
+                    )
+            for thread in thread_nodes:
+                for tc in (thread.get("comments") or {}).get("nodes", []) or []:
+                    if tc.get("author") and tc["author"]["login"] != author:
+                        all_responses.append(
+                            {"user": tc["author"]["login"], "ts": tc["createdAt"]}
+                        )
+
+            all_responses.sort(key=lambda x: x["ts"])
+            first_human_response_at = None
+            for resp in all_responses:
+                if not is_bot_user(resp["user"]):
+                    first_human_response_at = resp["ts"]
                     break
+
+            # Commits
+            commits_data = pr.get("commits") or {}
+            commits_count = commits_data.get("totalCount", 0) or 0
+            commit_nodes = commits_data.get("nodes", []) or []
+            commit_authors = set()
+            commit_msg_lengths = []
+            for cn in commit_nodes:
+                commit = cn.get("commit") or {}
+                commit_user = (commit.get("author") or {}).get("user") or {}
+                if commit_user and commit_user.get("login"):
+                    commit_authors.add(commit_user["login"])
+                msg = commit.get("message", "")
+                if msg:
+                    commit_msg_lengths.append(len(msg))
+
+            avg_commit_msg_len = (
+                sum(commit_msg_lengths) / len(commit_msg_lengths)
+                if commit_msg_lengths
+                else 0
+            )
+
+            # MUDANÇA P1: Usa amostra de arquivos (sem paginação extra).
+            # changedFiles já dá o total exato; paths são amostra para extensões/docs.
+            files_data = pr.get("files") or {}
+            file_nodes = files_data.get("nodes", []) or []
+            file_paths = [f["path"] for f in file_nodes if f.get("path")]
+
+            repo_prefix = f"{org}/{repo}"
+            doc_count, extensions, file_hashes = analyze_files(file_paths, repo_prefix)
+
+            # Labels
+            label_nodes = (pr.get("labels") or {}).get("nodes", []) or []
+            label_names = [l["name"] for l in label_nodes if l.get("name")]
+
+            # Body e title
+            body = pr.get("body") or ""
+            title = pr.get("title") or ""
+
+            return PRMetrics(
+                platform="GitHub",
+                org=org,
+                repo=repo,
+                id=pr_number,
+                author=author,
+                created_at=pr.get("createdAt"),
+                merged_at=pr.get("mergedAt"),
+                first_review_at=first_review_at,
+                first_human_response_at=first_human_response_at,
+                reviewers=",".join(reviewers),
+                commenters=",".join(commenters),
+                commit_authors=",".join(commit_authors),
+                commits=commits_count,
+                avg_commit_message_length=round(avg_commit_msg_len, 2),
+                reviews_count=len(reviews_data),
+                comments=comments_count + threads_count,
+                files_changed=pr.get("changedFiles", 0),
+                additions=pr.get("additions", 0),
+                deletions=pr.get("deletions", 0),
+                churn=pr.get("additions", 0) + pr.get("deletions", 0),
+                doc_files_count=doc_count,
+                is_doc_pr=doc_count > 0
+                and len(file_paths) > 0
+                and (doc_count / len(file_paths) > 0.5),
+                file_extensions=extensions,
+                file_hashes=file_hashes,
+                title_length=len(title),
+                description_length=len(body),
+                labels_count=len(label_names),
+                labels=",".join(label_names),
+            )
+
+        except Exception as e:
+            log_error(f"GitHub/{org}/{repo}/PR#{pr_number}", str(e))
+            print(f"    ❌ Erro no PR #{pr_number}: {e}")
+            return None
+
+    def extract_repo(
+        self,
+        org: str,
+        repo: str,
+        since_date: Optional[str] = None,
+        processed_prs: Optional[Set[str]] = None,
+    ) -> List[PRMetrics]:
+        """Extrai métricas de todos os PRs de um repositório."""
+        results = []
+        cursor = None
+        pr_count = 0
+        skipped = 0
+
+        # MUDANÇA P1: Substituir placeholders de limite na query unificada
+        query = self.QUERY_LIST_PRS.replace("$maxCommits", str(MAX_COMMITS_PER_QUERY))
+        query = query.replace("$maxReviews", str(MAX_REVIEWS_PER_QUERY))
+        query = query.replace("$maxComments", str(MAX_COMMENTS_PER_QUERY))
+        query = query.replace("$maxFiles", str(MAX_FILES_PER_QUERY))
+
+        print(f"  📥 Extraindo: {org}/{repo}")
+
+        while True:
+            data = self.client.execute(
+                query,
+                {"org": org, "repo": repo, "cursor": cursor},
+                f"GitHub/{org}/{repo}/list_prs",
+            )
+
+            if not data:
+                print(f"    ⚠️ Falha ao listar PRs de {repo}")
+                break
+
+            repo_data = data.get("data", {}).get("repository", {})
+            if not repo_data:
+                print(f"    ⚠️ Repositório {repo} não encontrado ou vazio")
+                break
+
+            pr_data = repo_data.get("pullRequests", {})
+            pr_nodes = pr_data.get("nodes", []) or []
+
+            for pr in pr_nodes:
+                # Filtro temporal
+                if since_date and pr.get("createdAt", "") < since_date:
+                    print(f"    ✓ Chegou ao limite temporal ({since_date[:10]})")
+                    return results
+
+                pr_number = pr.get("number")
+                pr_key = f"GitHub/{org}/{repo}/#{pr_number}"
+
+                # Skip se já processado
+                if processed_prs and pr_key in processed_prs:
+                    continue
 
                 pr_count += 1
-                print(
-                    f"    -> Processando PR #{pr.get('number')} [{pr_count} PRs processados]"
-                )
+                if pr_count % 25 == 0:
+                    print(
+                        f"    → Processando PR #{pr_number} [{pr_count} PRs, {skipped} skipped]"
+                    )
 
-                pr_author = (
-                    pr["author"]["login"] if pr.get("author") else "deleted_user"
-                )
+                # MUDANÇA P1: Dados já vêm completos — sem request extra por PR
+                metrics = self._process_pr(org, repo, pr)
+                if metrics:
+                    results.append(metrics)
+                else:
+                    skipped += 1
 
-                # Processar reviews
-                reviews_data = pr.get("reviews") or {}
-                review_nodes = reviews_data.get("nodes", []) or []
-                reviewers = set()
-                first_review_at = None
-                if review_nodes:
-                    review_nodes.sort(key=lambda x: x["createdAt"])
-                    first_review_at = review_nodes[0]["createdAt"]
-                    for r in review_nodes:
-                        if r.get("author"):
-                            reviewers.add(r["author"]["login"])
-
-                # Processar comentários (issues comments)
-                comments_data = pr.get("comments") or {}
-                comment_nodes = comments_data.get("nodes", []) or []
-                comments_count = comments_data.get("totalCount", 0) or 0
-                commenters = set()
-                for c in comment_nodes:
-                    if c.get("author"):
-                        commenters.add(c["author"]["login"])
-
-                # Processar review threads (inline comments)
-                review_threads_data = pr.get("reviewThreads") or {}
-                review_threads_count = review_threads_data.get("totalCount", 0) or 0
-                thread_nodes = review_threads_data.get("nodes", []) or []
-                for thread in thread_nodes:
-                    thread_comments = thread.get("comments", {}).get("nodes", []) or []
-                    for tc in thread_comments:
-                        if tc.get("author"):
-                            commenters.add(tc["author"]["login"])
-
-                # Coletar todas as respostas (reviews + comments) para calcular tempo até primeira resposta humana
-                all_responses = []
-                for r in review_nodes:
-                    if r.get("author") and r["author"]["login"] != pr_author:
-                        all_responses.append(
-                            {"user": r["author"]["login"], "created_at": r["createdAt"]}
-                        )
-                for c in comment_nodes:
-                    if c.get("author") and c["author"]["login"] != pr_author:
-                        all_responses.append(
-                            {"user": c["author"]["login"], "created_at": c["createdAt"]}
-                        )
-                for thread in thread_nodes:
-                    thread_comments = thread.get("comments", {}).get("nodes", []) or []
-                    for tc in thread_comments:
-                        if tc.get("author") and tc["author"]["login"] != pr_author:
-                            all_responses.append(
-                                {
-                                    "user": tc["author"]["login"],
-                                    "created_at": tc["createdAt"],
-                                }
-                            )
-
-                # Ordenar e encontrar primeira resposta humana (não-bot)
-                all_responses.sort(key=lambda x: x["created_at"])
-                first_human_response_at = None
-                for resp in all_responses:
-                    if not is_bot_user(resp["user"]):
-                        first_human_response_at = resp["created_at"]
-                        break
-
-                # Processar commits (autores e mensagens)
-                commits_data = pr.get("commits") or {}
-                commits_count = commits_data.get("totalCount", 0) or 0
-                commit_nodes = commits_data.get("nodes", []) or []
-                commit_authors = set()
-                commit_message_lengths = []
-                for cn in commit_nodes:
-                    commit = cn.get("commit", {})
-                    # Autor do commit
-                    commit_author_data = commit.get("author", {}) or {}
-                    commit_user = commit_author_data.get("user", {})
-                    if commit_user and commit_user.get("login"):
-                        commit_authors.add(commit_user["login"])
-                    # Mensagem do commit
-                    msg = commit.get("message", "") or ""
-                    if msg:
-                        commit_message_lengths.append(len(msg))
-
-                avg_commit_msg_len = (
-                    sum(commit_message_lengths) / len(commit_message_lengths)
-                    if commit_message_lengths
-                    else 0
-                )
-
-                # Processar files
-                files_data = pr.get("files") or {}
-                file_nodes = files_data.get("nodes", []) or []
-                file_paths_list = [f["path"] for f in file_nodes if f.get("path")]
-                doc_count, extensions_str, paths_str = analyze_files(file_paths_list)
-
-                # Comprimentos de texto
-                body_len = len(pr["body"]) if pr.get("body") else 0
-                title_len = len(pr["title"]) if pr.get("title") else 0
-
-                # Labels
-                labels_data = pr.get("labels") or {}
-                labels_count = labels_data.get("totalCount", 0) or 0
-                label_nodes = labels_data.get("nodes", []) or []
-                label_names = [l["name"] for l in label_nodes if l.get("name")]
-
-                repo_data_chunk.append(
-                    {
-                        "platform": "GitHub",
-                        "org": org_name,
-                        "repo": repo,
-                        "id": pr.get("number"),
-                        "author": pr_author,
-                        "created_at": pr.get("createdAt"),
-                        "merged_at": pr.get("mergedAt"),
-                        "first_review_at": first_review_at,
-                        "first_human_response_at": first_human_response_at,
-                        "reviewers": ",".join(reviewers),
-                        "commenters": ",".join(commenters),
-                        "commit_authors": ",".join(commit_authors),
-                        "commits": commits_count,
-                        "avg_commit_message_length": round(avg_commit_msg_len, 2),
-                        "reviews_count": len(review_nodes),
-                        "comments": comments_count + review_threads_count,
-                        "files_changed": pr.get("changedFiles", 0) or 0,
-                        "additions": pr.get("additions", 0) or 0,
-                        "deletions": pr.get("deletions", 0) or 0,
-                        "churn": (pr.get("additions", 0) or 0)
-                        + (pr.get("deletions", 0) or 0),
-                        "doc_files_count": doc_count,
-                        "is_doc_pr": doc_count > 0
-                        and len(file_paths_list) > 0
-                        and (doc_count / len(file_paths_list) > 0.5),
-                        "file_extensions": extensions_str,
-                        "file_paths": paths_str,
-                        "title_length": title_len,
-                        "description_length": body_len,
-                        "labels_count": labels_count,
-                        "labels": ",".join(label_names),
-                    }
-                )
-
-            has_next_pr = pr_data["pageInfo"]["hasNextPage"]
-            cursor = pr_data["pageInfo"]["endCursor"]
+            # Próxima página
+            page_info = pr_data.get("pageInfo", {})
+            if not page_info.get("hasNextPage"):
+                break
+            cursor = page_info.get("endCursor")
+            # MUDANÇA P1: Delay só entre páginas (não mais entre PRs individuais)
             time.sleep(0.5)
 
-        if repo_data_chunk:
-            save_chunk(repo_data_chunk)
+        print(f"    ✓ Concluído: {len(results)} PRs extraídos, {skipped} skipped")
+        return results
 
 
-def process_gitlab(target, processed_set):
-    group = target["group_path"]
-    specific_repos = target.get("repos")  # Lista de repos específicos (opcional)
-    since_date = target.get("since")  # Filtro temporal (opcional)
+# =============================================================================
+# GITLAB EXTRACTOR
+# =============================================================================
 
-    filter_info = ""
-    if specific_repos:
-        filter_info += f" [repos: {', '.join(specific_repos)}]"
-    if since_date:
-        filter_info += f" [desde: {since_date[:10]}]"
 
-    print(f"\n--- [GitLab] Iniciando: {group}{filter_info} ---")
-    url = "https://gitlab.com/api/graphql"
-    headers = {"Authorization": f"Bearer {GITLAB_TOKEN}"}
+class GitLabExtractor:
+    """Extrator de MRs do GitLab com extração em 2 fases."""
 
-    projects = []
+    # MUDANÇA P2: Query leve para listar MRs básicos (sem discussões/commits/approvals).
+    # Antes: 1 query monolítica com até 25×50×20 = 25K objetos aninhados.
+    # Agora: Fase 1 lista dados leves, Fase 2 busca detalhes por MR individual.
+    QUERY_LIST_MRS = """
+    query($path: ID!, $cursor: String) {
+      project(fullPath: $path) {
+        mergeRequests(state: merged, first: 25, after: $cursor) {
+          pageInfo { endCursor hasNextPage }
+          nodes {
+            iid
+            createdAt
+            mergedAt
+            commitCount
+            title
+            description
+            author { username }
+            diffStatsSummary { additions deletions fileCount }
+            labels { nodes { title } }
+          }
+        }
+      }
+    }
+    """
 
-    # Se repos específicos foram informados, usar diretamente
-    if specific_repos:
-        projects = specific_repos
-        print(f"  -> Usando repositórios específicos: {projects}")
-    else:
-        # Caso contrário, listar todos os projetos do grupo
-        cursor = None
-        has_next = True
-        print("  -> Listando projetos do grupo...")
-        while has_next:
-            query = """
-            query($group: ID!, $cursor: String) {
-              group(fullPath: $group) {
-                projects(includeSubgroups: true, first: 50, after: $cursor) {
-                  pageInfo { endCursor hasNextPage }
-                  nodes { fullPath name }
-                }
+    # MUDANÇA P2: Query de detalhes para um MR específico (discussões, commits, approvals).
+    # Isolada por MR — menor risco de timeout e melhor tratamento de erro.
+    QUERY_MR_DETAILS = """
+    query($path: ID!, $mrIid: String!) {
+      project(fullPath: $path) {
+        mergeRequest(iid: $mrIid) {
+          commits {
+            nodes {
+              author { username }
+              message
+            }
+          }
+          discussions(first: 50) {
+            nodes {
+              notes(first: 20) {
+                nodes { author { username } createdAt system }
               }
             }
-            """
-            resp = run_query(
-                url,
-                {"query": query, "variables": {"group": group, "cursor": cursor}},
-                headers,
+          }
+          approvedBy { nodes { username } }
+        }
+      }
+    }
+    """
+
+    QUERY_LIST_PROJECTS = """
+    query($group: ID!, $cursor: String) {
+      group(fullPath: $group) {
+        projects(includeSubgroups: true, first: 50, after: $cursor) {
+          pageInfo { endCursor hasNextPage }
+          nodes { fullPath name }
+        }
+      }
+    }
+    """
+
+    def __init__(self, client: GraphQLClient):
+        self.client = client
+
+    def list_projects(self, group_path: str) -> List[str]:
+        """Lista todos os projetos de um grupo."""
+        projects = []
+        cursor = None
+
+        while True:
+            data = self.client.execute(
+                self.QUERY_LIST_PROJECTS,
+                {"group": group_path, "cursor": cursor},
+                f"GitLab/{group_path}/list_projects",
             )
-            if not resp:
+            if not data:
                 break
-            data = resp.json()
-            if not data.get("data", {}).get("group"):
+
+            group_data = data.get("data", {}).get("group", {})
+            if not group_data:
                 break
-            projs = data["data"]["group"]["projects"]
-            for node in projs["nodes"]:
+
+            proj_data = group_data.get("projects", {})
+            for node in proj_data.get("nodes", []):
                 projects.append(node["name"])
-            cursor = projs["pageInfo"]["endCursor"]
-            has_next = projs["pageInfo"]["hasNextPage"]
 
-    for i, repo in enumerate(projects):
-        identifier = f"GitLab/{repo}"
-        if identifier in processed_set:
-            continue
+            if not proj_data.get("pageInfo", {}).get("hasNextPage"):
+                break
+            cursor = proj_data["pageInfo"]["endCursor"]
 
-        print(f"  [{i + 1}/{len(projects)}] Baixando: {repo}")
-        repo_data_chunk = []
-        cursor = None
-        has_next_mr = True
-        mr_count = 0
-        project_full_path = f"{group}/{repo}"
+        return projects
 
-        while has_next_mr:
-            query = """
-            query($path: ID!, $cursor: String) {
-              project(fullPath: $path) {
-                mergeRequests(state: merged, first: 10, after: $cursor) {
-                  pageInfo { endCursor hasNextPage }
-                  nodes {
-                    iid createdAt mergedAt commitCount description title
-                    author { username }
-                    diffStatsSummary { additions deletions fileCount }
-                    labels {
-                      nodes { title }
-                    }
-                    commits {
-                      nodes {
-                        author { username }
-                        message
-                      }
-                    }
-                    discussions(first: 50) {
-                      nodes {
-                        notes(first: 20) {
-                          nodes { author { username } createdAt system }
-                        }
-                      }
-                    }
-                    approvedBy { nodes { username } }
-                  }
-                }
-              }
-            }
-            """
-            resp = run_query(
-                url,
-                {
-                    "query": query,
-                    "variables": {"path": project_full_path, "cursor": cursor},
-                },
-                headers,
+    # MUDANÇA P2: Novo método para buscar detalhes de um MR específico.
+    def _fetch_mr_details(self, project_path: str, mr_iid: int) -> Optional[Dict]:
+        """Busca detalhes de um MR específico (discussões, commits, approvals)."""
+        return self.client.execute(
+            self.QUERY_MR_DETAILS,
+            {"path": project_path, "mrIid": str(mr_iid)},
+            f"GitLab/{project_path}/MR!{mr_iid}/details",
+        )
+
+    def _process_mr(
+        self, group: str, repo: str, mr_basic: Dict, mr_details: Dict
+    ) -> Optional[PRMetrics]:
+        """Processa um MR a partir dos dados básicos (fase 1) + detalhes (fase 2)."""
+        mr_iid = mr_basic.get("iid")
+
+        try:
+            author = (
+                mr_basic["author"]["username"]
+                if mr_basic.get("author")
+                else "deleted_user"
             )
-            if not resp:
-                print(f"    Erro na requisição para {project_full_path}")
-                break
 
-            json_res = resp.json()
-            if "errors" in json_res:
-                print(f"    Erro GraphQL: {json_res['errors'][0]['message']}")
-                break
-            if not json_res.get("data", {}).get("project"):
-                print(f"    Projeto não encontrado: {project_full_path}")
-                break
-
-            mrs = json_res["data"]["project"]["mergeRequests"]
-
-            for mr in mrs["nodes"]:
-                # Aplicar filtro temporal se especificado
-                if since_date and mr["createdAt"] < since_date:
-                    # Se chegamos em MRs mais antigas que a data limite, parar paginação
-                    has_next_mr = False
-                    break
-
-                mr_count += 1
-                print(
-                    f"    -> Processando MR !{mr.get('iid')} [{mr_count} MRs processados]"
-                )
-
-                author_username = mr["author"]["username"] if mr["author"] else None
-
-                # Processar reviewers (quem aprovou)
-                reviewers = set()
-                if mr["approvedBy"] and mr["approvedBy"]["nodes"]:
-                    for app in mr["approvedBy"]["nodes"]:
+            # Reviewers (quem aprovou) — vem dos detalhes
+            reviewers = set()
+            approved_by = (mr_details.get("approvedBy") or {})
+            if approved_by and approved_by.get("nodes"):
+                for app in approved_by["nodes"]:
+                    if app.get("username"):
                         reviewers.add(app["username"])
 
-                # Processar discussions/notes (quem comentou)
-                # Filtrar notas de sistema (como "added label", "assigned to", etc.)
-                external_notes = []
-                commenters = set()
-                for disc in mr["discussions"]["nodes"] if mr["discussions"] else []:
-                    for note in disc["notes"]["nodes"] if disc["notes"] else []:
-                        # Ignorar notas de sistema (system: true)
-                        if note.get("system", False):
-                            continue
-                        if note.get("author"):
-                            note_author = note["author"]["username"]
-                            if note_author != author_username:
-                                external_notes.append(note)
-                                commenters.add(note_author)
-                                reviewers.add(
-                                    note_author
-                                )  # Quem comenta também é reviewer
+            # Discussions (filtrar notas de sistema) — vem dos detalhes
+            all_notes = []  # Todos os comentários humanos (incluindo self-comments)
+            external_notes = []  # Apenas comentários de terceiros (para first_response)
+            commenters = set()
+            discussions = (mr_details.get("discussions") or {}).get("nodes", []) or []
+            for disc in discussions:
+                for note in (disc.get("notes") or {}).get("nodes", []) or []:
+                    # Ignorar notas de sistema
+                    if note.get("system", False):
+                        continue
+                    if note.get("author"):
+                        note_author = note["author"]["username"]
+                        all_notes.append(note)
+                        commenters.add(note_author)
+                        if note_author != author:
+                            external_notes.append(note)
+                            reviewers.add(note_author)
 
-                # Encontrar primeira resposta humana (não-bot, não-autor)
-                first_review_at = None
-                first_human_response_at = None
-                if external_notes:
-                    external_notes.sort(key=lambda x: x["createdAt"])
-                    first_review_at = external_notes[0]["createdAt"]
-                    # Encontrar primeira resposta humana
-                    for note in external_notes:
-                        if not is_bot_user(note["author"]["username"]):
-                            first_human_response_at = note["createdAt"]
-                            break
+            # Primeira resposta
+            first_review_at = None
+            first_human_response_at = None
+            if external_notes:
+                external_notes.sort(key=lambda x: x.get("createdAt", ""))
+                first_review_at = external_notes[0].get("createdAt")
+                for note in external_notes:
+                    if not is_bot_user(note["author"]["username"]):
+                        first_human_response_at = note["createdAt"]
+                        break
 
-                # Processar commits (autores e mensagens)
-                commits_data = mr.get("commits") or {}
-                commit_nodes = commits_data.get("nodes", []) or []
-                commit_authors = set()
-                commit_message_lengths = []
-                for cn in commit_nodes:
-                    # Autor do commit
-                    commit_author_data = cn.get("author", {}) or {}
-                    if commit_author_data.get("username"):
-                        commit_authors.add(commit_author_data["username"])
-                    # Mensagem do commit
-                    msg = cn.get("message", "") or ""
-                    if msg:
-                        commit_message_lengths.append(len(msg))
+            # Commits — vem dos detalhes
+            commit_nodes = (mr_details.get("commits") or {}).get("nodes", []) or []
+            commit_authors = set()
+            commit_msg_lengths = []
+            for cn in commit_nodes:
+                if (cn.get("author") or {}).get("username"):
+                    commit_authors.add(cn["author"]["username"])
+                msg = cn.get("message", "")
+                if msg:
+                    commit_msg_lengths.append(len(msg))
 
-                avg_commit_msg_len = (
-                    sum(commit_message_lengths) / len(commit_message_lengths)
-                    if commit_message_lengths
-                    else 0
-                )
+            avg_commit_msg_len = (
+                sum(commit_msg_lengths) / len(commit_msg_lengths)
+                if commit_msg_lengths
+                else 0
+            )
 
-                # Diff stats
-                add = (
-                    mr["diffStatsSummary"]["additions"]
-                    if mr.get("diffStatsSummary")
-                    else 0
-                )
-                dele = (
-                    mr["diffStatsSummary"]["deletions"]
-                    if mr.get("diffStatsSummary")
-                    else 0
-                )
-                file_count = (
-                    mr["diffStatsSummary"]["fileCount"]
-                    if mr.get("diffStatsSummary")
-                    else 0
-                )
+            # Diff stats — vem do MR básico (fase 1)
+            diff_stats = mr_basic.get("diffStatsSummary") or {}
+            additions = diff_stats.get("additions", 0) or 0
+            deletions = diff_stats.get("deletions", 0) or 0
+            file_count = diff_stats.get("fileCount", 0) or 0
 
-                # Heurística para doc PR
-                title_desc = (mr["title"] + " " + (mr["description"] or "")).lower()
-                is_doc_heuristic = "doc" in title_desc or "readme" in title_desc
+            # Labels — vem do MR básico (fase 1)
+            label_nodes = (mr_basic.get("labels") or {}).get("nodes", []) or []
+            label_names = [l["title"] for l in label_nodes if l.get("title")]
 
-                # Comprimentos de texto
-                title_len = len(mr["title"]) if mr.get("title") else 0
-                description_len = len(mr["description"]) if mr.get("description") else 0
+            # Heurística para doc PR
+            title = mr_basic.get("title") or ""
+            description = mr_basic.get("description") or ""
+            title_desc = (title + " " + description).lower()
+            is_doc_pr = "doc" in title_desc or "readme" in title_desc
 
-                # Labels
-                labels_data = mr.get("labels") or {}
-                label_nodes = labels_data.get("nodes", []) or []
-                labels_count = len(label_nodes)
-                label_names = [l["title"] for l in label_nodes if l.get("title")]
+            return PRMetrics(
+                platform="GitLab",
+                org=group,
+                repo=repo,
+                id=mr_iid,
+                author=author,
+                created_at=mr_basic.get("createdAt"),
+                merged_at=mr_basic.get("mergedAt"),
+                first_review_at=first_review_at,
+                first_human_response_at=first_human_response_at,
+                reviewers=",".join(reviewers),
+                commenters=",".join(commenters),
+                commit_authors=",".join(commit_authors),
+                commits=mr_basic.get("commitCount", 0),
+                avg_commit_message_length=round(avg_commit_msg_len, 2),
+                reviews_count=len(approved_by.get("nodes", [])) if approved_by else 0,
+                comments=len(all_notes),
+                files_changed=file_count,
+                additions=additions,
+                deletions=deletions,
+                churn=additions + deletions,
+                doc_files_count=0,
+                is_doc_pr=is_doc_pr,
+                file_extensions="",
+                file_hashes="",
+                title_length=len(title),
+                description_length=len(description),
+                labels_count=len(label_names),
+                labels=",".join(label_names),
+            )
 
-                repo_data_chunk.append(
-                    {
-                        "platform": "GitLab",
-                        "org": group,
-                        "repo": repo,
-                        "id": mr["iid"],
-                        "author": author_username or "deleted_user",
-                        "created_at": mr["createdAt"],
-                        "merged_at": mr["mergedAt"],
-                        "first_review_at": first_review_at,
-                        "first_human_response_at": first_human_response_at,
-                        "reviewers": ",".join(reviewers),
-                        "commenters": ",".join(commenters),
-                        "commit_authors": ",".join(commit_authors),
-                        "commits": mr["commitCount"],
-                        "avg_commit_message_length": round(avg_commit_msg_len, 2),
-                        "reviews_count": len(mr["approvedBy"]["nodes"])
-                        if mr["approvedBy"]
-                        else 0,
-                        "comments": len(external_notes),
-                        "files_changed": file_count,
-                        "additions": add,
-                        "deletions": dele,
-                        "churn": add + dele,
-                        "doc_files_count": 0,
-                        "is_doc_pr": is_doc_heuristic,
-                        "file_extensions": "",
-                        "file_paths": "",
-                        "title_length": title_len,
-                        "description_length": description_len,
-                        "labels_count": labels_count,
-                        "labels": ",".join(label_names),
-                    }
-                )
+        except Exception as e:
+            log_error(f"GitLab/{group}/{repo}/MR!{mr_iid}", str(e))
+            print(f"    ❌ Erro no MR !{mr_iid}: {e}")
+            return None
 
-            has_next_mr = mrs["pageInfo"]["hasNextPage"]
-            cursor = mrs["pageInfo"]["endCursor"]
+    def extract_project(
+        self,
+        group_path: str,
+        repo: str,
+        since_date: Optional[str] = None,
+        processed_prs: Optional[Set[str]] = None,
+    ) -> List[PRMetrics]:
+        """Extrai métricas de todos os MRs de um projeto (2 fases)."""
+        results = []
+        cursor = None
+        mr_count = 0
+        skipped = 0
+        project_path = f"{group_path}/{repo}"
+
+        print(f"  📥 Extraindo: {project_path}")
+
+        while True:
+            # MUDANÇA P2: Fase 1 — lista leve de MRs (sem discussões/commits)
+            data = self.client.execute(
+                self.QUERY_LIST_MRS,
+                {"path": project_path, "cursor": cursor},
+                f"GitLab/{project_path}/list_mrs",
+            )
+
+            if not data:
+                print(f"    ⚠️ Falha ao listar MRs de {repo}")
+                break
+
+            project_data = data.get("data", {}).get("project", {})
+            if not project_data:
+                print(f"    ⚠️ Projeto {repo} não encontrado")
+                break
+
+            mr_data = project_data.get("mergeRequests", {})
+            mr_nodes = mr_data.get("nodes", []) or []
+
+            for mr_basic in mr_nodes:
+                # Filtro temporal
+                if since_date and mr_basic.get("createdAt", "") < since_date:
+                    print(f"    ✓ Chegou ao limite temporal ({since_date[:10]})")
+                    return results
+
+                mr_iid = mr_basic.get("iid")
+                mr_key = f"GitLab/{group_path}/{repo}/!{mr_iid}"
+
+                # Skip se já processado
+                if processed_prs and mr_key in processed_prs:
+                    continue
+
+                mr_count += 1
+                if mr_count % 10 == 0:
+                    print(
+                        f"    → Processando MR !{mr_iid} [{mr_count} MRs, {skipped} skipped]"
+                    )
+
+                # MUDANÇA P2: Fase 2 — buscar detalhes do MR individual
+                details_data = self._fetch_mr_details(project_path, mr_iid)
+                if not details_data:
+                    log_error(
+                        f"GitLab/{project_path}/MR!{mr_iid}",
+                        "Falha ao buscar detalhes",
+                    )
+                    skipped += 1
+                    continue
+
+                mr_details = (
+                    (details_data.get("data") or {}).get("project") or {}
+                ).get("mergeRequest") or {}
+
+                metrics = self._process_mr(group_path, repo, mr_basic, mr_details)
+                if metrics:
+                    results.append(metrics)
+                else:
+                    skipped += 1
+
+                time.sleep(0.3)
+
+            # Próxima página
+            page_info = mr_data.get("pageInfo", {})
+            if not page_info.get("hasNextPage"):
+                break
+            cursor = page_info.get("endCursor")
             time.sleep(0.5)
 
-        if repo_data_chunk:
-            save_chunk(repo_data_chunk)
+        print(f"    ✓ Concluído: {len(results)} MRs extraídos, {skipped} skipped")
+        return results
+
+
+# =============================================================================
+# DATA PERSISTENCE
+# =============================================================================
+
+
+class DataPersistence:
+    """Gerencia persistência de dados com append incremental."""
+
+    def __init__(self, output_file: str):
+        self.output_file = output_file
+        self._ensure_dir()
+
+    def _ensure_dir(self):
+        os.makedirs(os.path.dirname(self.output_file), exist_ok=True)
+
+    def get_processed_prs(self) -> Set[str]:
+        """Retorna conjunto de PRs já processados (para skip)."""
+        if not os.path.exists(self.output_file):
+            return set()
+        try:
+            df = pd.read_csv(
+                self.output_file, usecols=["platform", "org", "repo", "id"]
+            )
+            # Formato: Platform/org/repo/#id ou Platform/org/repo/!id
+            processed = set()
+            for _, row in df.iterrows():
+                prefix = "#" if row["platform"] == "GitHub" else "!"
+                key = (
+                    f"{row['platform']}/{row['org']}/{row['repo']}/{prefix}{row['id']}"
+                )
+                processed.add(key)
+            return processed
+        except Exception as e:
+            print(f"⚠️ Erro ao ler processados: {e}")
+            return set()
+
+    def save_batch(self, metrics_list: List[PRMetrics]):
+        """Salva batch de métricas no CSV."""
+        if not metrics_list:
+            return
+
+        data = [asdict(m) for m in metrics_list]
+        df = pd.DataFrame(data)
+
+        # Converter datas
+        date_cols = [
+            "created_at",
+            "merged_at",
+            "first_review_at",
+            "first_human_response_at",
+        ]
+        for col in date_cols:
+            if col in df.columns:
+                df[col] = pd.to_datetime(df[col], utc=True, errors="coerce")
+
+        # Calcular métricas derivadas
+        if "merged_at" in df.columns and "created_at" in df.columns:
+            df["lead_time_hours"] = (
+                df["merged_at"] - df["created_at"]
+            ).dt.total_seconds() / 3600
+
+        if "first_review_at" in df.columns and "created_at" in df.columns:
+            df["time_to_first_review_hours"] = (
+                df["first_review_at"] - df["created_at"]
+            ).dt.total_seconds() / 3600
+
+        if "first_human_response_at" in df.columns and "created_at" in df.columns:
+            df["time_to_first_human_response_hours"] = (
+                df["first_human_response_at"] - df["created_at"]
+            ).dt.total_seconds() / 3600
+
+        if "churn" in df.columns and "comments" in df.columns:
+            df["discussion_density"] = df.apply(
+                lambda x: x["comments"] / x["churn"] if x["churn"] > 0 else 0, axis=1
+            )
+
+        # Append ao arquivo
+        header = not os.path.exists(self.output_file)
+        df.to_csv(self.output_file, mode="a", index=False, header=header)
+        print(f"  💾 Salvos {len(metrics_list)} registros")
+
+
+# =============================================================================
+# ORCHESTRATOR
+# =============================================================================
+
+
+class ExtractionOrchestrator:
+    """Orquestra a extração de todos os targets."""
+
+    def __init__(self):
+        self.persistence = DataPersistence(OUTPUT_FILE)
+        self.github_client = (
+            GraphQLClient("https://api.github.com/graphql", GITHUB_TOKEN, "GitHub")
+            if GITHUB_TOKEN
+            else None
+        )
+        self.gitlab_client = (
+            GraphQLClient("https://gitlab.com/api/graphql", GITLAB_TOKEN, "GitLab")
+            if GITLAB_TOKEN
+            else None
+        )
+
+    def run(self, targets: List[Dict] = None):
+        """Executa extração para todos os targets."""
+        targets = targets or TARGETS
+        processed = self.persistence.get_processed_prs()
+        print(f"📊 PRs já processados: {len(processed)}")
+
+        for target in targets:
+            try:
+                if target["type"] == "github":
+                    self._process_github_target(target, processed)
+                elif target["type"] == "gitlab":
+                    self._process_gitlab_target(target, processed)
+            except Exception as e:
+                print(f"❌ Erro fatal em {target}: {e}")
+                log_error(f"Target {target}", str(e))
+
+    def _process_github_target(self, target: Dict, processed: Set[str]):
+        """Processa target do GitHub."""
+        if not self.github_client:
+            print("⚠️ GITHUB_TOKEN não configurado")
+            return
+
+        org = target["org"]
+        repos = target.get("repos")
+        since = target.get("since")
+
+        print(f"\n{'=' * 60}")
+        print(f"🐙 GitHub: {org}")
+        print(f"{'=' * 60}")
+
+        extractor = GitHubExtractor(self.github_client)
+
+        # Listar repos se não especificado
+        if not repos:
+            print("  Listando repositórios...")
+            repos = extractor.list_repos(org)
+            print(f"  Encontrados: {len(repos)} repos")
+
+        all_metrics = []
+
+        for repo in repos:
+            metrics = extractor.extract_repo(org, repo, since, processed)
+            all_metrics.extend(metrics)
+
+            # Salvar em batches
+            if len(all_metrics) >= SAVE_BATCH_SIZE:
+                self.persistence.save_batch(all_metrics)
+                all_metrics = []
+
+        # Salvar restante
+        if all_metrics:
+            self.persistence.save_batch(all_metrics)
+
+    def _process_gitlab_target(self, target: Dict, processed: Set[str]):
+        """Processa target do GitLab."""
+        if not self.gitlab_client:
+            print("⚠️ GITLAB_TOKEN não configurado")
+            return
+
+        group = target["group_path"]
+        repos = target.get("repos")
+        since = target.get("since")
+
+        print(f"\n{'=' * 60}")
+        print(f"🦊 GitLab: {group}")
+        print(f"{'=' * 60}")
+
+        extractor = GitLabExtractor(self.gitlab_client)
+
+        # Listar projetos se não especificado
+        if not repos:
+            print("  Listando projetos...")
+            repos = extractor.list_projects(group)
+            print(f"  Encontrados: {len(repos)} projetos")
+
+        all_metrics = []
+
+        for repo in repos:
+            metrics = extractor.extract_project(group, repo, since, processed)
+            all_metrics.extend(metrics)
+
+            if len(all_metrics) >= SAVE_BATCH_SIZE:
+                self.persistence.save_batch(all_metrics)
+                all_metrics = []
+
+        if all_metrics:
+            self.persistence.save_batch(all_metrics)
+
+
+# =============================================================================
+# MAIN
+# =============================================================================
 
 
 def main():
-    processed = get_processed_repos()
-    print(f"Registros anteriores detectados: {len(processed)}")
-    for target in TARGETS:
-        try:
-            if target["type"] == "github":
-                process_github(target, processed)
-            elif target["type"] == "gitlab":
-                process_gitlab(target, processed)
-        except Exception as e:
-            print(f"Erro fatal em {target}: {e}")
+    print("🚀 Iniciando extração de métricas de PRs")
+    print(f"📁 Output: {OUTPUT_FILE}")
+    print(f"📝 Error log: {ERROR_LOG_FILE}")
+    print()
+
+    orchestrator = ExtractionOrchestrator()
+    orchestrator.run()
+
+    print("\n✅ Extração concluída!")
 
 
 if __name__ == "__main__":
