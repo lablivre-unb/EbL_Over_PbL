@@ -6,69 +6,54 @@ INPUT_PATH = "metrics/data/bronze/prs.csv"
 OUTPUT_FOLDER = "metrics/data/silver"
 OUTPUT_FILE = "prs.csv"
 
-# Melhores projetos baseado em nota
+# Projetos UNB-MDS
 UNB_MDS_ORG = "unb-mds"
 UNB_MDS_PROJECTS = [
-    # 2025.2
     "2025-2-Mural-UnB",
-    #"2025-2-OncoMap",
-    #"Projeto-P.I.T.E.R",
-    #"2025-2-Synapse",
-    #"2025-2-Squad-01",
-    # 2025.1
-    #"2025-1-NoFluxoUNB",
     "Sonorus-2025.1",
-    #"DFemObras-2025.1",
-    #"2025-1-GovInsights",
-    #"2025-1-RelatAI",
-    # 2024.2
     "2024-2-AcheiUnB",
-    #"2024-2-Squad06",
-    #"2024-2-ChamaControl",
-    #"Gastos-DF-2024-02",
-    #"2024-2-SuaFinanca",
-    # 2024.1
     "2024-1-forUnB",
-    #"2024-1-MinasDeCultura",
-    #"2024-1-Squad02-CulturaTransparente",
-    #"2024-1-Squad08",
-    #"2024-1-Squad-10",
 ]
 
+# Projetos MDSREQ-FGA-UNB
 MDSREQ_FGA_UNB_ORG = "mdsreq-fga-unb"
 MDSREQ_FGA_UNB_PROJECTS = [
-    # 2025.2
-    #"REQ-2025.2-T01-DataBuilders",
-    #"REQ-2025.2-T01-PPBM",
-    #"REQ-2025.2-T02-ProJuris",
     "REQ-2025.2-T02-RxHospitalar",
-    #"REQ-2025.2-T01-ST-APP",
-    # 2025.1
-    #"2025.1-T01-AdvogaAI",
-    #"2025.1-T01-SeuPontoDigital",
     "2025.1-T01-VidracariaModelo",
-    #"2025.1-T01-CORIGGE",
-    #"2025.1-T02-CanadaIntercambio",
-    # 2024.2
     "2024.2-T03-CafeDoSitio",
-    #"2024.2-T01-IdeaSpace",
-    #"2024.2-T03-CerradoTech",
-    #"2024.2-T01-FamintosBurguer",
-    #"2024.2-T01-CD-MOJ",
-    # 2024.1
-    #"2024.1-Echoeasy",
-    #"2024.1-RISO-",
-    #"2024.1-Est-dio-de-Beleza-Keuany",
-    #"2024.1-Crystaleum-2",
     "2024.1-ObjeX",
 ]
 
+# Projetos FGA-EPS-MDS (novo!)
+FGA_EPS_MDS_ORG = "fga-eps-mds"
+FGA_EPS_MDS_PROJECTS = [
+    "2025.2-Valhalla",
+    "2025.2-Valhalla-Docs",
+    "2025.1-VaiPelaSombra-docs",
+    "2025.1-VaiPelaSombra-FrontEnd",
+    "2025.1-VaiPelaSombra-BackEnd,",
+    "2025.1-VaiPelaSombra-API",
+    "2024-2-GEROcuidado-Docs",
+    "2024-2-GEROcuidado-APIForum",
+    "2024-2-GEROcuidado-Front",
+    "2024-2-GEROcuidado-APIUsuario",
+    "2024-2-GEROcuidado-APISaude",
+    "2024-1-GEROcuidado-Front",
+    "2024-1-GEROcuidado-Doc",
+    "2024-1-GEROcuidado-APISaude",
+    "2024-1-GEROcuidado-APIUsuario",
+    "2024-1-GEROcuidado-APIForum",
+]
+
+# Outros projetos (EbL e benchmarks de mercado)
 OTHER_ORGS = [
-    {"platform": "GitHub", "org": "GovHub-br"},
-    {"platform": "GitHub", "org": "lablivre-unb"},
     {"platform": "GitLab", "org": "lappis-unb/decidimbr"},
     {"platform": "GitHub", "org": "decidim"},
     {"platform": "GitHub", "org": "microsoft"},
+    {"platform": "GitHub", "org": "flutter"},
+    {"platform": "GitHub", "org": "facebook"},
+    {"platform": "GitHub", "org": "kubernetes"},
+    {"platform": "GitHub", "org": "tensorflow"},
 ]
 
 # Faixas de tempo dos semestres
@@ -93,6 +78,7 @@ def process_data():
     df["created_at"] = pd.to_datetime(df["created_at"], errors="coerce")
     df["merged_at"] = pd.to_datetime(df["merged_at"], errors="coerce")
 
+    # Máscaras para projetos acadêmicos
     mask_unb_mds = (df["org"].str.lower() == UNB_MDS_ORG.lower()) & (
         df["repo"].isin(UNB_MDS_PROJECTS)
     )
@@ -101,6 +87,11 @@ def process_data():
         df["repo"].isin(MDSREQ_FGA_UNB_PROJECTS)
     )
 
+    mask_fga_eps_mds = (df["org"].str.lower() == FGA_EPS_MDS_ORG.lower()) & (
+        df["repo"].isin(FGA_EPS_MDS_PROJECTS)
+    )
+
+    # Máscara para outros projetos (EbL e benchmarks)
     org_masks = []
     for target in OTHER_ORGS:
         m = (df["platform"].str.lower() == target["platform"].lower()) & (
@@ -132,19 +123,25 @@ def process_data():
     mask_any_semester = pd.concat(semester_masks, axis=1).any(axis=1)
 
     filtered_df = df[
-        (mask_unb_mds | mask_mdsreq_fga_unb | mask_others) & mask_any_semester
+        (mask_unb_mds | mask_mdsreq_fga_unb | mask_fga_eps_mds | mask_others)
+        & mask_any_semester
     ]
 
     output_path = os.path.join(OUTPUT_FOLDER, OUTPUT_FILE)
     filtered_df.to_csv(output_path, index=False)
 
-    print("Processamento Concluído")
+    print("Processamento Concluído (v2)")
     print(f"- Total na Bronze: {len(df)}")
     print(f"- Total na Silver: {len(filtered_df)}")
-    print("Semestres aplicados:")
+    print("\nOrganizações incluídas:")
+    print(f"  • {UNB_MDS_ORG}: {len(UNB_MDS_PROJECTS)} repos")
+    print(f"  • {MDSREQ_FGA_UNB_ORG}: {len(MDSREQ_FGA_UNB_PROJECTS)} repos")
+    print(f"  • {FGA_EPS_MDS_ORG}: {len(FGA_EPS_MDS_PROJECTS)} repos")
+    print(f"  • Outros (EbL + Mercado): {len(OTHER_ORGS)} orgs")
+    print("\nSemestres aplicados:")
     for semester in SEMESTERS:
-        print(f"- {semester['name']}: {semester['start']} até {semester['end']}")
-    print(f"Arquivo salvo em: {output_path}")
+        print(f"  • {semester['name']}: {semester['start']} até {semester['end']}")
+    print(f"\nArquivo salvo em: {output_path}")
 
 
 if __name__ == "__main__":
