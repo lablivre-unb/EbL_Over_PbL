@@ -25,10 +25,6 @@ from dotenv import load_dotenv
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-# =============================================================================
-# CONFIGURAÇÃO
-# =============================================================================
-
 load_dotenv()
 
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
@@ -36,17 +32,13 @@ GITLAB_TOKEN = os.getenv("GITLAB_TOKEN")
 OUTPUT_FILE = "metrics/data/bronze/prs.csv"
 ERROR_LOG_FILE = "metrics/data/bronze/extraction_errors.log"
 
-# Limites para paginação interna (evita queries muito pesadas)
-# MUDANÇA P1: Limites reduzidos para queries mais leves e rápidas
-MAX_COMMITS_PER_QUERY = 10   # era 50 — maioria dos PRs tem <10 commits
-MAX_REVIEWS_PER_QUERY = 15   # era 30 — suficiente para capturar reviewers
+MAX_COMMITS_PER_QUERY = 10  # era 50 — maioria dos PRs tem <10 commits
+MAX_REVIEWS_PER_QUERY = 15  # era 30 — suficiente para capturar reviewers
 MAX_COMMENTS_PER_QUERY = 15  # era 30 — suficiente para first_response e commenters
-MAX_FILES_PER_QUERY = 20     # era 100 — amostra de arquivos para extensões/docs
+MAX_FILES_PER_QUERY = 20  # era 100 — amostra de arquivos para extensões/docs
 
-# Batch size para salvar PRs
 SAVE_BATCH_SIZE = 50
 
-# Palavras-chave para identificar bots
 BOT_KEYWORDS = frozenset(
     [
         "bot",
@@ -66,10 +58,8 @@ BOT_KEYWORDS = frozenset(
     ]
 )
 
-# Extensões de documentação
 DOC_EXTENSIONS = frozenset([".md", ".txt", ".rst", ".pdf", ".docx", ".adoc"])
 
-# Targets para extração
 TARGETS = [
     {
         "type": "gitlab",
@@ -157,11 +147,6 @@ TARGETS = [
 ]
 
 
-# =============================================================================
-# DATA CLASSES
-# =============================================================================
-
-
 @dataclass
 class PRMetrics:
     """Métricas extraídas de um PR/MR."""
@@ -189,16 +174,11 @@ class PRMetrics:
     doc_files_count: int = 0
     is_doc_pr: bool = False
     file_extensions: str = ""
-    file_hashes: str = ""  # Hashes dos arquivos ao invés de paths
+    file_hashes: str = ""
     title_length: int = 0
     description_length: int = 0
     labels_count: int = 0
     labels: str = ""
-
-
-# =============================================================================
-# UTILIDADES
-# =============================================================================
 
 
 def is_bot_user(username: Optional[str]) -> bool:
@@ -237,7 +217,6 @@ def analyze_files(file_paths: List[str], repo_prefix: str = "") -> tuple:
         if ext:
             extensions.add(ext)
 
-        # Contar arquivos de documentação
         if (
             ext in DOC_EXTENSIONS
             or "docs/" in path.lower()
@@ -245,7 +224,6 @@ def analyze_files(file_paths: List[str], repo_prefix: str = "") -> tuple:
         ):
             doc_count += 1
 
-        # Gerar hash do arquivo
         hashes.append(hash_file_path(path, repo_prefix))
 
     return doc_count, ",".join(extensions), ",".join(hashes)
@@ -256,11 +234,6 @@ def log_error(context: str, error: str):
     timestamp = datetime.now().isoformat()
     with open(ERROR_LOG_FILE, "a") as f:
         f.write(f"[{timestamp}] {context}: {error}\n")
-
-
-# =============================================================================
-# HTTP CLIENT
-# =============================================================================
 
 
 class GraphQLClient:
@@ -305,8 +278,8 @@ class GraphQLClient:
             except ValueError:
                 pass
 
-        wait_seconds = min(wait_seconds + 10, 3600)  # cap em 1 hora
-        print(f"    ⏳ Rate limit. Aguardando {wait_seconds}s...")
+        wait_seconds = min(wait_seconds + 10, 3600)
+        print(f"    Rate limit. Aguardando {wait_seconds}s...")
         time.sleep(wait_seconds)
 
     def execute(
@@ -331,24 +304,21 @@ class GraphQLClient:
                     timeout=60,
                 )
 
-                # Rate limit HTTP
                 if response.status_code in (403, 429):
-                    print(f"    ⚠️ Rate limit HTTP {response.status_code} ({context})")
+                    print(f"    Rate limit HTTP {response.status_code} ({context})")
                     self._wait_for_rate_limit(response)
                     continue
 
                 response.raise_for_status()
                 data = response.json()
 
-                # Rate limit no body GraphQL
                 if "errors" in data:
                     error_msg = data["errors"][0].get("message", "")
                     if "rate limit" in error_msg.lower():
-                        print(f"    ⚠️ Rate limit GraphQL ({context})")
+                        print(f"    Rate limit GraphQL ({context})")
                         self._wait_for_rate_limit(response)
                         continue
 
-                    # Outros erros GraphQL - logar e retornar None
                     if attempt == max_retries:
                         log_error(context, f"GraphQL error: {error_msg}")
                         return None
@@ -358,14 +328,14 @@ class GraphQLClient:
                 return data
 
             except requests.exceptions.Timeout:
-                print(f"    ⚠️ Timeout ({context}), tentativa {attempt + 1}")
+                print(f"    Timeout ({context}), tentativa {attempt + 1}")
                 if attempt == max_retries:
                     log_error(context, "Timeout após retries")
                     return None
                 time.sleep(5)
 
             except requests.exceptions.RequestException as e:
-                print(f"    ⚠️ Erro de rede ({context}): {e}")
+                print(f"    Erro de rede ({context}): {e}")
                 if attempt == max_retries:
                     log_error(context, str(e))
                     return None
@@ -374,17 +344,9 @@ class GraphQLClient:
         return None
 
 
-# =============================================================================
-# GITHUB EXTRACTOR
-# =============================================================================
-
-
 class GitHubExtractor:
     """Extrator de PRs do GitHub com query unificada."""
 
-    # MUDANÇA P1: Query unificada — lista PRs com TODOS os detalhes de uma vez.
-    # Antes: 2 queries por PR (lista + detalhes). Agora: 1 query por página de 25 PRs.
-    # Redução de ~98% nas requisições (de 2N para N/25).
     QUERY_LIST_PRS = """
     query($org: String!, $repo: String!, $cursor: String) {
       repository(owner: $org, name: $repo) {
@@ -435,10 +397,6 @@ class GitHubExtractor:
       }
     }
     """
-    # MUDANÇA P1: Removidas QUERY_PR_DETAILS e QUERY_PR_FILES.
-    # Detalhes agora vêm embutidos na query unificada.
-    # Paginação extra de arquivos eliminada — usa amostra de N arquivos + totalCount.
-
     QUERY_LIST_REPOS = """
     query($org: String!, $cursor: String) {
       organization(login: $org) {
@@ -481,22 +439,13 @@ class GitHubExtractor:
 
         return repos
 
-    # MUDANÇA P1: Removidos _fetch_pr_details() e _fetch_all_files().
-    # Não há mais busca individual por PR — tudo vem na query unificada.
-
     def _process_pr(self, org: str, repo: str, pr: Dict) -> Optional[PRMetrics]:
         """Processa um PR a partir dos dados já disponíveis na query unificada."""
         pr_number = pr.get("number")
 
         try:
-            # Autor
-            author = (
-                pr["author"]["login"]
-                if pr.get("author")
-                else "deleted_user"
-            )
+            author = pr["author"]["login"] if pr.get("author") else "deleted_user"
 
-            # Reviews
             reviews_data = (pr.get("reviews") or {}).get("nodes", []) or []
             reviewers = set()
             first_review_at = None
@@ -507,7 +456,6 @@ class GitHubExtractor:
                     if r.get("author"):
                         reviewers.add(r["author"]["login"])
 
-            # Comments (issue comments)
             comments_data = pr.get("comments") or {}
             comment_nodes = comments_data.get("nodes", []) or []
             comments_count = comments_data.get("totalCount", 0) or 0
@@ -516,7 +464,6 @@ class GitHubExtractor:
                 if c.get("author"):
                     commenters.add(c["author"]["login"])
 
-            # Review threads
             threads_data = pr.get("reviewThreads") or {}
             threads_count = threads_data.get("totalCount", 0) or 0
             thread_nodes = threads_data.get("nodes", []) or []
@@ -525,7 +472,6 @@ class GitHubExtractor:
                     if tc.get("author"):
                         commenters.add(tc["author"]["login"])
 
-            # Primeira resposta humana (excluindo bots e o autor do PR)
             all_responses = []
             for r in reviews_data:
                 if r.get("author") and r["author"]["login"] != author:
@@ -551,7 +497,6 @@ class GitHubExtractor:
                     first_human_response_at = resp["ts"]
                     break
 
-            # Commits
             commits_data = pr.get("commits") or {}
             commits_count = commits_data.get("totalCount", 0) or 0
             commit_nodes = commits_data.get("nodes", []) or []
@@ -572,8 +517,6 @@ class GitHubExtractor:
                 else 0
             )
 
-            # MUDANÇA P1: Usa amostra de arquivos (sem paginação extra).
-            # changedFiles já dá o total exato; paths são amostra para extensões/docs.
             files_data = pr.get("files") or {}
             file_nodes = files_data.get("nodes", []) or []
             file_paths = [f["path"] for f in file_nodes if f.get("path")]
@@ -581,11 +524,9 @@ class GitHubExtractor:
             repo_prefix = f"{org}/{repo}"
             doc_count, extensions, file_hashes = analyze_files(file_paths, repo_prefix)
 
-            # Labels
             label_nodes = (pr.get("labels") or {}).get("nodes", []) or []
             label_names = [l["name"] for l in label_nodes if l.get("name")]
 
-            # Body e title
             body = pr.get("body") or ""
             title = pr.get("title") or ""
 
@@ -624,7 +565,7 @@ class GitHubExtractor:
 
         except Exception as e:
             log_error(f"GitHub/{org}/{repo}/PR#{pr_number}", str(e))
-            print(f"    ❌ Erro no PR #{pr_number}: {e}")
+            print(f"    Erro no PR #{pr_number}: {e}")
             return None
 
     def extract_repo(
@@ -640,13 +581,12 @@ class GitHubExtractor:
         pr_count = 0
         skipped = 0
 
-        # MUDANÇA P1: Substituir placeholders de limite na query unificada
         query = self.QUERY_LIST_PRS.replace("$maxCommits", str(MAX_COMMITS_PER_QUERY))
         query = query.replace("$maxReviews", str(MAX_REVIEWS_PER_QUERY))
         query = query.replace("$maxComments", str(MAX_COMMENTS_PER_QUERY))
         query = query.replace("$maxFiles", str(MAX_FILES_PER_QUERY))
 
-        print(f"  📥 Extraindo: {org}/{repo}")
+        print(f"  Extraindo: {org}/{repo}")
 
         while True:
             data = self.client.execute(
@@ -656,19 +596,18 @@ class GitHubExtractor:
             )
 
             if not data:
-                print(f"    ⚠️ Falha ao listar PRs de {repo}")
+                print(f"    Falha ao listar PRs de {repo}")
                 break
 
             repo_data = data.get("data", {}).get("repository", {})
             if not repo_data:
-                print(f"    ⚠️ Repositório {repo} não encontrado ou vazio")
+                print(f"    Repositório {repo} não encontrado ou vazio")
                 break
 
             pr_data = repo_data.get("pullRequests", {})
             pr_nodes = pr_data.get("nodes", []) or []
 
             for pr in pr_nodes:
-                # Filtro temporal
                 if since_date and pr.get("createdAt", "") < since_date:
                     print(f"    ✓ Chegou ao limite temporal ({since_date[:10]})")
                     return results
@@ -676,7 +615,6 @@ class GitHubExtractor:
                 pr_number = pr.get("number")
                 pr_key = f"GitHub/{org}/{repo}/#{pr_number}"
 
-                # Skip se já processado
                 if processed_prs and pr_key in processed_prs:
                     continue
 
@@ -686,36 +624,25 @@ class GitHubExtractor:
                         f"    → Processando PR #{pr_number} [{pr_count} PRs, {skipped} skipped]"
                     )
 
-                # MUDANÇA P1: Dados já vêm completos — sem request extra por PR
                 metrics = self._process_pr(org, repo, pr)
                 if metrics:
                     results.append(metrics)
                 else:
                     skipped += 1
 
-            # Próxima página
             page_info = pr_data.get("pageInfo", {})
             if not page_info.get("hasNextPage"):
                 break
             cursor = page_info.get("endCursor")
-            # MUDANÇA P1: Delay só entre páginas (não mais entre PRs individuais)
             time.sleep(0.5)
 
         print(f"    ✓ Concluído: {len(results)} PRs extraídos, {skipped} skipped")
         return results
 
 
-# =============================================================================
-# GITLAB EXTRACTOR
-# =============================================================================
-
-
 class GitLabExtractor:
     """Extrator de MRs do GitLab com extração em 2 fases."""
 
-    # MUDANÇA P2: Query leve para listar MRs básicos (sem discussões/commits/approvals).
-    # Antes: 1 query monolítica com até 25×50×20 = 25K objetos aninhados.
-    # Agora: Fase 1 lista dados leves, Fase 2 busca detalhes por MR individual.
     QUERY_LIST_MRS = """
     query($path: ID!, $cursor: String) {
       project(fullPath: $path) {
@@ -737,8 +664,6 @@ class GitLabExtractor:
     }
     """
 
-    # MUDANÇA P2: Query de detalhes para um MR específico (discussões, commits, approvals).
-    # Isolada por MR — menor risco de timeout e melhor tratamento de erro.
     QUERY_MR_DETAILS = """
     query($path: ID!, $mrIid: String!) {
       project(fullPath: $path) {
@@ -804,7 +729,6 @@ class GitLabExtractor:
 
         return projects
 
-    # MUDANÇA P2: Novo método para buscar detalhes de um MR específico.
     def _fetch_mr_details(self, project_path: str, mr_iid: int) -> Optional[Dict]:
         """Busca detalhes de um MR específico (discussões, commits, approvals)."""
         return self.client.execute(
@@ -826,22 +750,19 @@ class GitLabExtractor:
                 else "deleted_user"
             )
 
-            # Reviewers (quem aprovou) — vem dos detalhes
             reviewers = set()
-            approved_by = (mr_details.get("approvedBy") or {})
+            approved_by = mr_details.get("approvedBy") or {}
             if approved_by and approved_by.get("nodes"):
                 for app in approved_by["nodes"]:
                     if app.get("username"):
                         reviewers.add(app["username"])
 
-            # Discussions (filtrar notas de sistema) — vem dos detalhes
-            all_notes = []  # Todos os comentários humanos (incluindo self-comments)
-            external_notes = []  # Apenas comentários de terceiros (para first_response)
+            all_notes = []
+            external_notes = []
             commenters = set()
             discussions = (mr_details.get("discussions") or {}).get("nodes", []) or []
             for disc in discussions:
                 for note in (disc.get("notes") or {}).get("nodes", []) or []:
-                    # Ignorar notas de sistema
                     if note.get("system", False):
                         continue
                     if note.get("author"):
@@ -852,7 +773,6 @@ class GitLabExtractor:
                             external_notes.append(note)
                             reviewers.add(note_author)
 
-            # Primeira resposta
             first_review_at = None
             first_human_response_at = None
             if external_notes:
@@ -863,7 +783,6 @@ class GitLabExtractor:
                         first_human_response_at = note["createdAt"]
                         break
 
-            # Commits — vem dos detalhes
             commit_nodes = (mr_details.get("commits") or {}).get("nodes", []) or []
             commit_authors = set()
             commit_msg_lengths = []
@@ -880,17 +799,14 @@ class GitLabExtractor:
                 else 0
             )
 
-            # Diff stats — vem do MR básico (fase 1)
             diff_stats = mr_basic.get("diffStatsSummary") or {}
             additions = diff_stats.get("additions", 0) or 0
             deletions = diff_stats.get("deletions", 0) or 0
             file_count = diff_stats.get("fileCount", 0) or 0
 
-            # Labels — vem do MR básico (fase 1)
             label_nodes = (mr_basic.get("labels") or {}).get("nodes", []) or []
             label_names = [l["title"] for l in label_nodes if l.get("title")]
 
-            # Heurística para doc PR
             title = mr_basic.get("title") or ""
             description = mr_basic.get("description") or ""
             title_desc = (title + " " + description).lower()
@@ -929,7 +845,7 @@ class GitLabExtractor:
 
         except Exception as e:
             log_error(f"GitLab/{group}/{repo}/MR!{mr_iid}", str(e))
-            print(f"    ❌ Erro no MR !{mr_iid}: {e}")
+            print(f"    Erro no MR !{mr_iid}: {e}")
             return None
 
     def extract_project(
@@ -946,10 +862,9 @@ class GitLabExtractor:
         skipped = 0
         project_path = f"{group_path}/{repo}"
 
-        print(f"  📥 Extraindo: {project_path}")
+        print(f"  Extraindo: {project_path}")
 
         while True:
-            # MUDANÇA P2: Fase 1 — lista leve de MRs (sem discussões/commits)
             data = self.client.execute(
                 self.QUERY_LIST_MRS,
                 {"path": project_path, "cursor": cursor},
@@ -957,19 +872,18 @@ class GitLabExtractor:
             )
 
             if not data:
-                print(f"    ⚠️ Falha ao listar MRs de {repo}")
+                print(f"    Falha ao listar MRs de {repo}")
                 break
 
             project_data = data.get("data", {}).get("project", {})
             if not project_data:
-                print(f"    ⚠️ Projeto {repo} não encontrado")
+                print(f"    Projeto {repo} não encontrado")
                 break
 
             mr_data = project_data.get("mergeRequests", {})
             mr_nodes = mr_data.get("nodes", []) or []
 
             for mr_basic in mr_nodes:
-                # Filtro temporal
                 if since_date and mr_basic.get("createdAt", "") < since_date:
                     print(f"    ✓ Chegou ao limite temporal ({since_date[:10]})")
                     return results
@@ -977,7 +891,6 @@ class GitLabExtractor:
                 mr_iid = mr_basic.get("iid")
                 mr_key = f"GitLab/{group_path}/{repo}/!{mr_iid}"
 
-                # Skip se já processado
                 if processed_prs and mr_key in processed_prs:
                     continue
 
@@ -987,7 +900,6 @@ class GitLabExtractor:
                         f"    → Processando MR !{mr_iid} [{mr_count} MRs, {skipped} skipped]"
                     )
 
-                # MUDANÇA P2: Fase 2 — buscar detalhes do MR individual
                 details_data = self._fetch_mr_details(project_path, mr_iid)
                 if not details_data:
                     log_error(
@@ -1009,7 +921,6 @@ class GitLabExtractor:
 
                 time.sleep(0.3)
 
-            # Próxima página
             page_info = mr_data.get("pageInfo", {})
             if not page_info.get("hasNextPage"):
                 break
@@ -1018,11 +929,6 @@ class GitLabExtractor:
 
         print(f"    ✓ Concluído: {len(results)} MRs extraídos, {skipped} skipped")
         return results
-
-
-# =============================================================================
-# DATA PERSISTENCE
-# =============================================================================
 
 
 class DataPersistence:
@@ -1043,7 +949,6 @@ class DataPersistence:
             df = pd.read_csv(
                 self.output_file, usecols=["platform", "org", "repo", "id"]
             )
-            # Formato: Platform/org/repo/#id ou Platform/org/repo/!id
             processed = set()
             for _, row in df.iterrows():
                 prefix = "#" if row["platform"] == "GitHub" else "!"
@@ -1064,7 +969,6 @@ class DataPersistence:
         data = [asdict(m) for m in metrics_list]
         df = pd.DataFrame(data)
 
-        # Converter datas
         date_cols = [
             "created_at",
             "merged_at",
@@ -1075,7 +979,6 @@ class DataPersistence:
             if col in df.columns:
                 df[col] = pd.to_datetime(df[col], utc=True, errors="coerce")
 
-        # Calcular métricas derivadas
         if "merged_at" in df.columns and "created_at" in df.columns:
             df["lead_time_hours"] = (
                 df["merged_at"] - df["created_at"]
@@ -1096,15 +999,9 @@ class DataPersistence:
                 lambda x: x["comments"] / x["churn"] if x["churn"] > 0 else 0, axis=1
             )
 
-        # Append ao arquivo
         header = not os.path.exists(self.output_file)
         df.to_csv(self.output_file, mode="a", index=False, header=header)
-        print(f"  💾 Salvos {len(metrics_list)} registros")
-
-
-# =============================================================================
-# ORCHESTRATOR
-# =============================================================================
+        print(f"  Salvos {len(metrics_list)} registros")
 
 
 class ExtractionOrchestrator:
@@ -1127,7 +1024,7 @@ class ExtractionOrchestrator:
         """Executa extração para todos os targets."""
         targets = targets or TARGETS
         processed = self.persistence.get_processed_prs()
-        print(f"📊 PRs já processados: {len(processed)}")
+        print(f"PRs já processados: {len(processed)}")
 
         for target in targets:
             try:
@@ -1136,13 +1033,13 @@ class ExtractionOrchestrator:
                 elif target["type"] == "gitlab":
                     self._process_gitlab_target(target, processed)
             except Exception as e:
-                print(f"❌ Erro fatal em {target}: {e}")
+                print(f"Erro fatal em {target}: {e}")
                 log_error(f"Target {target}", str(e))
 
     def _process_github_target(self, target: Dict, processed: Set[str]):
         """Processa target do GitHub."""
         if not self.github_client:
-            print("⚠️ GITHUB_TOKEN não configurado")
+            print("GITHUB_TOKEN não configurado")
             return
 
         org = target["org"]
@@ -1150,12 +1047,11 @@ class ExtractionOrchestrator:
         since = target.get("since")
 
         print(f"\n{'=' * 60}")
-        print(f"🐙 GitHub: {org}")
+        print(f"GitHub: {org}")
         print(f"{'=' * 60}")
 
         extractor = GitHubExtractor(self.github_client)
 
-        # Listar repos se não especificado
         if not repos:
             print("  Listando repositórios...")
             repos = extractor.list_repos(org)
@@ -1167,19 +1063,17 @@ class ExtractionOrchestrator:
             metrics = extractor.extract_repo(org, repo, since, processed)
             all_metrics.extend(metrics)
 
-            # Salvar em batches
             if len(all_metrics) >= SAVE_BATCH_SIZE:
                 self.persistence.save_batch(all_metrics)
                 all_metrics = []
 
-        # Salvar restante
         if all_metrics:
             self.persistence.save_batch(all_metrics)
 
     def _process_gitlab_target(self, target: Dict, processed: Set[str]):
         """Processa target do GitLab."""
         if not self.gitlab_client:
-            print("⚠️ GITLAB_TOKEN não configurado")
+            print("GITLAB_TOKEN não configurado")
             return
 
         group = target["group_path"]
@@ -1187,12 +1081,11 @@ class ExtractionOrchestrator:
         since = target.get("since")
 
         print(f"\n{'=' * 60}")
-        print(f"🦊 GitLab: {group}")
+        print(f"GitLab: {group}")
         print(f"{'=' * 60}")
 
         extractor = GitLabExtractor(self.gitlab_client)
 
-        # Listar projetos se não especificado
         if not repos:
             print("  Listando projetos...")
             repos = extractor.list_projects(group)
@@ -1212,21 +1105,16 @@ class ExtractionOrchestrator:
             self.persistence.save_batch(all_metrics)
 
 
-# =============================================================================
-# MAIN
-# =============================================================================
-
-
 def main():
-    print("🚀 Iniciando extração de métricas de PRs")
-    print(f"📁 Output: {OUTPUT_FILE}")
-    print(f"📝 Error log: {ERROR_LOG_FILE}")
+    print("Iniciando extração de métricas de PRs")
+    print(f"Output: {OUTPUT_FILE}")
+    print(f"Error log: {ERROR_LOG_FILE}")
     print()
 
     orchestrator = ExtractionOrchestrator()
     orchestrator.run()
 
-    print("\n✅ Extração concluída!")
+    print("\nExtração concluída!")
 
 
 if __name__ == "__main__":
