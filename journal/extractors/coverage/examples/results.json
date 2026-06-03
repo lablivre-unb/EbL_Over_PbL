@@ -1,0 +1,141 @@
+{
+  "_note": "Example extraction results for the journal study target repositories. These are illustrative records showing the schema and expected source fields. Run 'python -m journal.main coverage' to produce actual measurements.",
+  "_schema_version": "1.0",
+  "results": [
+    {
+      "repository": "apache/storm",
+      "platform": "github",
+      "commit_sha": null,
+      "default_branch": "master",
+      "coverage_percent": null,
+      "coverage_lines_covered": null,
+      "coverage_lines_missed": null,
+      "coverage_branches_covered": null,
+      "coverage_branches_missed": null,
+      "coverage_source": "unavailable",
+      "coverage_provider": null,
+      "coverage_generation_method": null,
+      "coverage_collection_date": "PENDING",
+      "tool_used": null,
+      "execution_status": "unavailable",
+      "language": "java",
+      "build_system": "maven",
+      "coverage_error": "Run 'python -m journal.main coverage --repo apache/storm' to extract",
+      "_notes": [
+        "apache/storm is a Java/Maven project.",
+        "JaCoCo is the expected coverage tool.",
+        "Priority 1 (Codecov/Coveralls) is expected to return null for this repo.",
+        "Priority 3 (local Maven execution) is the likely path.",
+        "Requires: JDK 11+, Maven 3.6+"
+      ]
+    },
+    {
+      "repository": "apache/phoenix",
+      "platform": "github",
+      "commit_sha": null,
+      "default_branch": "master",
+      "coverage_percent": null,
+      "coverage_source": "unavailable",
+      "execution_status": "unavailable",
+      "language": "java",
+      "build_system": "maven",
+      "coverage_error": "Run 'python -m journal.main coverage --repo apache/phoenix' to extract",
+      "_notes": [
+        "Apache Phoenix is a Java/Maven project with multi-module structure.",
+        "mvn test jacoco:report with JaCoCo injection is the expected path.",
+        "Requires: JDK 8 or 11, Maven 3.6+"
+      ]
+    },
+    {
+      "repository": "pulp/pulpcore",
+      "platform": "github",
+      "commit_sha": null,
+      "default_branch": "main",
+      "coverage_percent": null,
+      "coverage_source": "unavailable",
+      "execution_status": "unavailable",
+      "language": "python",
+      "build_system": "pytest",
+      "coverage_error": "Run 'python -m journal.main coverage --repo pulp/pulpcore' to extract",
+      "_notes": [
+        "pulpcore is a Python/Django project.",
+        "Coveralls badge detected in README — Priority 1 (Coveralls) is the likely path.",
+        "If Coveralls fails: pytest --cov=. --cov-report=json is the fallback.",
+        "Requires: Python 3.9+, PostgreSQL (for integration tests)"
+      ]
+    },
+    {
+      "repository": "quay/quay",
+      "platform": "github",
+      "commit_sha": null,
+      "default_branch": "master",
+      "coverage_percent": null,
+      "coverage_source": "unavailable",
+      "execution_status": "unavailable",
+      "language": "python",
+      "build_system": "pytest",
+      "coverage_error": "Run 'python -m journal.main coverage --repo quay/quay' to extract",
+      "_notes": [
+        "Quay is a Python/Flask container registry project.",
+        "pytest with pytest-cov is expected.",
+        "May require Docker for integration tests.",
+        "Requires: Python 3.10+"
+      ]
+    },
+    {
+      "repository": "microsoft/vscode",
+      "platform": "github",
+      "commit_sha": null,
+      "default_branch": "main",
+      "coverage_percent": null,
+      "coverage_source": "unavailable",
+      "execution_status": "unavailable",
+      "language": "typescript",
+      "build_system": "npm",
+      "coverage_error": "Run 'python -m journal.main coverage --repo microsoft/vscode' to extract",
+      "_notes": [
+        "VS Code is a TypeScript/Electron project.",
+        "Codecov integration is present in CI — Priority 1 (Codecov) is the likely path.",
+        "If Codecov fails: npm test -- --coverage is the fallback.",
+        "Requires: Node.js 20+, npm, Electron build environment"
+      ]
+    },
+    {
+      "repository": "facebook/react",
+      "platform": "github",
+      "commit_sha": null,
+      "default_branch": "main",
+      "coverage_percent": null,
+      "coverage_source": "unavailable",
+      "execution_status": "unavailable",
+      "language": "javascript",
+      "build_system": "yarn",
+      "coverage_error": "Run 'python -m journal.main coverage --repo facebook/react' to extract",
+      "_notes": [
+        "React is a JavaScript/Yarn monorepo.",
+        "Coveralls integration is present — Priority 1 (Coveralls) is the likely path.",
+        "If Coveralls fails: yarn test --coverage is the fallback.",
+        "Requires: Node.js 18+, Yarn 1.x"
+      ]
+    },
+    {
+      "repository": "lappis-unb/DecidimBR/brasilparticipativo",
+      "platform": "gitlab",
+      "commit_sha": null,
+      "default_branch": "main",
+      "coverage_percent": null,
+      "coverage_source": "unavailable",
+      "execution_status": "unsupported",
+      "language": "ruby",
+      "build_system": "bundler",
+      "coverage_error": "Ruby/Bundler local execution not yet implemented. Extend ExecutorFactory with a RubyExecutor.",
+      "_notes": [
+        "brasilparticipativo is a Ruby on Rails / Decidim fork.",
+        "Ruby is detected but no local executor is registered.",
+        "Priority 1 (Codecov/Coveralls) may succeed if the project reports to either service.",
+        "To add Ruby support: implement RubyExecutor in executors.py using 'bundle exec rspec --format RspecJunitFormatter' and simplecov.",
+        "Requires: Ruby 3.1+, Bundler, PostgreSQL"
+      ]
+    }
+  ]
+}
