@@ -9,7 +9,7 @@ PRMetrics dataclass) so the dataclass stays free of pandas dependencies.
 """
 import logging
 import os
-from typing import List, Set
+from typing import List, Set, Tuple
 
 import pandas as pd
 
@@ -55,6 +55,30 @@ class DataPersistence:
         except Exception as e:
             logger.warning("Could not read processed keys: %s", e)
             return set()
+
+    def remove_records(self, targets: List[Tuple[str, str]]) -> int:
+        """Delete existing rows matching the given (org, repo) pairs.
+
+        Rewrites the CSV in place, keeping every row that does NOT match.
+        A repo of "*" removes all rows for that org (used for targets whose
+        repo list is resolved dynamically). Returns the number of rows removed.
+        """
+        if not os.path.exists(self.output_file) or not targets:
+            return 0
+
+        df = pd.read_csv(self.output_file)
+        mask = pd.Series(False, index=df.index)
+        for org, repo in targets:
+            m = df["org"] == org
+            if repo != "*":
+                m &= df["repo"] == repo
+            mask |= m
+
+        removed = int(mask.sum())
+        if removed:
+            df[~mask].to_csv(self.output_file, index=False)
+            logger.info("Removed %d existing records from %s", removed, self.output_file)
+        return removed
 
     def save_batch(self, metrics_list: List[PRMetrics]) -> None:
         """Append a batch of PRMetrics to the CSV, including derived columns."""

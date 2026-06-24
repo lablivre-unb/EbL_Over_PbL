@@ -15,6 +15,12 @@ python -m journal.main filter
 # Override output paths
 python -m journal.main extract --output journal/data/bronze/custom.csv
 
+# Extract only specific targets (match by org or repo name, repeatable)
+python -m journal.main extract --target lappis-unb/decidimbr
+
+# Re-extract a single target from scratch, overwriting its existing rows
+python -m journal.main extract --target decidim-govbr --overwrite
+
 # Dry-run: print targets and exit
 python -m journal.main extract --list-targets
 
@@ -53,21 +59,58 @@ def _configure_logging(log_file: str) -> None:
     )
 
 
+def _select_targets(patterns):
+    """Return TARGETS filtered by --target patterns.
+
+    A pattern matches a target when it is found (case-insensitively) in the
+    target's org or in any of its repo names, so both
+    ``--target lappis-unb/decidimbr`` and ``--target decidim-govbr`` select the
+    Brasil Participativo target. Returns all TARGETS when no pattern is given.
+    """
+    if not patterns:
+        return list(TARGETS)
+
+    selected = []
+    for t in TARGETS:
+        for p in patterns:
+            pl = p.lower()
+            if (
+                pl in t.org.lower()
+                or any(pl in r.lower() for r in t.repos)
+            ):
+                selected.append(t)
+                break
+    return selected
+
+
 def cmd_extract(args: argparse.Namespace) -> None:
     output = args.output or settings.OUTPUT_FILE
     _configure_logging(settings.ERROR_LOG_FILE)
     logger = logging.getLogger("journal.main")
 
+    targets = _select_targets(args.target)
+
     if args.list_targets:
-        for t in TARGETS:
+        for t in targets:
             repos = ", ".join(t.repos) if t.repos else "<all repos>"
             since = f"  since={t.since}" if t.since else ""
             print(f"[{t.platform}] {t.org}  repos=[{repos}]{since}")
         return
 
-    logger.info("Starting extraction — output: %s", output)
+    if args.target and not targets:
+        logger.error("No targets matched --target %s", args.target)
+        sys.exit(1)
+
+    if args.overwrite:
+        pairs = [
+            (t.org, r) for t in targets for r in (t.repos or ["*"])
+        ]
+        removed = ExtractionOrchestrator(output_file=output).persistence.remove_records(pairs)
+        logger.info("Overwrite: removed %d existing rows before re-extraction", removed)
+
+    logger.info("Starting extraction — output: %s (%d target(s))", output, len(targets))
     orchestrator = ExtractionOrchestrator(output_file=output)
-    orchestrator.run()
+    orchestrator.run(targets=targets)
     logger.info("Extraction complete")
 
     if args.filter:
@@ -150,6 +193,17 @@ def build_parser() -> argparse.ArgumentParser:
     p_extract = sub.add_parser("extract", help="Extract PRs from configured targets")
     p_extract.add_argument(
         "--output", metavar="PATH", help="Override bronze CSV output path"
+    )
+    p_extract.add_argument(
+        "--target", metavar="NAME", action="append",
+        help="Only extract targets matching NAME (org or repo, repeatable). "
+             "Defaults to all TARGETS.",
+    )
+    p_extract.add_argument(
+        "--overwrite",
+        action="store_true",
+        help="Delete existing rows for the selected targets and re-extract them "
+             "from scratch (instead of resuming and skipping processed PRs).",
     )
     p_extract.add_argument(
         "--filter",
