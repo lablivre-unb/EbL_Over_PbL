@@ -10,10 +10,9 @@ Cross-platform notes (see PRMetrics docstring for full list):
               (50 discussions × 20 notes per discussion).
   - first_review_at: first non-author, non-system note timestamp — broader
     than GitHub's formal-review-event definition.
-  - doc_files_count / file_extensions / file_hashes: always empty/0; GitLab
-    GraphQL does not expose file diffs at this scope without per-file queries.
-  - is_doc_pr: keyword fallback (title/description) since file paths are
-    unavailable.
+  - doc_files_count / file_extensions / file_hashes: populated via a
+    supplementary REST API call (GET /projects/:id/merge_requests/:iid/changes)
+    since the GitLab GraphQL API does not expose file diffs directly.
 """
 import logging
 import time
@@ -23,7 +22,7 @@ from journal.clients.graphql_client import GraphQLClient
 from journal.extractors.base import BaseExtractor
 from journal.models.pr_metrics import PRMetrics
 from journal.utils.bot_detection import is_bot_user
-from journal.utils.file_analysis import compute_is_doc_pr
+from journal.utils.file_analysis import analyze_files, compute_is_doc_pr
 
 logger = logging.getLogger(__name__)
 
@@ -183,7 +182,7 @@ class GitLabExtractor(BaseExtractor):
                     (details_data.get("data") or {}).get("project") or {}
                 ).get("mergeRequest") or {}
 
-                metrics = self._process_mr(org, repo, mr_basic, mr_details)
+                metrics = self._process_mr(org, repo, mr_basic, mr_details, project_path)
                 if metrics:
                     results.append(metrics)
                 else:
@@ -213,12 +212,46 @@ class GitLabExtractor(BaseExtractor):
             f"GitLab/{project_path}/MR!{mr_iid}/details",
         )
 
+    def _fetch_mr_files_rest(self, project_path: str, mr_iid: int) -> List[str]:
+        """Fetch modified file paths via GitLab REST API.
+
+        The GraphQL API does not expose file diffs directly, so we use
+        GET /projects/:id/merge_requests/:iid/changes to retrieve them.
+        Capped at 100 files per MR for performance.
+        """
+        try:
+            project_encoded = project_path.replace("/", "%2F")
+            url = (
+                f"https://gitlab.com/api/v4/projects/{project_encoded}"
+                f"/merge_requests/{mr_iid}/changes"
+            )
+            response = self.client.session.get(
+                url, headers=self.client.headers, timeout=30,
+            )
+            if response.status_code == 200:
+                changes = response.json().get("changes", [])
+                return [
+                    c["new_path"] for c in changes[:100] if "new_path" in c
+                ]
+            logger.warning(
+                "REST /changes returned %d for %s/MR!%s",
+                response.status_code, project_path, mr_iid,
+            )
+            return []
+        except Exception as e:
+            logger.error(
+                "Error fetching files for GitLab/%s/MR!%s: %s",
+                project_path, mr_iid, e,
+            )
+            return []
+
     def _process_mr(
-        self, group: str, repo: str, mr_basic: Dict, mr_details: Dict
+        self, group: str, repo: str, mr_basic: Dict, mr_details: Dict,
+        project_path: str,
     ) -> Optional[PRMetrics]:
         mr_iid = mr_basic.get("iid")
         try:
-            return self._build_metrics(group, repo, mr_basic, mr_details)
+            return self._build_metrics(group, repo, mr_basic, mr_details, project_path)
         except Exception as e:
             logger.error(
                 "Error processing GitLab/%s/%s/MR!%s: %s", group, repo, mr_iid, e
@@ -226,7 +259,8 @@ class GitLabExtractor(BaseExtractor):
             return None
 
     def _build_metrics(
-        self, group: str, repo: str, mr_basic: Dict, mr_details: Dict
+        self, group: str, repo: str, mr_basic: Dict, mr_details: Dict,
+        project_path: str,
     ) -> PRMetrics:
         mr_iid = mr_basic.get("iid")
         author = (
@@ -291,6 +325,11 @@ class GitLabExtractor(BaseExtractor):
         deletions = diff_stats.get("deletions", 0) or 0
         file_count = diff_stats.get("fileCount", 0) or 0
 
+        # --- file paths (via REST API) ---
+        file_paths = self._fetch_mr_files_rest(project_path, mr_iid)
+        repo_prefix = f"{group}/{repo}"
+        doc_count, extensions, file_hashes = analyze_files(file_paths, repo_prefix)
+
         # --- labels ---
         label_nodes = (mr_basic.get("labels") or {}).get("nodes", []) or []
         label_names = [lbl["title"] for lbl in label_nodes if lbl.get("title")]
@@ -319,10 +358,10 @@ class GitLabExtractor(BaseExtractor):
             additions=additions,
             deletions=deletions,
             churn=additions + deletions,
-            doc_files_count=0,            # GitLab: no file path data in this query
-            is_doc_pr=compute_is_doc_pr([], title, description),
-            file_extensions="",           # GitLab: no file path data
-            file_hashes="",               # GitLab: no file path data
+            doc_files_count=doc_count,
+            is_doc_pr=compute_is_doc_pr(file_paths, title, description),
+            file_extensions=extensions,
+            file_hashes=file_hashes,
             title_length=len(title),
             description_length=len(description),
             labels_count=len(label_names),
